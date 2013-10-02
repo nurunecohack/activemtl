@@ -8,7 +8,7 @@ import com.nurun.activemtl.model.CourtList;
 
 public class ParseCourtList extends ArrayList<Court> implements CourtList {
 
-    public ParseCourtList(List<ParseCourt> courts) {
+    public ParseCourtList(List<ParseEvent> courts) {
         super(courts);
     }
 

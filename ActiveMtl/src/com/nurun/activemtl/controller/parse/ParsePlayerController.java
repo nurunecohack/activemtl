@@ -11,7 +11,7 @@ import com.nurun.activemtl.controller.PlayerController;
 import com.nurun.activemtl.http.AddPlayerToCourtRequestCallbacks;
 import com.nurun.activemtl.http.DeletePlayerToCourtRequestCallbacks;
 import com.nurun.activemtl.model.Player;
-import com.nurun.activemtl.model.parse.ParseCourt;
+import com.nurun.activemtl.model.parse.ParseEvent;
 import com.parse.GetCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
@@ -132,11 +132,11 @@ public class ParsePlayerController implements PlayerController {
     public void checkInCourt(String courtId, final AddPlayerToCourtRequestCallbacks addPlayerToCourtRequestCallbacks) {
         try {
             final ParseUser parseUser = ParseUser.logIn(PreferenceHelper.getLogin(context), DEFAULT_PASSWORD);
-            ParseQuery<ParseCourt> query = ParseQuery.getQuery(ParseCourt.class);
-            query.getInBackground(courtId, new GetCallback<ParseCourt>() {
+            ParseQuery<ParseEvent> query = ParseQuery.getQuery(ParseEvent.class);
+            query.getInBackground(courtId, new GetCallback<ParseEvent>() {
 
                 @Override
-                public void done(final ParseCourt court, ParseException e) {
+                public void done(final ParseEvent court, ParseException e) {
                     if (e == null) {
                         ParseRelation<ParseUser> relation = court.getRelation("currentPlayers");
                         relation.add(parseUser);
@@ -165,11 +165,11 @@ public class ParsePlayerController implements PlayerController {
     public void leaveCourt(String courtId, final DeletePlayerToCourtRequestCallbacks deletePlayerCallback) {
         try {
             final ParseUser parseUser = ParseUser.logIn(PreferenceHelper.getLogin(context), DEFAULT_PASSWORD);
-            ParseQuery<ParseCourt> query = ParseQuery.getQuery(ParseCourt.class);
-            query.getInBackground(courtId, new GetCallback<ParseCourt>() {
+            ParseQuery<ParseEvent> query = ParseQuery.getQuery(ParseEvent.class);
+            query.getInBackground(courtId, new GetCallback<ParseEvent>() {
 
                 @Override
-                public void done(final ParseCourt court, ParseException e) {
+                public void done(final ParseEvent court, ParseException e) {
                     if (e == null) {
                         ParseRelation<ParseUser> relation = court.getRelation("currentPlayers");
                         relation.remove(parseUser);

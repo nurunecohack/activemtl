@@ -99,7 +99,7 @@ public class ActiveMapFragment extends SupportMapFragment {
                 MarkerOptions marker = new MarkerOptions();
                 marker.position(new LatLng(court.getLatLng()[0], court.getLatLng()[1]));
                 marker.draggable(false);
-                marker.title(court.getName());
+                marker.title(court.getTitle());
                 int playerCount = court.getPlayerCount();
                 marker.snippet(String.format(playerString, playerCount));
                 marker.icon(getIcon(playerCount));

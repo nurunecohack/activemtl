@@ -41,7 +41,7 @@ public class EventDbAdapter extends DbAdapter<Court> {
     protected ContentValues getValues(Court court) {
         ContentValues initialValues = new ContentValues();
         initialValues.put(KEY_ID, court.getCourtId());
-        initialValues.put(KEY_NAME, court.getName());
+        initialValues.put(KEY_NAME, court.getTitle());
         initialValues.put(KEY_ADDRESS, court.getAddress());
         initialValues.put(KEY_LATITUDE, court.getLatLng()[0]);
         initialValues.put(KEY_LONGITUDE, court.getLatLng()[1]);

@@ -40,7 +40,7 @@ public class CourtAdapter extends ArrayAdapter<Court> {
         }
         holder = (ViewHolder) convertView.getTag();
         Court court = getItem(position);
-        holder.name.setText(court.getName());
+        holder.name.setText(court.getTitle());
         if (court.getPictureUrl() != null && !court.getPictureUrl().equals(holder.imageUrl)) {
             Picasso.with(getContext()).load(Uri.parse(court.getPictureUrl())).placeholder(R.drawable.basketball_court).into(holder.courtImage);
         }

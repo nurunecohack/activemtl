@@ -12,29 +12,34 @@ import com.parse.ParseFile;
 import com.parse.ParseGeoPoint;
 import com.parse.ParseObject;
 
-@ParseClassName("Court")
-public class ParseCourt extends ParseObject implements Court {
+@ParseClassName("Event")
+public class ParseEvent extends ParseObject implements Court {
 
     private static final long serialVersionUID = -1882774815573887129L;
     private static final String ADDRESS = "address";
     private static final String CITY = "city";
     private static final String COUNTRY = "country";
     private static final String LOCATION = "location";
-    private static final String NAME = "name";
+    private static final String TITLE = "title";
+    private static final String DESCRIPTION = "description";
     private static final String SUGGESTED_BY = "suggestedBy";
     private static final String PICTURE = "thumbnail";
 
     private int playerCount = new Random().nextInt(11);
 
-    public ParseCourt() {
+    public ParseEvent() {
     }
 
     public void setSuggestedBy(String suggestedBy) {
         put(SUGGESTED_BY, suggestedBy);
     }
 
-    public void setName(String name) {
-        put(NAME, name);
+    public void setTitle(String title) {
+        put(TITLE, title);
+    }
+    
+    public void setDescription(String description) {
+        put(DESCRIPTION, description);
     }
 
     public void setGeolocation(double latitude, double longitude) {
@@ -58,8 +63,12 @@ public class ParseCourt extends ParseObject implements Court {
         return getString(COUNTRY);
     }
 
-    public String getName() {
-        return getString(NAME);
+    public String getTitle() {
+        return getString(TITLE);
+    }
+    
+    public String getDescription() {
+        return getString(DESCRIPTION);
     }
 
     public ParseGeoPoint getGeolocation() {

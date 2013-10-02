@@ -18,7 +18,7 @@ import com.nurun.activemtl.controller.PlayerController;
 import com.nurun.activemtl.controller.parse.ParseCourtController;
 import com.nurun.activemtl.controller.parse.ParsePlayerController;
 import com.nurun.activemtl.data.ActiveMtlDatabaseHelper;
-import com.nurun.activemtl.model.parse.ParseCourt;
+import com.nurun.activemtl.model.parse.ParseEvent;
 import com.nurun.activemtl.receiver.LocationBroadcastReceiver;
 import com.parse.Parse;
 import com.parse.ParseObject;
@@ -40,7 +40,7 @@ public class ActiveMtlApplication extends Application {
     public void onCreate() {
         super.onCreate();
         ActiveMtlDatabaseHelper.init(this);
-        ParseObject.registerSubclass(ParseCourt.class);
+        ParseObject.registerSubclass(ParseEvent.class);
         Parse.initialize(this, APP_ID, CLIENT_KEY);
 
         int googlePlayServicesAvailable = GooglePlayServicesUtil.isGooglePlayServicesAvailable(getApplicationContext());

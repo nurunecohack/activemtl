@@ -8,7 +8,7 @@ public interface Court extends Serializable {
 
 	String getCourtId();
 	
-    String getName();
+    String getTitle();
 
     Integer getPlayerCount();
 
