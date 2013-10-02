@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="cell_spacing">10dp</dimen>
+    <dimen name="notification_bar_height">48dp</dimen>
+    <dimen name="notification_bar_textSize">16sp</dimen>
+    <dimen name="slide_fragment_horizontal_margin">50dp</dimen>
+    <dimen name="text_vertical_margin">18dp</dimen>
+    <dimen name="text_horizontal_margin">10dp</dimen>
+
+</resources>

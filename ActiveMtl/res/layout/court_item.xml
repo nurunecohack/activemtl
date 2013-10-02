@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@android:color/white"
+    android:padding="5dp" >
+
+    <com.parse.ParseImageView
+        android:id="@+id/court_image"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:alpha="0"
+        android:scaleType="centerCrop" />
+
+    <TextView
+        android:id="@+id/court_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@id/court_image"
+        android:gravity="center"
+        android:text="Parc Jarry" />
+
+    <TextView
+        android:id="@+id/player_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@id/court_name"
+        android:drawableLeft="@drawable/player_logo"
+        android:gravity="center"
+        android:padding="5dp"
+        android:text="0"
+        android:textColor="@android:color/holo_orange_dark"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/court_distance"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/court_name"
+        android:drawableLeft="@drawable/ic_menu_compass"
+        android:gravity="center"
+        android:padding="5dp"
+        android:text="500 m" />
+
+</RelativeLayout>
