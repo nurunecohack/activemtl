@@ -1,19 +1,1 @@
-# Eclipse Project Settings Files
 .metadata
-FindBBallCourt/.settings/
-FindBBallCourt Test/.settings/
-FindBBallCourt Test/lint.xml
-
-# Android Studio
-out/
-
-#Autres projets
-ApiDemos
-CloudBackend
-geek-serendipity-io13
-NurunSensors
-VideoMessage
-FindBBallCourt/endpoint-libs/
-FindBBallCourt-AppEngine/war/WEB-INF/appengine-generated/datastore-indexes-auto.xml
-FindBBallCourt-AppEngine/war/WEB-INF/classes/
-.idea/workspace.xml
