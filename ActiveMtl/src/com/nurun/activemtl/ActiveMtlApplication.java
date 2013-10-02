@@ -17,13 +17,13 @@ import com.nurun.activemtl.controller.CourtController;
 import com.nurun.activemtl.controller.PlayerController;
 import com.nurun.activemtl.controller.parse.ParseCourtController;
 import com.nurun.activemtl.controller.parse.ParsePlayerController;
-import com.nurun.activemtl.data.FacDatabaseHelper;
+import com.nurun.activemtl.data.ActiveMtlDatabaseHelper;
 import com.nurun.activemtl.model.parse.ParseCourt;
 import com.nurun.activemtl.receiver.LocationBroadcastReceiver;
 import com.parse.Parse;
 import com.parse.ParseObject;
 
-public class FaCApplication extends Application {
+public class ActiveMtlApplication extends Application {
 
     private static final String CLIENT_KEY = "NaBMEGW8KLwkaIFhzABiRJOzFYhpq7JZakj4heKc";
     private static final String APP_ID = "u5ku5ZMBw0KtOQRXv3xU82WU5GgEx9v8C5mLThkH";
@@ -39,7 +39,7 @@ public class FaCApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        FacDatabaseHelper.init(this);
+        ActiveMtlDatabaseHelper.init(this);
         ParseObject.registerSubclass(ParseCourt.class);
         Parse.initialize(this, APP_ID, CLIENT_KEY);
 
@@ -105,7 +105,7 @@ public class FaCApplication extends Application {
     @Override
     public void onTerminate() {
         super.onTerminate();
-        FacDatabaseHelper.getInstance(this).close();
+        ActiveMtlDatabaseHelper.getInstance(this).close();
     }
 
 }

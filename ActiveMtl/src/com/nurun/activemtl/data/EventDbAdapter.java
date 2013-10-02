@@ -11,7 +11,7 @@ import android.util.Log;
 
 import com.nurun.activemtl.model.Court;
 
-public class CourtDbAdapter extends DbAdapter<Court> {
+public class EventDbAdapter extends DbAdapter<Court> {
 
     public static final String KEY_ID = Court.class.getSimpleName() + "Id";
     public static final String KEY_NAME = Court.class.getSimpleName() + "Name";
@@ -24,15 +24,15 @@ public class CourtDbAdapter extends DbAdapter<Court> {
     public static final String KEY_PLAYER_COUNT = Court.class.getSimpleName() + "PlayerCount";
     public static final String KEY_SUGGESTED_BY = Court.class.getSimpleName() + "SuggestedBy";
 
-    private static CourtDbAdapter instance;
+    private static EventDbAdapter instance;
 
-    private CourtDbAdapter(Context context) {
+    private EventDbAdapter(Context context) {
         super(context);
     }
 
-    public static CourtDbAdapter getInstance(Context context) {
+    public static EventDbAdapter getInstance(Context context) {
         if (instance == null) {
-            instance = new CourtDbAdapter(context);
+            instance = new EventDbAdapter(context);
         }
         return instance;
     }
@@ -75,14 +75,14 @@ public class CourtDbAdapter extends DbAdapter<Court> {
     }
 
     public Cursor listOrderByDistance() {
-        Cursor cursor = new QueryBuilder(getTableView()).columns(BaseColumns._ID, CourtDbAdapter.KEY_ID, CourtDbAdapter.KEY_NAME, CourtDbAdapter.KEY_ADDRESS,
-                CourtDbAdapter.KEY_PICTURE_URL, CourtDbAdapter.KEY_PLAYER_COUNT, CourtDbAdapter.KEY_SUGGESTED_BY, CourtDbAdapter.KEY_LATITUDE,
-                CourtDbAdapter.KEY_LONGITUDE).request(mDb);
+        Cursor cursor = new QueryBuilder(getTableView()).columns(BaseColumns._ID, EventDbAdapter.KEY_ID, EventDbAdapter.KEY_NAME, EventDbAdapter.KEY_ADDRESS,
+                EventDbAdapter.KEY_PICTURE_URL, EventDbAdapter.KEY_PLAYER_COUNT, EventDbAdapter.KEY_SUGGESTED_BY, EventDbAdapter.KEY_LATITUDE,
+                EventDbAdapter.KEY_LONGITUDE).request(mDb);
         return cursor;
     }
 
     private String getTableView() {
-        return CourtDbAdapter.TABLE_NAME;
+        return EventDbAdapter.TABLE_NAME;
     }
 
     public Cursor search(String search) {

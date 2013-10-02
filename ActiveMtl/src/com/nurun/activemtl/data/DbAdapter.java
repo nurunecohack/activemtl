@@ -16,7 +16,7 @@ public abstract class DbAdapter<E> {
 	public static final String DESC = "DESC";
 
 	protected DbAdapter(Context context) {
-		mDb = FacDatabaseHelper.getInstance(context).getWritableDatabase();
+		mDb = ActiveMtlDatabaseHelper.getInstance(context).getWritableDatabase();
 	}
 
 	public void startTransaction() {

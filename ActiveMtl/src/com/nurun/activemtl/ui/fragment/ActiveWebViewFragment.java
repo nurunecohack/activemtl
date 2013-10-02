@@ -12,10 +12,15 @@ import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.Animation.AnimationListener;
 import android.view.animation.TranslateAnimation;
+import android.webkit.JavascriptInterface;
+import android.webkit.WebChromeClient;
+import android.webkit.WebSettings;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.LinearLayout;
 
 import com.nurun.activemtl.R;
+import com.nurun.activemtl.ui.DetailActivity;
 
 public class ActiveWebViewFragment extends Fragment {
 
@@ -26,6 +31,11 @@ public class ActiveWebViewFragment extends Fragment {
         final LinearLayout view = (LinearLayout) inflater.inflate(R.layout.webview, container);
         final WebView webview = (WebView) view.findViewById(R.id.webview);
         webview.loadUrl("http://www.google.ca");
+        WebSettings settings = webview.getSettings();
+        settings.setJavaScriptEnabled(true);
+        webview.addJavascriptInterface(this, "Android");
+        webview.setWebChromeClient(new WebChromeClient());
+        webview.setWebViewClient(new WebViewClient());
         View headerView = view.findViewById(R.id.headerView);
         headerView.setOnClickListener(new OnClickListener() {
 
@@ -86,5 +96,10 @@ public class ActiveWebViewFragment extends Fragment {
             }
         });
         return view;
+    }
+    
+    @JavascriptInterface
+    public void openDetail(String id) {
+        getActivity().startActivity(DetailActivity.newIntent(getActivity(), id));
     }
 }

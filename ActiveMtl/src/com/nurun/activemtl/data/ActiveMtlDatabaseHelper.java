@@ -14,36 +14,24 @@ import android.util.Log;
 
 import com.nurun.activemtl.PreferenceHelper;
 
-public class FacDatabaseHelper extends SQLiteOpenHelper {
-    protected static FacDatabaseHelper instance;
+public class ActiveMtlDatabaseHelper extends SQLiteOpenHelper {
+    protected static ActiveMtlDatabaseHelper instance;
     protected static final int DATABASE_VERSION = 1;
-    private static String DATABASE_NAME = "fac.db";
+    private static String DATABASE_NAME = "activeMtl.db";
     private Context context;
 
-    protected FacDatabaseHelper(Context context) {
+    protected ActiveMtlDatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
         this.context = context;
     }
 
     public static void init(Context context) {
         if (instance == null) {
-            instance = new FacDatabaseHelper(context);
+            instance = new ActiveMtlDatabaseHelper(context);
         }
-        /*CourtDbAdapter courtDbAdapter = CourtDbAdapter.getInstance(context);
-        if (courtDbAdapter.isEmpty()) {
-            try {
-                InputStream inputStream = context.getResources().openRawResource(com.bball.court.R.raw.courts);
-                Reader jsonReader = new InputStreamReader(inputStream, "UTF-8");
-                Gson gson = (Gson) context.getSystemService(FaCApplication.GSON);
-                CourtList courtList = gson.fromJson(jsonReader, PlayCourtList.class);
-                courtDbAdapter.insertOrUpdate(courtList.list());
-            } catch (Exception e) {
-                Log.e(FacDatabaseHelper.class.getSimpleName(), e.getMessage(), e);
-            }
-        }*/
     }
 
-    public static FacDatabaseHelper getInstance(Context context) {
+    public static ActiveMtlDatabaseHelper getInstance(Context context) {
         if (instance == null) {
             throw new IllegalStateException("Database need to be initialized");
         }
@@ -110,7 +98,7 @@ public class FacDatabaseHelper extends SQLiteOpenHelper {
 
     protected List<String> getCreateRequests() {
         List<String> requests = new ArrayList<String>();
-        requests.add(createTable(CourtDbAdapter.TABLE_NAME, CourtDbAdapter.getAttributs()));
+        requests.add(createTable(EventDbAdapter.TABLE_NAME, EventDbAdapter.getAttributs()));
         return requests;
     }
 }

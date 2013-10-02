@@ -5,7 +5,7 @@ import java.util.Arrays;
 import android.content.Context;
 import android.os.AsyncTask;
 
-import com.nurun.activemtl.data.CourtDbAdapter;
+import com.nurun.activemtl.data.EventDbAdapter;
 import com.nurun.activemtl.model.Court;
 
 public class PersistCourtTask extends AsyncTask<Court, Void, Void> {
@@ -18,7 +18,7 @@ public class PersistCourtTask extends AsyncTask<Court, Void, Void> {
 
     @Override
     protected Void doInBackground(Court... elements) {
-        CourtDbAdapter.getInstance(context).insertOrUpdate(Arrays.asList(elements));
+        EventDbAdapter.getInstance(context).insertOrUpdate(Arrays.asList(elements));
         return null;
     }
 

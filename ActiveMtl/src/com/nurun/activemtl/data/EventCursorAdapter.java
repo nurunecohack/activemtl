@@ -10,13 +10,13 @@ import android.widget.SimpleCursorAdapter;
 import com.nurun.activemtl.R;
 import com.squareup.picasso.Picasso;
 
-public class CourtCursorAdapter extends SimpleCursorAdapter {
+public class EventCursorAdapter extends SimpleCursorAdapter {
 
     private static Cursor cursor;
 
     private static final int[] to = new int[] { R.id.court_image, R.id.court_name, R.id.court_distance, R.id.player_number };
 
-    private static final String[] from = new String[] { CourtDbAdapter.KEY_PICTURE_URL, CourtDbAdapter.KEY_NAME, CourtDbAdapter.KEY_PLAYER_COUNT };
+    private static final String[] from = new String[] { EventDbAdapter.KEY_PICTURE_URL, EventDbAdapter.KEY_NAME, EventDbAdapter.KEY_PLAYER_COUNT };
 
     private DataSetObserver observer = new DataSetObserver() {
         @Override
@@ -30,7 +30,7 @@ public class CourtCursorAdapter extends SimpleCursorAdapter {
         @Override
         public boolean setViewValue(View view, Cursor cursor, int columnIndex) {
             if (R.id.court_image == view.getId()) {
-                Picasso.with(view.getContext()).load(CourtCursorReader.getPictureUrl(cursor)).placeholder(R.drawable.basketball_court).into((ImageView) view);
+                Picasso.with(view.getContext()).load(EventCursorReader.getPictureUrl(cursor)).placeholder(R.drawable.basketball_court).into((ImageView) view);
                 return true;
             } else if (R.id.court_distance == view.getId()) {
                 // ((TextView) view).setText(DistanceUtil.formatDistance(CourtCursorReader.getDistance(cursor)));
@@ -40,14 +40,14 @@ public class CourtCursorAdapter extends SimpleCursorAdapter {
         }
     };
 
-    public CourtCursorAdapter(Context context) {
+    public EventCursorAdapter(Context context) {
         super(context, R.layout.court_item, getCursor(context), from, to, 0);
         registerDataSetObserver(observer);
         setViewBinder(viewBinder);
     }
 
     private static Cursor getCursor(Context context) {
-        cursor = CourtDbAdapter.getInstance(context).listOrderByDistance();
+        cursor = EventDbAdapter.getInstance(context).listOrderByDistance();
         return cursor;
     }
 

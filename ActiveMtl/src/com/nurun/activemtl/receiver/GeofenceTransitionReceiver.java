@@ -14,7 +14,7 @@ import android.util.Log;
 
 import com.google.android.gms.location.Geofence;
 import com.google.android.gms.location.LocationClient;
-import com.nurun.activemtl.FaCApplication;
+import com.nurun.activemtl.ActiveMtlApplication;
 import com.nurun.activemtl.PreferenceHelper;
 import com.nurun.activemtl.R;
 import com.nurun.activemtl.controller.PlayerController;
@@ -31,7 +31,7 @@ public class GeofenceTransitionReceiver extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        playerController = (PlayerController) context.getApplicationContext().getSystemService(FaCApplication.PLAYER_CONTROLLER);
+        playerController = (PlayerController) context.getApplicationContext().getSystemService(ActiveMtlApplication.PLAYER_CONTROLLER);
         List<Geofence> geofences = LocationClient.getTriggeringGeofences(intent);
         int transition = LocationClient.getGeofenceTransition(intent);
         Log.i(GeofenceTransitionReceiver.class.getSimpleName(), "onReceive transition : " + (transition == Geofence.GEOFENCE_TRANSITION_ENTER ? "Enter" : "Exit"));

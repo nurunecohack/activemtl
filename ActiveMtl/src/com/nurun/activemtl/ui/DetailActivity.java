@@ -11,8 +11,8 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 
 import com.nurun.activemtl.R;
-import com.nurun.activemtl.data.CourtCursorReader;
-import com.nurun.activemtl.data.CourtDbAdapter;
+import com.nurun.activemtl.data.EventCursorReader;
+import com.nurun.activemtl.data.EventDbAdapter;
 import com.nurun.activemtl.ui.animation.DepthPageTransformer;
 import com.nurun.activemtl.ui.fragment.CourtDetailFragment;
 
@@ -30,7 +30,7 @@ public class DetailActivity extends FragmentActivity {
         setContentView(R.layout.detail_activity);
         String id = getIntent().getStringExtra(EXTRA_ID);
         ViewPager viewPager = (ViewPager) findViewById(R.id.pager);
-        Cursor listOrderByDistance = CourtDbAdapter.getInstance(this).listOrderByDistance();
+        Cursor listOrderByDistance = EventDbAdapter.getInstance(this).listOrderByDistance();
         viewPager.setAdapter(new FindBBallFragmentPagerAdapter(getSupportFragmentManager(), listOrderByDistance));
         viewPager.setCurrentItem(((FindBBallFragmentPagerAdapter)viewPager.getAdapter()).getPosition(id));
         viewPager.setPageTransformer(true, new DepthPageTransformer());
@@ -47,7 +47,7 @@ public class DetailActivity extends FragmentActivity {
         public int getPosition(String id) {
             courtCursor.moveToFirst();
             int i=0;
-            while (!CourtCursorReader.getCourtId(courtCursor).equals(id)) {
+            while (!EventCursorReader.getEventId(courtCursor).equals(id)) {
                 i++;
                 courtCursor.moveToNext(); 
             }
@@ -62,7 +62,7 @@ public class DetailActivity extends FragmentActivity {
         @Override
         public Fragment getItem(int position) {
             courtCursor.moveToPosition(position);
-            return CourtDetailFragment.newInstance(courtCursor);
+            return CourtDetailFragment.newInstance(EventCursorReader.getEventId(courtCursor));
         }
     }
 

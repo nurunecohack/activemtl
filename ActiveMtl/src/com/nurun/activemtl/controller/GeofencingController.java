@@ -11,7 +11,7 @@ import com.google.android.gms.location.Geofence;
 import com.google.android.gms.location.LocationClient;
 import com.google.android.gms.location.LocationClient.OnAddGeofencesResultListener;
 import com.google.android.gms.location.LocationClient.OnRemoveGeofencesResultListener;
-import com.nurun.activemtl.FaCApplication;
+import com.nurun.activemtl.ActiveMtlApplication;
 import com.nurun.activemtl.PreferenceHelper;
 import com.nurun.activemtl.model.Court;
 import com.nurun.activemtl.model.CourtList;
@@ -23,7 +23,7 @@ public class GeofencingController {
     private float radius;
 
     public GeofencingController(Context applicationContext) {
-        locationClient = (LocationClient) applicationContext.getSystemService(FaCApplication.LOCATION_CLIENT);
+        locationClient = (LocationClient) applicationContext.getSystemService(ActiveMtlApplication.LOCATION_CLIENT);
         this.context = applicationContext;
         radius = PreferenceHelper.getRadius(applicationContext);
     }

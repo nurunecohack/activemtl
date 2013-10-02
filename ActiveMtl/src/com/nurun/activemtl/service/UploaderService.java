@@ -15,7 +15,7 @@ import android.graphics.Bitmap.CompressFormat;
 import android.net.Uri;
 import android.util.Log;
 
-import com.nurun.activemtl.FaCApplication;
+import com.nurun.activemtl.ActiveMtlApplication;
 import com.nurun.activemtl.R;
 import com.nurun.activemtl.controller.CourtController;
 import com.nurun.activemtl.util.BitmapUtil;
@@ -43,7 +43,7 @@ public class UploaderService extends IntentService {
     @Override
     public void onCreate() {
         super.onCreate();
-        courtController = (CourtController) getApplicationContext().getSystemService(FaCApplication.COURT_CONTROLLER);
+        courtController = (CourtController) getApplicationContext().getSystemService(ActiveMtlApplication.COURT_CONTROLLER);
     }
 
     public static Intent newIntent(Context context, String imageUri, String name, double[] latlong, String[] adresse) {

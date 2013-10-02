@@ -32,7 +32,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.android.gms.location.LocationClient;
-import com.nurun.activemtl.FaCApplication;
+import com.nurun.activemtl.ActiveMtlApplication;
 import com.nurun.activemtl.R;
 import com.nurun.activemtl.service.UploaderService;
 import com.nurun.activemtl.ui.MainActivity;
@@ -58,7 +58,7 @@ public class SuggestionFragment extends Fragment {
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        locationClient = (LocationClient) getActivity().getApplicationContext().getSystemService(FaCApplication.LOCATION_CLIENT);
+        locationClient = (LocationClient) getActivity().getApplicationContext().getSystemService(ActiveMtlApplication.LOCATION_CLIENT);
         geocoder = new Geocoder(getActivity(), Locale.getDefault());
     }
 

@@ -17,7 +17,7 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.nurun.activemtl.FaCApplication;
+import com.nurun.activemtl.ActiveMtlApplication;
 import com.nurun.activemtl.R;
 import com.nurun.activemtl.controller.CourtController;
 import com.nurun.activemtl.controller.GeofencingController;
@@ -43,7 +43,7 @@ public class ActiveMapFragment extends SupportMapFragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        courtController = (CourtController) getActivity().getApplicationContext().getSystemService(FaCApplication.COURT_CONTROLLER);;
+        courtController = (CourtController) getActivity().getApplicationContext().getSystemService(ActiveMtlApplication.COURT_CONTROLLER);;
         geofencingController = new GeofencingController(getActivity().getApplicationContext());
         playerString = getString(R.string.players);
     }
@@ -62,7 +62,7 @@ public class ActiveMapFragment extends SupportMapFragment {
 
     private void setUpMap() {
         // Set listeners for marker events. See the bottom of this class for their behavior.
-        LocationClient locationClient = (LocationClient) getActivity().getApplicationContext().getSystemService(FaCApplication.LOCATION_CLIENT);
+        LocationClient locationClient = (LocationClient) getActivity().getApplicationContext().getSystemService(ActiveMtlApplication.LOCATION_CLIENT);
         if (locationClient.isConnected()) {
             Location location = locationClient.getLastLocation();
             if (location != null) {
