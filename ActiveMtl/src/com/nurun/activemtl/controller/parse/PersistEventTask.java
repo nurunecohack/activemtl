@@ -8,11 +8,11 @@ import android.os.AsyncTask;
 import com.nurun.activemtl.data.EventDbAdapter;
 import com.nurun.activemtl.model.Court;
 
-public class PersistCourtTask extends AsyncTask<Court, Void, Void> {
+public class PersistEventTask extends AsyncTask<Court, Void, Void> {
 
     private Context context;
 
-    public PersistCourtTask(Context context) {
+    public PersistEventTask(Context context) {
         this.context = context;
     }
 

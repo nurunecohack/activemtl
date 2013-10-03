@@ -8,7 +8,7 @@ import android.graphics.Bitmap;
 import android.graphics.Bitmap.CompressFormat;
 import android.net.Uri;
 
-import com.nurun.activemtl.controller.CourtController;
+import com.nurun.activemtl.controller.EventController;
 import com.nurun.activemtl.http.GetCourtsRequestCallbacks;
 import com.nurun.activemtl.model.Court;
 import com.nurun.activemtl.model.parse.ParseEvent;
@@ -19,14 +19,14 @@ import com.parse.ParseException;
 import com.parse.ParseGeoPoint;
 import com.parse.ParseQuery;
 
-public class ParseCourtController implements CourtController {
+public class ParseEventController implements EventController {
 
     protected static final int RESULT_LIMIT = 30;
     protected static final String LOCATION = "location";
     private ParseQuery<ParseEvent> query;
     private Context context;
 
-    public ParseCourtController(Context context) {
+    public ParseEventController(Context context) {
         this.context = context;
     }
 
@@ -46,7 +46,7 @@ public class ParseCourtController implements CourtController {
             @Override
             public void done(List<ParseEvent> courts, ParseException exception) {
                 if (exception == null) {
-                    new PersistCourtTask(context).execute(courts.toArray(new Court[courts.size()]));
+                    new PersistEventTask(context).execute(courts.toArray(new Court[courts.size()]));
                     if (callback != null) {
                         callback.onGetCourtsRequestComplete(new ParseCourtList(courts));
                     }

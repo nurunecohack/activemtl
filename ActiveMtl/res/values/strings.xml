@@ -21,32 +21,31 @@
         <item>Challenge</item>
         <item>Issues</item>
         <item>Ideas</item>
-        <item>Settings</item>
     </string-array>
     <string name="drawer_open">Open navigation drawer</string>
     <string name="drawer_close">Close navigation drawer</string>
     <string name="action_websearch">Web search</string>
     <string name="app_not_available">Sorry, there\'s no web browser available</string>
     <string name="hello">Hello</string>
-    <string name="getting_courts">Loading courts&#8230;</string>
+    <string name="getting_courts">Loading events&#8230;</string>
     <string name="home">Home</string>
     <string name="suggest">Send</string>
-    <string name="players">Players : %d</string>
+    <string name="players">Users : %d</string>
     <string name="no_result">No Result</string>
     <string name="getting_your_position">Getting your position</string>
-    <string name="entering_court_zone">Entering court zone</string>
-    <string name="leaving_court_zone">Leaving court zone</string>
-    <string name="you_just_leaved_a_court">You just leaved a court</string>
-    <string name="you_just_entered_a_court">You just entered a court</string>
+    <string name="entering_court_zone">Entering event zone</string>
+    <string name="leaving_court_zone">Leaving event zone</string>
+    <string name="you_just_leaved_a_court">You just leaved an event</string>
+    <string name="you_just_entered_a_court">You just entered an event</string>
     <string name="file_uploaded">File uploaded</string>
     <string name="error_uploading_file">Error uploading file</string>
-    <string name="courts_name">Court\'s name</string>
+    <string name="courts_name">Event\'s name</string>
     <string name="fecthing_current_address">fetching current address&#8230;</string>
     <string name="settings">Settings</string>
     <string name="radius">Radius</string>
     <string name="discovered_by">Discovered by %s</string>
-    <string name="court_suggestion_success">Thank you for your suggestion. The court will be visible after review.</string>
-    <string name="court_suggestion_failure">Could not add the suggested court. Please submit again later.</string>
+    <string name="court_suggestion_success">Thank you for your suggestion. The event will be visible after review.</string>
+    <string name="court_suggestion_failure">Could not add the suggested event. Please submit again later.</string>
     <string name="court_suggestion_progress">Uploading&#8230;</string>
-    <string name="court_suggestion_title">Court suggestion</string>
+    <string name="court_suggestion_title">Event suggestion</string>
 </resources>

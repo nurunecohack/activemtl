@@ -19,7 +19,7 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.nurun.activemtl.ActiveMtlApplication;
 import com.nurun.activemtl.R;
-import com.nurun.activemtl.controller.CourtController;
+import com.nurun.activemtl.controller.EventController;
 import com.nurun.activemtl.controller.GeofencingController;
 import com.nurun.activemtl.http.GetCourtsRequestCallbacks;
 import com.nurun.activemtl.model.Court;
@@ -30,7 +30,7 @@ public class ActiveMapFragment extends SupportMapFragment {
 
     private boolean mapInitialized = false;
     private Map<Marker, Court> courtByMarker = new HashMap<Marker, Court>();
-    private CourtController courtController;
+    private EventController courtController;
 
     private GeofencingController geofencingController;
     private String playerString;
@@ -43,7 +43,7 @@ public class ActiveMapFragment extends SupportMapFragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        courtController = (CourtController) getActivity().getApplicationContext().getSystemService(ActiveMtlApplication.COURT_CONTROLLER);;
+        courtController = (EventController) getActivity().getApplicationContext().getSystemService(ActiveMtlApplication.COURT_CONTROLLER);;
         geofencingController = new GeofencingController(getActivity().getApplicationContext());
         playerString = getString(R.string.players);
     }

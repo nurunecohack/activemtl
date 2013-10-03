@@ -49,7 +49,7 @@
             android:value="AIzaSyASr6u3RZyBuhWgIOrBK7OdY3tqYJhqc10" />
 
         <activity
-            android:name="com.nurun.activemtl.ui.MainActivity"
+            android:name="com.nurun.activemtl.ui.HomeActivity"
             android:configChanges="orientation|keyboardHidden|screenSize" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

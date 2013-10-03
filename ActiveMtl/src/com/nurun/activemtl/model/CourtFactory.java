@@ -8,6 +8,4 @@ public class CourtFactory {
         return null;
     }
 
-    
-    
 }

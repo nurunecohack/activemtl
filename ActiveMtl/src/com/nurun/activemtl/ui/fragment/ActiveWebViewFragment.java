@@ -1,5 +1,6 @@
 package com.nurun.activemtl.ui.fragment;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -19,6 +20,7 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.LinearLayout;
 
+import com.nurun.activemtl.ActiveMtlConfiguration;
 import com.nurun.activemtl.R;
 import com.nurun.activemtl.ui.DetailActivity;
 
@@ -26,11 +28,12 @@ public class ActiveWebViewFragment extends Fragment {
 
     private boolean listShown = true;
 
+    @SuppressLint("SetJavaScriptEnabled")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         final LinearLayout view = (LinearLayout) inflater.inflate(R.layout.webview, container);
         final WebView webview = (WebView) view.findViewById(R.id.webview);
-        webview.loadUrl("http://www.google.ca");
+        webview.loadUrl(ActiveMtlConfiguration.getInstance(getActivity()).getHomeListUrl());
         WebSettings settings = webview.getSettings();
         settings.setJavaScriptEnabled(true);
         webview.addJavascriptInterface(this, "Android");

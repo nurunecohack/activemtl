@@ -35,8 +35,8 @@ import com.google.android.gms.location.LocationClient;
 import com.nurun.activemtl.ActiveMtlApplication;
 import com.nurun.activemtl.R;
 import com.nurun.activemtl.service.UploaderService;
-import com.nurun.activemtl.ui.MainActivity;
 import com.nurun.activemtl.util.BitmapUtil;
+import com.nurun.activemtl.util.NavigationUtil;
 
 public class SuggestionFragment extends Fragment {
 
@@ -131,7 +131,7 @@ public class SuggestionFragment extends Fragment {
             switch (v.getId()) {
             case R.id.suggestButton:
                 getActivity().startService(UploaderService.newIntent(getActivity(), fileUri.getPath(), editTextName.getText().toString(), latLong, adresse));
-                startActivity(MainActivity.newIntent(getActivity()));
+                NavigationUtil.goToHome(getActivity());
                 break;
             default:
                 break;

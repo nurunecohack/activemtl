@@ -27,25 +27,26 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import com.nurun.activemtl.R;
+import com.nurun.activemtl.ui.fragment.HomeFragment;
 
-public class MainActivity extends FragmentActivity {
+public class HomeActivity extends FragmentActivity {
     private CourtDrawerLayout mDrawerLayout;
     private CharSequence mTitle;
 
     public static Intent newIntent(Context context) {
-        Intent intent = new Intent(context, MainActivity.class);
+        Intent intent = new Intent(context, HomeActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         return intent;
     }
 
     public static PendingIntent newPendingIntent(Context context, int mId) {
-        return PendingIntent.getActivity(context, 165446846, new Intent(context, MainActivity.class), mId);
+        return PendingIntent.getActivity(context, 165446846, new Intent(context, HomeActivity.class), mId);
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.main_activity);
+        setContentView(R.layout.home_activity);
 
         mTitle = getTitle();
         mDrawerLayout = (CourtDrawerLayout) findViewById(R.id.drawer_layout);
@@ -54,6 +55,7 @@ public class MainActivity extends FragmentActivity {
         // enable ActionBar app icon to behave as action to toggle nav drawer
         getActionBar().setDisplayHomeAsUpEnabled(true);
         getActionBar().setHomeButtonEnabled(true);
+        getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, HomeFragment.newFragment()).commit();
     }
 
     @Override
@@ -74,6 +76,9 @@ public class MainActivity extends FragmentActivity {
         switch (item.getItemId()) {
         case R.id.action_suggest:
             startActivity(SuggestionActivity.newIntent(this));
+            return true;
+        case R.id.action_settings:
+            startActivity(PreferencesActivity.newIntent(this));
             return true;
         default:
             return super.onOptionsItemSelected(item);

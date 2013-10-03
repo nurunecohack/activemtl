@@ -17,7 +17,7 @@ import android.util.Log;
 
 import com.nurun.activemtl.ActiveMtlApplication;
 import com.nurun.activemtl.R;
-import com.nurun.activemtl.controller.CourtController;
+import com.nurun.activemtl.controller.EventController;
 import com.nurun.activemtl.util.BitmapUtil;
 
 public class UploaderService extends IntentService {
@@ -26,7 +26,7 @@ public class UploaderService extends IntentService {
     private static final String EXTRA_NAME = "EXTRA_NAME";
     private static String EXTRA_ADDRESS = "EXTRA_ADDRESS";
     private static final String EXTRA_LATLONG = "EXTRA_LATLONG";
-    private CourtController courtController;
+    private EventController courtController;
 
     public static final String INTENT_ACTION_SUCCESS = "UPLOADER_SERVICE_SUCCESS";
     public static final String INTENT_ACTION_FAILURE = "UPLOADER_SERVICE_FAILURE";
@@ -43,7 +43,7 @@ public class UploaderService extends IntentService {
     @Override
     public void onCreate() {
         super.onCreate();
-        courtController = (CourtController) getApplicationContext().getSystemService(ActiveMtlApplication.COURT_CONTROLLER);
+        courtController = (EventController) getApplicationContext().getSystemService(ActiveMtlApplication.COURT_CONTROLLER);
     }
 
     public static Intent newIntent(Context context, String imageUri, String name, double[] latlong, String[] adresse) {

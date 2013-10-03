@@ -10,7 +10,9 @@ import com.nurun.activemtl.R;
 public class SuggestionActivity extends FragmentActivity {
 
     public static Intent newIntent(Context context) {
-        return new Intent(context, SuggestionActivity.class);
+        Intent intent = new Intent(context, SuggestionActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        return intent;
     }
 
     @Override

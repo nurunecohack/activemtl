@@ -21,7 +21,7 @@ import com.nurun.activemtl.controller.PlayerController;
 import com.nurun.activemtl.http.AddPlayerToCourtRequestCallbacks;
 import com.nurun.activemtl.http.DeletePlayerToCourtRequestCallbacks;
 import com.nurun.activemtl.model.Court;
-import com.nurun.activemtl.ui.MainActivity;
+import com.nurun.activemtl.ui.HomeActivity;
 
 public class GeofenceTransitionReceiver extends BroadcastReceiver {
 
@@ -39,7 +39,7 @@ public class GeofenceTransitionReceiver extends BroadcastReceiver {
         String content = "";
         Builder builder = new Notification.Builder(context).setSmallIcon(R.drawable.player_logo)
                 .setLargeIcon(BitmapFactory.decodeResource(context.getResources(), R.drawable.player_logo)).setDefaults(Notification.DEFAULT_ALL)
-                .setContentIntent(MainActivity.newPendingIntent(context, mId)).setAutoCancel(true);
+                .setContentIntent(HomeActivity.newPendingIntent(context, mId)).setAutoCancel(true);
         NotificationManager mNotificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
         if (transition == Geofence.GEOFENCE_TRANSITION_ENTER && !PreferenceHelper.isCheckedIn(context)) {
             title = context.getString(R.string.entering_court_zone);

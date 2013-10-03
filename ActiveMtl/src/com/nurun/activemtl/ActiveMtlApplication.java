@@ -13,9 +13,9 @@ import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.location.LocationClient;
 import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.location.LocationRequest;
-import com.nurun.activemtl.controller.CourtController;
+import com.nurun.activemtl.controller.EventController;
 import com.nurun.activemtl.controller.PlayerController;
-import com.nurun.activemtl.controller.parse.ParseCourtController;
+import com.nurun.activemtl.controller.parse.ParseEventController;
 import com.nurun.activemtl.controller.parse.ParsePlayerController;
 import com.nurun.activemtl.data.ActiveMtlDatabaseHelper;
 import com.nurun.activemtl.model.parse.ParseEvent;
@@ -33,7 +33,7 @@ public class ActiveMtlApplication extends Application {
     public static final String PLAYER_CONTROLLER = "PLAYER_CONTROLLER";
 
     private LocationClient locationClient;
-    private CourtController courtController;
+    private EventController courtController;
     private PlayerController playerController;
 
     @Override
@@ -55,7 +55,7 @@ public class ActiveMtlApplication extends Application {
             PreferenceHelper.saveLogin(this, account.name);
             Log.i(getClass().getSimpleName(), "Login retrieved : " + PreferenceHelper.getLogin(this));
         }
-        courtController = new ParseCourtController(getApplicationContext());
+        courtController = new ParseEventController(getApplicationContext());
         playerController = new ParsePlayerController(getApplicationContext());
     }
 

@@ -16,7 +16,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.nurun.activemtl.R;
-import com.nurun.activemtl.ui.fragment.FragmentFactory;
+import com.nurun.activemtl.util.NavigationUtil;
 
 public class CourtDrawerLayout extends DrawerLayout {
 
@@ -71,7 +71,7 @@ public class CourtDrawerLayout extends DrawerLayout {
     private class DrawerItemClickListener implements ListView.OnItemClickListener {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-            Fragment fragment = FragmentFactory.getFragment(position);
+            Fragment fragment = NavigationUtil.getFragment(position);
             FragmentManager fragmentManager = activity.getSupportFragmentManager();
             fragmentManager.beginTransaction().replace(R.id.content_frame, fragment).commit();
             // update selected item and title, then close the drawer

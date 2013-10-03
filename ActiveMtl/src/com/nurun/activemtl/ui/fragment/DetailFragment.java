@@ -10,12 +10,12 @@ import android.webkit.WebView;
 import com.nurun.activemtl.ActiveMtlConfiguration;
 import com.nurun.activemtl.R;
 
-public class CourtDetailFragment extends Fragment {
+public class DetailFragment extends Fragment {
 
     private static final String ITEM_ID = "ITEM_ID";
 
-    public static CourtDetailFragment newInstance(String id) {
-        CourtDetailFragment f = new CourtDetailFragment();
+    public static DetailFragment newInstance(String id) {
+        DetailFragment f = new DetailFragment();
         Bundle bundle = new Bundle();
         bundle.putString(ITEM_ID, id);
         return f;
@@ -23,7 +23,7 @@ public class CourtDetailFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        WebView webView = (WebView) inflater.inflate(R.layout.court_detail_fragment, container, false);
+        WebView webView = (WebView) inflater.inflate(R.layout.event_fragment, container, false);
         webView.loadUrl(ActiveMtlConfiguration.getInstance(getActivity()).getDetailUrl(getArguments().getString(ITEM_ID)));
         return webView;
     }

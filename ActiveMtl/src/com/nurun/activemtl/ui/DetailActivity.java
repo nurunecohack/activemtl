@@ -14,7 +14,7 @@ import com.nurun.activemtl.R;
 import com.nurun.activemtl.data.EventCursorReader;
 import com.nurun.activemtl.data.EventDbAdapter;
 import com.nurun.activemtl.ui.animation.DepthPageTransformer;
-import com.nurun.activemtl.ui.fragment.CourtDetailFragment;
+import com.nurun.activemtl.ui.fragment.DetailFragment;
 
 public class DetailActivity extends FragmentActivity {
 
@@ -62,7 +62,7 @@ public class DetailActivity extends FragmentActivity {
         @Override
         public Fragment getItem(int position) {
             courtCursor.moveToPosition(position);
-            return CourtDetailFragment.newInstance(EventCursorReader.getEventId(courtCursor));
+            return DetailFragment.newInstance(EventCursorReader.getEventId(courtCursor));
         }
     }
 
