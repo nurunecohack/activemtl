@@ -6,7 +6,7 @@ import android.support.v4.app.Fragment;
 import com.nurun.activemtl.model.EventType;
 import com.nurun.activemtl.ui.HomeActivity;
 import com.nurun.activemtl.ui.fragment.ActiveMapFragment;
-import com.nurun.activemtl.ui.fragment.EventFragment;
+import com.nurun.activemtl.ui.fragment.EventListFragment;
 
 public class NavigationUtil {
 
@@ -17,11 +17,11 @@ public class NavigationUtil {
     public static Fragment getFragment(int position) {
         switch (position) {
         case 1:
-            return EventFragment.newFragment(EventType.CHALLENGE);
+            return EventListFragment.newFragment(EventType.CHALLENGE);
         case 2:
-            return EventFragment.newFragment(EventType.ISSUE);
+            return EventListFragment.newFragment(EventType.ISSUE);
         case 3:
-            return EventFragment.newFragment(EventType.IDEA);
+            return EventListFragment.newFragment(EventType.IDEA);
         default:
             return ActiveMapFragment.newFragment();
         }

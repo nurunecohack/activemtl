@@ -48,4 +48,7 @@
     <string name="court_suggestion_failure">Could not add the suggested event. Please submit again later.</string>
     <string name="court_suggestion_progress">Uploading&#8230;</string>
     <string name="court_suggestion_title">Event suggestion</string>
+    <string name="challenges">Challenges</string>
+    <string name="ideas">Ideas</string>
+    <string name="issues">Issues</string>
 </resources>

@@ -18,7 +18,7 @@ import android.widget.ListView;
 import com.nurun.activemtl.R;
 import com.nurun.activemtl.util.NavigationUtil;
 
-public class CourtDrawerLayout extends DrawerLayout {
+public class ActiveMtlDrawerLayout extends DrawerLayout {
 
     private ListView mDrawerList;
     private ActionBarDrawerToggle mDrawerToggle;
@@ -26,15 +26,15 @@ public class CourtDrawerLayout extends DrawerLayout {
     private FragmentActivity activity;
     private CharSequence mTitle;
 
-    public CourtDrawerLayout(Context context, AttributeSet attrs, int defStyle) {
+    public ActiveMtlDrawerLayout(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
     }
 
-    public CourtDrawerLayout(Context context, AttributeSet attrs) {
+    public ActiveMtlDrawerLayout(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 
-    public CourtDrawerLayout(Context context) {
+    public ActiveMtlDrawerLayout(Context context) {
         super(context);
     }
 
@@ -55,7 +55,6 @@ public class CourtDrawerLayout extends DrawerLayout {
         ) {
 
             public void onDrawerClosed(View view) {
-                activity.getActionBar().setTitle(mTitle);
                 activity.invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
             }
 
@@ -73,6 +72,14 @@ public class CourtDrawerLayout extends DrawerLayout {
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
             Fragment fragment = NavigationUtil.getFragment(position);
             FragmentManager fragmentManager = activity.getSupportFragmentManager();
+            Fragment mapFragment = fragmentManager.findFragmentById(R.id.map_fragment);
+            if (mapFragment != null) {
+                fragmentManager.beginTransaction().remove(mapFragment).commit();
+            }
+            Fragment listFragment = fragmentManager.findFragmentById(R.id.list_fragment);
+            if (listFragment != null) {
+                fragmentManager.beginTransaction().remove(listFragment).commit();
+            }
             fragmentManager.beginTransaction().replace(R.id.content_frame, fragment).commit();
             // update selected item and title, then close the drawer
             mDrawerList.setItemChecked(position, true);

@@ -2,11 +2,14 @@ activemtl
 =========
 
 Liste des url :
-base.url=???\r\n
+base.url=????
 homelist.url=/homelist
-issuelist.url=/issues/lat/lon
-challengelist.url=/challenges/lat/lon
-idealist.url=/ideas/lat/lon
-detail.url=/detail/id
+issuelist.url=/issues/{lat}/{lon}
+issuelist.default.url=/issues
+challengelist.url=/challenges/{lat}/{lon}
+challengelist.default.url=/challenges
+idealist.url=/ideas/{lat}/{lon}
+idealist.default.url=/ideas
+detail.url=/detail/{id}
 
 Bridge nameSpace : ActiveMTL

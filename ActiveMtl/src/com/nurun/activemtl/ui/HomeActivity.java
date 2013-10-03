@@ -30,7 +30,7 @@ import com.nurun.activemtl.R;
 import com.nurun.activemtl.ui.fragment.HomeFragment;
 
 public class HomeActivity extends FragmentActivity {
-    private CourtDrawerLayout mDrawerLayout;
+    private ActiveMtlDrawerLayout mDrawerLayout;
     private CharSequence mTitle;
 
     public static Intent newIntent(Context context) {
@@ -49,7 +49,7 @@ public class HomeActivity extends FragmentActivity {
         setContentView(R.layout.home_activity);
 
         mTitle = getTitle();
-        mDrawerLayout = (CourtDrawerLayout) findViewById(R.id.drawer_layout);
+        mDrawerLayout = (ActiveMtlDrawerLayout) findViewById(R.id.drawer_layout);
         mDrawerLayout.init(this, savedInstanceState == null);
 
         // enable ActionBar app icon to behave as action to toggle nav drawer

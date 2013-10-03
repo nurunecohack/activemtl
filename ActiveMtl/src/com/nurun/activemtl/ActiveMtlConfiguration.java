@@ -53,4 +53,17 @@ public class ActiveMtlConfiguration {
         return String.format(properties.getProperty("base.url"));
     }
 
+    public String getListUrl(EventType eventType) {
+        switch (eventType) {
+        case CHALLENGE:
+            return getBaseUrl() + properties.getProperty("challengelist.default.url.default");
+        case IDEA:
+            return getBaseUrl() + properties.getProperty("idealist.default.url");
+        case ISSUE:
+            return getBaseUrl() + properties.getProperty("issuelist.default.url");
+        default:
+            return getHomeListUrl();
+        }
+    }
+
 }
