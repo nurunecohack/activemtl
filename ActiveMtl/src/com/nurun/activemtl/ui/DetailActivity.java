@@ -47,7 +47,7 @@ public class DetailActivity extends FragmentActivity {
         public int getPosition(String id) {
             courtCursor.moveToFirst();
             int i=0;
-            while (!EventCursorReader.getEventId(courtCursor).equals(id)) {
+            while (!EventCursorReader.getEventId(courtCursor).equals(id) && !courtCursor.isLast()) {
                 i++;
                 courtCursor.moveToNext(); 
             }

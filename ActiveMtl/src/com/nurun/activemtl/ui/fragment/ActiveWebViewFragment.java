@@ -37,7 +37,7 @@ public class ActiveWebViewFragment extends Fragment {
         webview.loadUrl(ActiveMtlConfiguration.getInstance(getActivity()).getHomeListUrl());
         WebSettings settings = webview.getSettings();
         settings.setJavaScriptEnabled(true);
-        webview.addJavascriptInterface(this, "Android");
+        webview.addJavascriptInterface(this, "ActiveMTL");
         webview.setWebChromeClient(new WebChromeClient());
         webview.setWebViewClient(new WebViewClient());
         View headerView = view.findViewById(R.id.headerView);
@@ -45,6 +45,7 @@ public class ActiveWebViewFragment extends Fragment {
 
             @Override
             public void onClick(View v) {
+                webview.loadUrl("javascript:androidInit()");
                 if (listShown) {
                     TranslateAnimation anim = new TranslateAnimation(0, 0, 0, 750);
                     anim.setDuration(750);
@@ -66,7 +67,7 @@ public class ActiveWebViewFragment extends Fragment {
                             webview.layout(0, 1000, webview.getMeasuredWidth(), webview.getMeasuredHeight() + 1000);
                         }
                     });
-                    webview.startAnimation(anim);
+                    //webview.startAnimation(anim);
                     listShown = false;
                 }
             }
