@@ -20,7 +20,7 @@ public class ParseEvent extends ParseObject implements Event {
     private static final String CITY = "city";
     private static final String COUNTRY = "country";
     private static final String LOCATION = "location";
-    private static final String TITLE = "title";
+    private static final String TITLE = "name";
     private static final String DESCRIPTION = "description";
     private static final String SUGGESTED_BY = "suggestedBy";
     private static final String PICTURE = "thumbnail";

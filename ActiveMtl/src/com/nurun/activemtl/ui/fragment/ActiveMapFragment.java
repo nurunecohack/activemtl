@@ -25,6 +25,7 @@ import com.nurun.activemtl.http.GetEventsRequestCallbacks;
 import com.nurun.activemtl.model.Event;
 import com.nurun.activemtl.model.EventList;
 import com.nurun.activemtl.ui.DetailActivity;
+import com.nurun.activemtl.util.NavigationUtil;
 
 public class ActiveMapFragment extends SupportMapFragment {
 
@@ -80,7 +81,7 @@ public class ActiveMapFragment extends SupportMapFragment {
         @Override
         public void onInfoWindowClick(Marker marker) {
             Event event = eventByMarker.get(marker);
-            startActivity(DetailActivity.newIntent(getActivity(), event.getEventId()));
+            NavigationUtil.goToDetail(getActivity(), event.getEventId());
         }
     };
 

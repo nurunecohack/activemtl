@@ -15,10 +15,11 @@ public class DetailFragment extends Fragment {
     private static final String ITEM_ID = "ITEM_ID";
 
     public static DetailFragment newInstance(String id) {
-        DetailFragment f = new DetailFragment();
+        DetailFragment fragment = new DetailFragment();
         Bundle bundle = new Bundle();
         bundle.putString(ITEM_ID, id);
-        return f;
+        fragment.setArguments(bundle);
+        return fragment;
     }
 
     @Override
