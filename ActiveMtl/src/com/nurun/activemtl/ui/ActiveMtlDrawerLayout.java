@@ -24,7 +24,6 @@ public class ActiveMtlDrawerLayout extends DrawerLayout {
     private ActionBarDrawerToggle mDrawerToggle;
     private String[] menuCategories;
     private FragmentActivity activity;
-    private CharSequence mTitle;
 
     public ActiveMtlDrawerLayout(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);

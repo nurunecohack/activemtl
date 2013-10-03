@@ -22,7 +22,6 @@ import android.widget.LinearLayout;
 
 import com.nurun.activemtl.ActiveMtlConfiguration;
 import com.nurun.activemtl.R;
-import com.nurun.activemtl.ui.DetailActivity;
 import com.nurun.activemtl.util.NavigationUtil;
 
 public class ActiveWebViewFragment extends Fragment {
