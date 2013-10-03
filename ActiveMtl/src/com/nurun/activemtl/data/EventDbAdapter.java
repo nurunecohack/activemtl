@@ -9,20 +9,20 @@ import android.database.Cursor;
 import android.provider.BaseColumns;
 import android.util.Log;
 
-import com.nurun.activemtl.model.Court;
+import com.nurun.activemtl.model.Event;
 
-public class EventDbAdapter extends DbAdapter<Court> {
+public class EventDbAdapter extends DbAdapter<Event> {
 
-    public static final String KEY_ID = Court.class.getSimpleName() + "Id";
-    public static final String KEY_NAME = Court.class.getSimpleName() + "Name";
-    public static final String VIEW_NAME = Court.class.getSimpleName() + "View";
-    public static final String TABLE_NAME = Court.class.getSimpleName() + "Table";
-    public static final String KEY_ADDRESS = Court.class.getSimpleName() + "Address";
-    public static final String KEY_LATITUDE = Court.class.getSimpleName() + "Latitude";
-    public static final String KEY_LONGITUDE = Court.class.getSimpleName() + "Longitude";
-    public static final String KEY_PICTURE_URL = Court.class.getSimpleName() + "PictureUrl";
-    public static final String KEY_PLAYER_COUNT = Court.class.getSimpleName() + "PlayerCount";
-    public static final String KEY_SUGGESTED_BY = Court.class.getSimpleName() + "SuggestedBy";
+    public static final String KEY_ID = Event.class.getSimpleName() + "Id";
+    public static final String KEY_NAME = Event.class.getSimpleName() + "Name";
+    public static final String VIEW_NAME = Event.class.getSimpleName() + "View";
+    public static final String TABLE_NAME = Event.class.getSimpleName() + "Table";
+    public static final String KEY_ADDRESS = Event.class.getSimpleName() + "Address";
+    public static final String KEY_LATITUDE = Event.class.getSimpleName() + "Latitude";
+    public static final String KEY_LONGITUDE = Event.class.getSimpleName() + "Longitude";
+    public static final String KEY_PICTURE_URL = Event.class.getSimpleName() + "PictureUrl";
+    public static final String KEY_PLAYER_COUNT = Event.class.getSimpleName() + "PlayerCount";
+    public static final String KEY_SUGGESTED_BY = Event.class.getSimpleName() + "SuggestedBy";
 
     private static EventDbAdapter instance;
 
@@ -38,9 +38,9 @@ public class EventDbAdapter extends DbAdapter<Court> {
     }
 
     @Override
-    protected ContentValues getValues(Court court) {
+    protected ContentValues getValues(Event court) {
         ContentValues initialValues = new ContentValues();
-        initialValues.put(KEY_ID, court.getCourtId());
+        initialValues.put(KEY_ID, court.getEventId());
         initialValues.put(KEY_NAME, court.getTitle());
         initialValues.put(KEY_ADDRESS, court.getAddress());
         initialValues.put(KEY_LATITUDE, court.getLatLng()[0]);
@@ -93,7 +93,7 @@ public class EventDbAdapter extends DbAdapter<Court> {
     }
 
     @Override
-    public long insert(Court element) {
+    public long insert(Event element) {
         throw new RuntimeException("Do not use this method, use insertOrUpdate instead");
     }
 }

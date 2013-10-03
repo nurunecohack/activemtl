@@ -13,8 +13,8 @@ import com.google.android.gms.location.LocationClient.OnAddGeofencesResultListen
 import com.google.android.gms.location.LocationClient.OnRemoveGeofencesResultListener;
 import com.nurun.activemtl.ActiveMtlApplication;
 import com.nurun.activemtl.PreferenceHelper;
-import com.nurun.activemtl.model.Court;
-import com.nurun.activemtl.model.CourtList;
+import com.nurun.activemtl.model.Event;
+import com.nurun.activemtl.model.EventList;
 import com.nurun.activemtl.receiver.GeofenceTransitionReceiver;
 
 public class GeofencingController {
@@ -28,11 +28,11 @@ public class GeofencingController {
         radius = PreferenceHelper.getRadius(applicationContext);
     }
 
-    public void addGeofences(CourtList courts) {
+    public void addGeofences(EventList courts) {
         removeGeofences();
         List<Geofence> geofences = new ArrayList<Geofence>();
-        for (Court c : courts) {
-            Geofence newGeofence = new Geofence.Builder().setRequestId(c.getCourtId())
+        for (Event c : courts) {
+            Geofence newGeofence = new Geofence.Builder().setRequestId(c.getEventId())
                     .setTransitionTypes(Geofence.GEOFENCE_TRANSITION_ENTER | Geofence.GEOFENCE_TRANSITION_EXIT)
                     .setCircularRegion(c.getLatLng()[0], c.getLatLng()[1], radius).setExpirationDuration(Geofence.NEVER_EXPIRE).build();
             geofences.add(newGeofence);

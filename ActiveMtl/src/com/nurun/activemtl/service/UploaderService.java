@@ -61,7 +61,7 @@ public class UploaderService extends IntentService {
         if (inputStream != null) {
             try {
                 updateNotification(PROGRESS_MIN);
-                courtController.addSuggestedCourt(name, fileUri, latLong, address);
+                courtController.addSuggestedEvent(name, fileUri, latLong, address);
                 updateNotification(PROGRESS_MAX);
             } catch (RuntimeException e) {
                 Log.e(getClass().getSimpleName(), e.getMessage(), e);

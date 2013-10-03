@@ -3,10 +3,10 @@ package com.nurun.activemtl.model.parse;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.nurun.activemtl.model.Court;
-import com.nurun.activemtl.model.CourtList;
+import com.nurun.activemtl.model.Event;
+import com.nurun.activemtl.model.EventList;
 
-public class ParseCourtList extends ArrayList<Court> implements CourtList {
+public class ParseCourtList extends ArrayList<Event> implements EventList {
 
     public ParseCourtList(List<ParseEvent> courts) {
         super(courts);
@@ -19,8 +19,8 @@ public class ParseCourtList extends ArrayList<Court> implements CourtList {
     @Override
     public int getIndex(String id) {
         for (int i = 0; i < size(); i++) {
-            Court court = get(i);
-            if (court.getCourtId().equals(id)) {
+            Event court = get(i);
+            if (court.getEventId().equals(id)) {
                 return i;
             }
         }
@@ -30,7 +30,7 @@ public class ParseCourtList extends ArrayList<Court> implements CourtList {
     private static final long serialVersionUID = 1L;
 
     @Override
-    public List<Court> list() {
+    public List<Event> list() {
         return this;
     }
 

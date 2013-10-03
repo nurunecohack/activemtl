@@ -5,15 +5,15 @@ import java.util.Random;
 import android.location.Location;
 import android.util.Log;
 
-import com.nurun.activemtl.model.Court;
+import com.nurun.activemtl.model.Event;
 import com.parse.ParseClassName;
 import com.parse.ParseException;
 import com.parse.ParseFile;
 import com.parse.ParseGeoPoint;
 import com.parse.ParseObject;
 
-@ParseClassName("Event")
-public class ParseEvent extends ParseObject implements Court {
+@ParseClassName("Court")
+public class ParseEvent extends ParseObject implements Event {
 
     private static final long serialVersionUID = -1882774815573887129L;
     private static final String ADDRESS = "address";
@@ -80,7 +80,7 @@ public class ParseEvent extends ParseObject implements Court {
     }
 
     @Override
-    public String getCourtId() {
+    public String getEventId() {
         return getObjectId();
     }
 

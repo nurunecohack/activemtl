@@ -4,9 +4,9 @@ import java.io.Serializable;
 
 import android.location.Location;
 
-public interface Court extends Serializable {
+public interface Event extends Serializable {
 
-	String getCourtId();
+	String getEventId();
 	
     String getTitle();
 

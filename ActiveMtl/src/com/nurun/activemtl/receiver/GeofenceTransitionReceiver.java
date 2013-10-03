@@ -20,7 +20,7 @@ import com.nurun.activemtl.R;
 import com.nurun.activemtl.controller.PlayerController;
 import com.nurun.activemtl.http.AddPlayerToCourtRequestCallbacks;
 import com.nurun.activemtl.http.DeletePlayerToCourtRequestCallbacks;
-import com.nurun.activemtl.model.Court;
+import com.nurun.activemtl.model.Event;
 import com.nurun.activemtl.ui.HomeActivity;
 
 public class GeofenceTransitionReceiver extends BroadcastReceiver {
@@ -71,7 +71,7 @@ public class GeofenceTransitionReceiver extends BroadcastReceiver {
     private DeletePlayerToCourtRequestCallbacks deletePlayerCallback = new DeletePlayerToCourtRequestCallbacks() {
 
         @Override
-        public void onDeletePlayerSuccess(Court court) {
+        public void onDeletePlayerSuccess(Event court) {
             Log.i(GeofenceTransitionReceiver.class.getSimpleName(), "New player count : " + court.getPlayerCount());
         }
 
@@ -84,7 +84,7 @@ public class GeofenceTransitionReceiver extends BroadcastReceiver {
     private AddPlayerToCourtRequestCallbacks addPlayerCallback = new AddPlayerToCourtRequestCallbacks() {
 
         @Override
-        public void onAddPlayerSuccess(Court court) {
+        public void onAddPlayerSuccess(Event court) {
             Log.i(GeofenceTransitionReceiver.class.getSimpleName(), "New player count : " + court.getPlayerCount());
         }
 

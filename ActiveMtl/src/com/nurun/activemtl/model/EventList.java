@@ -2,14 +2,14 @@ package com.nurun.activemtl.model;
 
 import java.util.List;
 
-public interface CourtList extends Iterable<Court> {
+public interface EventList extends Iterable<Event> {
 
     int getIndex(String id);
 
     int size();
 
-    Court get(int position);
+    Event get(int position);
 
-    List<Court> list();
+    List<Event> list();
 
 }

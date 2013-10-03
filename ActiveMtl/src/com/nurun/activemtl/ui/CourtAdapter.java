@@ -11,17 +11,17 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.nurun.activemtl.R;
-import com.nurun.activemtl.model.Court;
-import com.nurun.activemtl.model.CourtList;
+import com.nurun.activemtl.model.Event;
+import com.nurun.activemtl.model.EventList;
 import com.nurun.activemtl.util.DistanceUtil;
 import com.squareup.picasso.Picasso;
 
-public class CourtAdapter extends ArrayAdapter<Court> {
+public class CourtAdapter extends ArrayAdapter<Event> {
 
     private ViewHolder holder;
     private Location currentLocation;
 
-    public CourtAdapter(Context context, CourtList courts, Location currentLocation) {
+    public CourtAdapter(Context context, EventList courts, Location currentLocation) {
         super(context, R.layout.court_item, R.id.court_name, courts.list());
         this.currentLocation = currentLocation;
     }
@@ -39,7 +39,7 @@ public class CourtAdapter extends ArrayAdapter<Court> {
             convertView.setTag(holder);
         }
         holder = (ViewHolder) convertView.getTag();
-        Court court = getItem(position);
+        Event court = getItem(position);
         holder.name.setText(court.getTitle());
         if (court.getPictureUrl() != null && !court.getPictureUrl().equals(holder.imageUrl)) {
             Picasso.with(getContext()).load(Uri.parse(court.getPictureUrl())).placeholder(R.drawable.basketball_court).into(holder.courtImage);

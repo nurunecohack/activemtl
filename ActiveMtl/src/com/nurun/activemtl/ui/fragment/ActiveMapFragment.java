@@ -21,20 +21,20 @@ import com.nurun.activemtl.ActiveMtlApplication;
 import com.nurun.activemtl.R;
 import com.nurun.activemtl.controller.EventController;
 import com.nurun.activemtl.controller.GeofencingController;
-import com.nurun.activemtl.http.GetCourtsRequestCallbacks;
-import com.nurun.activemtl.model.Court;
-import com.nurun.activemtl.model.CourtList;
+import com.nurun.activemtl.http.GetEventsRequestCallbacks;
+import com.nurun.activemtl.model.Event;
+import com.nurun.activemtl.model.EventList;
 import com.nurun.activemtl.ui.DetailActivity;
 
 public class ActiveMapFragment extends SupportMapFragment {
 
     private boolean mapInitialized = false;
-    private Map<Marker, Court> courtByMarker = new HashMap<Marker, Court>();
-    private EventController courtController;
+    private Map<Marker, Event> eventByMarker = new HashMap<Marker, Event>();
+    private EventController eventController;
 
     private GeofencingController geofencingController;
     private String playerString;
-    protected CourtList courts;
+    protected EventList events;
 
     public static ActiveMapFragment newFragment() {
         return new ActiveMapFragment();
@@ -43,7 +43,7 @@ public class ActiveMapFragment extends SupportMapFragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        courtController = (EventController) getActivity().getApplicationContext().getSystemService(ActiveMtlApplication.COURT_CONTROLLER);;
+        eventController = (EventController) getActivity().getApplicationContext().getSystemService(ActiveMtlApplication.COURT_CONTROLLER);;
         geofencingController = new GeofencingController(getActivity().getApplicationContext());
         playerString = getString(R.string.players);
     }
@@ -57,7 +57,7 @@ public class ActiveMapFragment extends SupportMapFragment {
     @Override
     public void onStop() {
         super.onStop();
-        courtController.canceltasks();
+        eventController.canceltasks();
     }
 
     private void setUpMap() {
@@ -79,31 +79,31 @@ public class ActiveMapFragment extends SupportMapFragment {
     private OnInfoWindowClickListener onInfoWindowClickListener = new OnInfoWindowClickListener() {
         @Override
         public void onInfoWindowClick(Marker marker) {
-            Court court = courtByMarker.get(marker);
-            startActivity(DetailActivity.newIntent(getActivity(), court.getCourtId()));
+            Event event = eventByMarker.get(marker);
+            startActivity(DetailActivity.newIntent(getActivity(), event.getEventId()));
         }
     };
 
-    protected GetCourtsRequestCallbacks getCourtsRequestCallbacks = new GetCourtsRequestCallbacks() {
+    protected GetEventsRequestCallbacks getEventsRequestCallbacks = new GetEventsRequestCallbacks() {
 
         @Override
-        public void onGetCourtsRequestFailed(RuntimeException runtimeException) {
+        public void onGetEventsRequestFailed(RuntimeException runtimeException) {
         }
 
         @Override
-        public void onGetCourtsRequestComplete(CourtList courtList) {
-            courts = courtList;
-            for (Court court : courtList) {
+        public void onGetEventsRequestComplete(EventList eventList) {
+            events = eventList;
+            for (Event event : eventList) {
                 MarkerOptions marker = new MarkerOptions();
-                marker.position(new LatLng(court.getLatLng()[0], court.getLatLng()[1]));
+                marker.position(new LatLng(event.getLatLng()[0], event.getLatLng()[1]));
                 marker.draggable(false);
-                marker.title(court.getTitle());
-                int playerCount = court.getPlayerCount();
+                marker.title(event.getTitle());
+                int playerCount = event.getPlayerCount();
                 marker.snippet(String.format(playerString, playerCount));
                 marker.icon(getIcon(playerCount));
-                courtByMarker.put(getMap().addMarker(marker), court);
+                eventByMarker.put(getMap().addMarker(marker), event);
             }
-            geofencingController.addGeofences(courts);
+            geofencingController.addGeofences(events);
         }
     };
 
@@ -116,7 +116,7 @@ public class ActiveMapFragment extends SupportMapFragment {
                 CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(new LatLng(latitude, longitude), 10);
                 getMap().animateCamera(cameraUpdate);
                 mapInitialized = true;
-                courtController.findClosestCourt(getCourtsRequestCallbacks, latitude, longitude);
+                eventController.findClosestEvents(getEventsRequestCallbacks, latitude, longitude);
             }
         }
     };

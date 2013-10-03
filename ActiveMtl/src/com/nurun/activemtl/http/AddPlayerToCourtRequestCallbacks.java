@@ -1,10 +1,10 @@
 package com.nurun.activemtl.http;
 
-import com.nurun.activemtl.model.Court;
+import com.nurun.activemtl.model.Event;
 
 public interface AddPlayerToCourtRequestCallbacks {
 
-    void onAddPlayerSuccess(Court court);
+    void onAddPlayerSuccess(Event court);
 
     void onAddPlayerFail(RuntimeException runtimeException);
 

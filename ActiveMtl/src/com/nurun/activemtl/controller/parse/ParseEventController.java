@@ -9,8 +9,8 @@ import android.graphics.Bitmap.CompressFormat;
 import android.net.Uri;
 
 import com.nurun.activemtl.controller.EventController;
-import com.nurun.activemtl.http.GetCourtsRequestCallbacks;
-import com.nurun.activemtl.model.Court;
+import com.nurun.activemtl.http.GetEventsRequestCallbacks;
+import com.nurun.activemtl.model.Event;
 import com.nurun.activemtl.model.parse.ParseEvent;
 import com.nurun.activemtl.model.parse.ParseCourtList;
 import com.nurun.activemtl.util.BitmapUtil;
@@ -31,14 +31,14 @@ public class ParseEventController implements EventController {
     }
 
     @Override
-    public void findClosestCourt(GetCourtsRequestCallbacks callback, double latitude, double longitude) {
-        findClosestCourt(callback, latitude, longitude, 10);
+    public void findClosestEvents(GetEventsRequestCallbacks callback, double latitude, double longitude) {
+        findClosestEvents(callback, latitude, longitude, 10);
     }
 
     @Override
-    public void findClosestCourt(final GetCourtsRequestCallbacks callback, final double latitude, final double longitude, int distanceInKm) {
+    public void findClosestEvents(final GetEventsRequestCallbacks callback, final double latitude, final double longitude, int distanceInKm) {
         ParseGeoPoint userLocation = new ParseGeoPoint(latitude, longitude);
-        query = getQuery().whereWithinKilometers(LOCATION, userLocation, distanceInKm);
+        query = getQuery().whereNear(LOCATION, userLocation);
         query.include("post");
         query.setCachePolicy(ParseQuery.CachePolicy.NETWORK_ELSE_CACHE);
         query.setMaxCacheAge(1000 * 60 * 5);
@@ -46,12 +46,12 @@ public class ParseEventController implements EventController {
             @Override
             public void done(List<ParseEvent> courts, ParseException exception) {
                 if (exception == null) {
-                    new PersistEventTask(context).execute(courts.toArray(new Court[courts.size()]));
+                    new PersistEventTask(context).execute(courts.toArray(new Event[courts.size()]));
                     if (callback != null) {
-                        callback.onGetCourtsRequestComplete(new ParseCourtList(courts));
+                        callback.onGetEventsRequestComplete(new ParseCourtList(courts));
                     }
                 } else {
-                    callback.onGetCourtsRequestFailed(new RuntimeException(exception));
+                    callback.onGetEventsRequestFailed(new RuntimeException(exception));
                 }
             }
         });
@@ -71,7 +71,7 @@ public class ParseEventController implements EventController {
     }
 
     @Override
-    public void addSuggestedCourt(String name, String fileUri, double[] latLong, String[] address) {
+    public void addSuggestedEvent(String name, String fileUri, double[] latLong, String[] address) {
         ParseEvent parseCourt = new ParseEvent();
         parseCourt.setAddress(address[0]);
         parseCourt.setCity(address[1]);

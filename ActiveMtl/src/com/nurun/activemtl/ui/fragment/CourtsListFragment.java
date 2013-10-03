@@ -19,9 +19,9 @@ import com.nurun.activemtl.ActiveMtlApplication;
 import com.nurun.activemtl.R;
 import com.nurun.activemtl.controller.EventController;
 import com.nurun.activemtl.controller.GeofencingController;
-import com.nurun.activemtl.http.GetCourtsRequestCallbacks;
-import com.nurun.activemtl.model.Court;
-import com.nurun.activemtl.model.CourtList;
+import com.nurun.activemtl.http.GetEventsRequestCallbacks;
+import com.nurun.activemtl.model.Event;
+import com.nurun.activemtl.model.EventList;
 import com.nurun.activemtl.receiver.LocationBroadcastReceiver;
 import com.nurun.activemtl.ui.CourtAdapter;
 import com.nurun.activemtl.ui.DetailActivity;
@@ -51,7 +51,7 @@ public class CourtsListFragment extends Fragment {
             positionFound = true;
             double latitude = lastLocation.getLatitude();
             double longitude = lastLocation.getLongitude();
-            courtController.findClosestCourt(getCourtsRequestCallbacks, latitude, longitude);
+            courtController.findClosestEvents(getCourtsRequestCallbacks, latitude, longitude);
         } else {
             locationBroadcastReceiver = new LocationBroadcastReceiver(onLocationChangedListener);
             getActivity().registerReceiver(locationBroadcastReceiver, LocationBroadcastReceiver.newIntentFilter());
@@ -85,10 +85,10 @@ public class CourtsListFragment extends Fragment {
         }
     }
 
-    private GetCourtsRequestCallbacks getCourtsRequestCallbacks = new GetCourtsRequestCallbacks() {
+    private GetEventsRequestCallbacks getCourtsRequestCallbacks = new GetEventsRequestCallbacks() {
 
         @Override
-        public void onGetCourtsRequestFailed(RuntimeException runtimeException) {
+        public void onGetEventsRequestFailed(RuntimeException runtimeException) {
             Toast.makeText(getActivity(), "An unexpected error occured", Toast.LENGTH_LONG).show();
             gridView.setVisibility(View.VISIBLE);
             getView().findViewById(R.id.progress).setVisibility(View.GONE);
@@ -96,7 +96,7 @@ public class CourtsListFragment extends Fragment {
         }
 
         @Override
-        public void onGetCourtsRequestComplete(CourtList courtList) {
+        public void onGetEventsRequestComplete(EventList courtList) {
             Location location = new Location("");
             location.setLatitude(locationClient.getLastLocation().getLatitude());
             location.setLongitude(locationClient.getLastLocation().getLongitude());
@@ -117,7 +117,7 @@ public class CourtsListFragment extends Fragment {
         @Override
         public void onLocationChanged(Location location) {
             if (!positionFound) {
-                courtController.findClosestCourt(getCourtsRequestCallbacks, location.getLatitude(), location.getLongitude());
+                courtController.findClosestEvents(getCourtsRequestCallbacks, location.getLatitude(), location.getLongitude());
             }
         }
     };
@@ -125,9 +125,9 @@ public class CourtsListFragment extends Fragment {
     private OnItemClickListener onItemClickListener = new OnItemClickListener() {
         @Override
         public void onItemClick(AdapterView<?> arg0, View view, int position, long id) {
-            Court court = (Court) ((CourtAdapter) gridView.getAdapter()).getItem(position);
+            Event court = (Event) ((CourtAdapter) gridView.getAdapter()).getItem(position);
             ActivityOptions opts = ActivityOptions.makeScaleUpAnimation(view, 0, 0, view.getWidth(), view.getHeight());
-            startActivity(DetailActivity.newIntent(getActivity(), court.getCourtId()), opts.toBundle());
+            startActivity(DetailActivity.newIntent(getActivity(), court.getEventId()), opts.toBundle());
         }
     };
 }
