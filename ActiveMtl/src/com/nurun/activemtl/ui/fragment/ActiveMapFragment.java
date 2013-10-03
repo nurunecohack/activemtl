@@ -88,8 +88,6 @@ public class ActiveMapFragment extends SupportMapFragment {
 
         @Override
         public void onGetCourtsRequestFailed(RuntimeException runtimeException) {
-            // TODO Auto-generated method stub
-
         }
 
         @Override

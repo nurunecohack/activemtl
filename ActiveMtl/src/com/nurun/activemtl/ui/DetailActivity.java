@@ -31,15 +31,15 @@ public class DetailActivity extends FragmentActivity {
         String id = getIntent().getStringExtra(EXTRA_ID);
         ViewPager viewPager = (ViewPager) findViewById(R.id.pager);
         Cursor listOrderByDistance = EventDbAdapter.getInstance(this).listOrderByDistance();
-        viewPager.setAdapter(new FindBBallFragmentPagerAdapter(getSupportFragmentManager(), listOrderByDistance));
-        viewPager.setCurrentItem(((FindBBallFragmentPagerAdapter)viewPager.getAdapter()).getPosition(id));
+        viewPager.setAdapter(new ActiveMtlFragmentPagerAdapter(getSupportFragmentManager(), listOrderByDistance));
+        viewPager.setCurrentItem(((ActiveMtlFragmentPagerAdapter)viewPager.getAdapter()).getPosition(id));
         viewPager.setPageTransformer(true, new DepthPageTransformer());
     }
 
-    public class FindBBallFragmentPagerAdapter extends FragmentPagerAdapter {
+    public class ActiveMtlFragmentPagerAdapter extends FragmentPagerAdapter {
         private Cursor courtCursor;
 
-        public FindBBallFragmentPagerAdapter(FragmentManager fm, Cursor courtCursor) {
+        public ActiveMtlFragmentPagerAdapter(FragmentManager fm, Cursor courtCursor) {
             super(fm);
             this.courtCursor = courtCursor;
         }
