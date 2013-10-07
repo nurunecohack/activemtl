@@ -81,7 +81,7 @@ public class UploaderService extends IntentService {
         final String title = getString(R.string.court_suggestion_title);
 
         final Context context = getApplicationContext();
-        Builder builder = new Notification.Builder(context).setSmallIcon(R.drawable.player_logo).setContentTitle(title).setDefaults(Notification.DEFAULT_ALL);
+        Builder builder = new Notification.Builder(context).setSmallIcon(R.drawable.logo).setContentTitle(title).setDefaults(Notification.DEFAULT_ALL);
 
         switch (progress) {
         case PROGRESS_MAX:

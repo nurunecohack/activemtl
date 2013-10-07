@@ -50,7 +50,7 @@ public class ActiveMtlConfiguration {
     }
 
     private String getBaseUrl() {
-        return String.format(properties.getProperty("base.url"));
+        return properties.getProperty("base.url");
     }
 
     public String getListUrl(EventType eventType) {
@@ -64,6 +64,10 @@ public class ActiveMtlConfiguration {
         default:
             return getHomeListUrl();
         }
+    }
+
+    public String getProfileUrl(Context context) {
+        return String.format(properties.getProperty("profile.picture.url"), PreferenceHelper.getUserId(context));
     }
 
 }

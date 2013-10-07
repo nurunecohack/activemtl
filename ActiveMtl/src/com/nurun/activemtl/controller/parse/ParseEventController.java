@@ -7,6 +7,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.CompressFormat;
 import android.net.Uri;
+import android.os.AsyncTask;
 
 import com.nurun.activemtl.controller.EventController;
 import com.nurun.activemtl.http.GetEventsRequestCallbacks;
@@ -66,7 +67,14 @@ public class ParseEventController implements EventController {
     @Override
     public void canceltasks() {
         if (query != null) {
-            query.cancel();
+            new AsyncTask<Void, Void, Void>() {
+                @Override
+                protected Void doInBackground(Void... params) {
+                    query.cancel();
+                    return null;
+                }
+            };
+
         }
     }
 

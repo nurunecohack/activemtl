@@ -10,6 +10,7 @@ public class PreferenceHelper {
     public static final String KEY_PREF_RADIUS = "radius_key";
     private static final String KEY_PREF_CHECKED_IN = "checked_in";
     private static final String KEY_PREF_FOUND = "found";
+    private static final String KEY_USER_ID = "userId";
 
     public static void saveLogin(Context context, String login) {
         getPreferences(context).edit().putString(KEY_PREF_LOGIN, login).commit();
@@ -49,5 +50,9 @@ public class PreferenceHelper {
     
     public boolean locationFound(Context context) {
         return getPreferences(context).edit().putBoolean(KEY_PREF_FOUND, true).commit();
+    }
+
+    public static String getUserId(Context context) {
+        return getPreferences(context).getString(KEY_USER_ID, "andouane.bird");
     }
 }

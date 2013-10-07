@@ -21,12 +21,9 @@
         <item>Challenge</item>
         <item>Issues</item>
         <item>Ideas</item>
+        <item>Profile</item>
     </string-array>
-    <string name="drawer_open">Open navigation drawer</string>
-    <string name="drawer_close">Close navigation drawer</string>
-    <string name="action_websearch">Web search</string>
     <string name="app_not_available">Sorry, there\'s no web browser available</string>
-    <string name="hello">Hello</string>
     <string name="getting_courts">Loading events&#8230;</string>
     <string name="home">Home</string>
     <string name="suggest">Send</string>
@@ -51,4 +48,11 @@
     <string name="challenges">Challenges</string>
     <string name="ideas">Ideas</string>
     <string name="issues">Issues</string>
+    <string name="district">District</string>
+    <string name="me">Me</string>
+    <string name="montreal">Montréal</string>
+    <string name="submitted_ideas">SUBMITTED IDEAS</string>
+    <string name="issues_solved">ISSUES SOLVED</string>
+    <string name="challenges_resolved">CHALLENGES RESOLVED</string>
+    <string name="disconnect">Disconnect</string>
 </resources>

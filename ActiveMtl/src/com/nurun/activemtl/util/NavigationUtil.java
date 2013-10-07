@@ -8,6 +8,7 @@ import com.nurun.activemtl.ui.DetailActivity;
 import com.nurun.activemtl.ui.HomeActivity;
 import com.nurun.activemtl.ui.fragment.ActiveMapFragment;
 import com.nurun.activemtl.ui.fragment.EventListFragment;
+import com.nurun.activemtl.ui.fragment.ProfileFragment;
 
 public class NavigationUtil {
 
@@ -23,6 +24,8 @@ public class NavigationUtil {
             return EventListFragment.newFragment(EventType.ISSUE);
         case 3:
             return EventListFragment.newFragment(EventType.IDEA);
+        case 4:
+            return ProfileFragment.newFragment();
         default:
             return ActiveMapFragment.newFragment();
         }

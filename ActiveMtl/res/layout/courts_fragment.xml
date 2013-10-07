@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignParentTop="true"
-        android:background="@color/grey"
+        android:background="@android:color/darker_gray"
         android:horizontalSpacing="@dimen/cell_spacing"
         android:numColumns="@integer/nb_column"
         android:verticalSpacing="@dimen/cell_spacing"
