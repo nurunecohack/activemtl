@@ -55,4 +55,6 @@
     <string name="issues_solved">ISSUES SOLVED</string>
     <string name="challenges_resolved">CHALLENGES RESOLVED</string>
     <string name="disconnect">Disconnect</string>
+    <string name="facebook_connect">Facebook connect</string>
+    <string name="facebook_app_id">167930773411045</string>
 </resources>

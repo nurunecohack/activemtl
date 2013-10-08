@@ -69,5 +69,4 @@ public class ActiveMtlConfiguration {
     public String getProfileUrl(Context context) {
         return String.format(properties.getProperty("profile.picture.url"), PreferenceHelper.getUserId(context));
     }
-
 }

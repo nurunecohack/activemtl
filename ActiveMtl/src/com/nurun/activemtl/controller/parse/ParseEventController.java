@@ -13,7 +13,7 @@ import com.nurun.activemtl.controller.EventController;
 import com.nurun.activemtl.http.GetEventsRequestCallbacks;
 import com.nurun.activemtl.model.Event;
 import com.nurun.activemtl.model.parse.ParseEvent;
-import com.nurun.activemtl.model.parse.ParseCourtList;
+import com.nurun.activemtl.model.parse.ParseEventList;
 import com.nurun.activemtl.util.BitmapUtil;
 import com.parse.FindCallback;
 import com.parse.ParseException;
@@ -49,7 +49,7 @@ public class ParseEventController implements EventController {
                 if (exception == null) {
                     new PersistEventTask(context).execute(courts.toArray(new Event[courts.size()]));
                     if (callback != null) {
-                        callback.onGetEventsRequestComplete(new ParseCourtList(courts));
+                        callback.onGetEventsRequestComplete(new ParseEventList(courts));
                     }
                 } else {
                     callback.onGetEventsRequestFailed(new RuntimeException(exception));

@@ -6,13 +6,13 @@ import java.util.List;
 import com.nurun.activemtl.model.Event;
 import com.nurun.activemtl.model.EventList;
 
-public class ParseCourtList extends ArrayList<Event> implements EventList {
+public class ParseEventList extends ArrayList<Event> implements EventList {
 
-    public ParseCourtList(List<ParseEvent> courts) {
+    public ParseEventList(List<ParseEvent> courts) {
         super(courts);
     }
 
-    public ParseCourtList() {
+    public ParseEventList() {
         super();
     }
     

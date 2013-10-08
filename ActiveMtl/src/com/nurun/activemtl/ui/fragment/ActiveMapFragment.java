@@ -101,7 +101,20 @@ public class ActiveMapFragment extends SupportMapFragment {
                 int playerCount = event.getPlayerCount();
                 marker.snippet(String.format(playerString, playerCount));
                 marker.icon(getIcon(playerCount));
+                try {
                 eventByMarker.put(getMap().addMarker(marker), event);
+                }
+                catch (NullPointerException npe) {
+                    if (getMap() == null) {
+                        throw new RuntimeException("map is null");
+                    }
+                    else if (event == null) {
+                        throw new RuntimeException("event is null");
+                    }
+                    else if (marker == null) {
+                        throw new RuntimeException("marker is null");
+                    }
+                }
             }
             geofencingController.addGeofences(events);
         }

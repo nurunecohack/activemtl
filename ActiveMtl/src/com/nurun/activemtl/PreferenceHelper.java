@@ -31,28 +31,32 @@ public class PreferenceHelper {
     public static void clearCache(Context context) {
         getPreferences(context).edit().clear().commit();
     }
-    
+
     public static boolean isCheckedIn(Context context) {
         return getPreferences(context).getBoolean(KEY_PREF_CHECKED_IN, false);
     }
-    
+
     public static boolean checkIn(Context context) {
         return getPreferences(context).edit().putBoolean(KEY_PREF_CHECKED_IN, true).commit();
     }
-    
+
     public static boolean leaveCourt(Context context) {
         return getPreferences(context).edit().putBoolean(KEY_PREF_CHECKED_IN, false).commit();
     }
-    
+
     public boolean isLocationFound(Context context) {
         return getPreferences(context).getBoolean(KEY_PREF_FOUND, false);
     }
-    
+
     public boolean locationFound(Context context) {
         return getPreferences(context).edit().putBoolean(KEY_PREF_FOUND, true).commit();
     }
 
     public static String getUserId(Context context) {
         return getPreferences(context).getString(KEY_USER_ID, "andouane.bird");
+    }
+
+    public static void setUserId(Context context, String id) {
+        getPreferences(context).edit().putString(KEY_USER_ID, id).commit();
     }
 }
