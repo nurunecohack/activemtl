@@ -11,7 +11,7 @@ import com.nurun.activemtl.controller.PlayerController;
 import com.nurun.activemtl.http.AddPlayerToCourtRequestCallbacks;
 import com.nurun.activemtl.http.DeletePlayerToCourtRequestCallbacks;
 import com.nurun.activemtl.model.Player;
-import com.nurun.activemtl.model.parse.ParseEvent;
+import com.nurun.activemtl.model.parse.Event;
 import com.parse.GetCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
@@ -132,20 +132,20 @@ public class ParsePlayerController implements PlayerController {
     public void checkInCourt(String courtId, final AddPlayerToCourtRequestCallbacks addPlayerToCourtRequestCallbacks) {
         try {
             final ParseUser parseUser = ParseUser.logIn(PreferenceHelper.getLogin(context), DEFAULT_PASSWORD);
-            ParseQuery<ParseEvent> query = ParseQuery.getQuery(ParseEvent.class);
-            query.getInBackground(courtId, new GetCallback<ParseEvent>() {
+            ParseQuery<Event> query = ParseQuery.getQuery(Event.class);
+            query.getInBackground(courtId, new GetCallback<Event>() {
 
                 @Override
-                public void done(final ParseEvent court, ParseException e) {
+                public void done(final Event event, ParseException e) {
                     if (e == null) {
-                        ParseRelation<ParseUser> relation = court.getRelation("currentPlayers");
+                        ParseRelation<ParseUser> relation = event.getRelation("currentPlayers");
                         relation.add(parseUser);
-                        court.saveInBackground(new SaveCallback() {
+                        event.saveInBackground(new SaveCallback() {
 
                             @Override
                             public void done(ParseException e) {
                                 if (e == null) {
-                                    addPlayerToCourtRequestCallbacks.onAddPlayerSuccess(court);
+                                    addPlayerToCourtRequestCallbacks.onAddPlayerSuccess(event);
                                 } else {
                                     addPlayerToCourtRequestCallbacks.onAddPlayerFail(new RuntimeException(e));
                                 }
@@ -165,20 +165,20 @@ public class ParsePlayerController implements PlayerController {
     public void leaveCourt(String courtId, final DeletePlayerToCourtRequestCallbacks deletePlayerCallback) {
         try {
             final ParseUser parseUser = ParseUser.logIn(PreferenceHelper.getLogin(context), DEFAULT_PASSWORD);
-            ParseQuery<ParseEvent> query = ParseQuery.getQuery(ParseEvent.class);
-            query.getInBackground(courtId, new GetCallback<ParseEvent>() {
+            ParseQuery<Event> query = ParseQuery.getQuery(Event.class);
+            query.getInBackground(courtId, new GetCallback<Event>() {
 
                 @Override
-                public void done(final ParseEvent court, ParseException e) {
+                public void done(final Event event, ParseException e) {
                     if (e == null) {
-                        ParseRelation<ParseUser> relation = court.getRelation("currentPlayers");
+                        ParseRelation<ParseUser> relation = event.getRelation("currentPlayers");
                         relation.remove(parseUser);
-                        court.saveInBackground(new SaveCallback() {
+                        event.saveInBackground(new SaveCallback() {
 
                             @Override
                             public void done(ParseException e) {
                                 if (e == null) {
-                                    deletePlayerCallback.onDeletePlayerSuccess(court);
+                                    deletePlayerCallback.onDeletePlayerSuccess(event);
                                 } else {
                                     deletePlayerCallback.onDeletePlayerFail(new RuntimeException(e));
                                 }

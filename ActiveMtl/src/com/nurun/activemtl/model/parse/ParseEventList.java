@@ -3,13 +3,12 @@ package com.nurun.activemtl.model.parse;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.nurun.activemtl.model.Event;
 import com.nurun.activemtl.model.EventList;
 
 public class ParseEventList extends ArrayList<Event> implements EventList {
 
-    public ParseEventList(List<ParseEvent> courts) {
-        super(courts);
+    public ParseEventList(List<Event> events) {
+        super(events);
     }
 
     public ParseEventList() {

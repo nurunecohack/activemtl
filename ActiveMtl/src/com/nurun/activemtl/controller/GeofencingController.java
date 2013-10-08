@@ -13,8 +13,8 @@ import com.google.android.gms.location.LocationClient.OnAddGeofencesResultListen
 import com.google.android.gms.location.LocationClient.OnRemoveGeofencesResultListener;
 import com.nurun.activemtl.ActiveMtlApplication;
 import com.nurun.activemtl.PreferenceHelper;
-import com.nurun.activemtl.model.Event;
 import com.nurun.activemtl.model.EventList;
+import com.nurun.activemtl.model.parse.Event;
 import com.nurun.activemtl.receiver.GeofenceTransitionReceiver;
 
 public class GeofencingController {

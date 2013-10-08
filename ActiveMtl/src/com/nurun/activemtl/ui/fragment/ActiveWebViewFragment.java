@@ -27,13 +27,13 @@ import com.nurun.activemtl.util.NavigationUtil;
 public class ActiveWebViewFragment extends Fragment {
 
     private boolean listShown = true;
+    private WebView webview;
 
     @SuppressLint("SetJavaScriptEnabled")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         final LinearLayout view = (LinearLayout) inflater.inflate(R.layout.webview, container);
-        final WebView webview = (WebView) view.findViewById(R.id.webview);
-        webview.loadUrl(ActiveMtlConfiguration.getInstance(getActivity()).getHomeListUrl());
+        webview = (WebView) view.findViewById(R.id.webview);
         WebSettings settings = webview.getSettings();
         settings.setJavaScriptEnabled(true);
         webview.addJavascriptInterface(this, "ActiveMTL");
@@ -100,6 +100,12 @@ public class ActiveWebViewFragment extends Fragment {
             }
         });
         return view;
+    }
+    
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        webview.loadUrl(ActiveMtlConfiguration.getInstance(getActivity()).getHomeListUrl());
     }
     
     @JavascriptInterface

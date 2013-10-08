@@ -18,15 +18,15 @@ import com.nurun.activemtl.controller.PlayerController;
 import com.nurun.activemtl.controller.parse.ParseEventController;
 import com.nurun.activemtl.controller.parse.ParsePlayerController;
 import com.nurun.activemtl.data.ActiveMtlDatabaseHelper;
-import com.nurun.activemtl.model.parse.ParseEvent;
+import com.nurun.activemtl.model.parse.Event;
 import com.nurun.activemtl.receiver.LocationBroadcastReceiver;
 import com.parse.Parse;
 import com.parse.ParseObject;
 
 public class ActiveMtlApplication extends Application {
 
-    private static final String CLIENT_KEY = "NaBMEGW8KLwkaIFhzABiRJOzFYhpq7JZakj4heKc";
-    private static final String APP_ID = "u5ku5ZMBw0KtOQRXv3xU82WU5GgEx9v8C5mLThkH";
+    private static final String CLIENT_KEY = "p6Wiob7a5YVl98AwBZwFDCHGeG3LRvfjRPbQry6x";
+    private static final String APP_ID = "dGMkfurxsmmcx152WgRDw7MBYunmnGpJSQoBT4Cd";
     public static final String LOCATION_CLIENT = "LOCATION_CLIENT";
     public static final String COURT_CONTROLLER = "COURT_CONTROLLER";
     public static final String GSON = "GSON";
@@ -40,7 +40,7 @@ public class ActiveMtlApplication extends Application {
     public void onCreate() {
         super.onCreate();
         ActiveMtlDatabaseHelper.init(this);
-        ParseObject.registerSubclass(ParseEvent.class);
+        ParseObject.registerSubclass(Event.class);
         Parse.initialize(this, APP_ID, CLIENT_KEY);
 
         int googlePlayServicesAvailable = GooglePlayServicesUtil.isGooglePlayServicesAvailable(getApplicationContext());

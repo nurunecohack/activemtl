@@ -19,11 +19,11 @@ public class NavigationUtil {
     public static Fragment getFragment(int position) {
         switch (position) {
         case 1:
-            return EventListFragment.newFragment(EventType.CHALLENGE);
+            return EventListFragment.newFragment(EventType.Challenge);
         case 2:
-            return EventListFragment.newFragment(EventType.ISSUE);
+            return EventListFragment.newFragment(EventType.Alert);
         case 3:
-            return EventListFragment.newFragment(EventType.IDEA);
+            return EventListFragment.newFragment(EventType.Idea);
         case 4:
             return ProfileFragment.newFragment();
         default:

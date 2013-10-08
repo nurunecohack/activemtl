@@ -9,7 +9,7 @@ import android.database.Cursor;
 import android.provider.BaseColumns;
 import android.util.Log;
 
-import com.nurun.activemtl.model.Event;
+import com.nurun.activemtl.model.parse.Event;
 
 public class EventDbAdapter extends DbAdapter<Event> {
 
@@ -17,12 +17,9 @@ public class EventDbAdapter extends DbAdapter<Event> {
     public static final String KEY_NAME = Event.class.getSimpleName() + "Name";
     public static final String VIEW_NAME = Event.class.getSimpleName() + "View";
     public static final String TABLE_NAME = Event.class.getSimpleName() + "Table";
-    public static final String KEY_ADDRESS = Event.class.getSimpleName() + "Address";
     public static final String KEY_LATITUDE = Event.class.getSimpleName() + "Latitude";
     public static final String KEY_LONGITUDE = Event.class.getSimpleName() + "Longitude";
     public static final String KEY_PICTURE_URL = Event.class.getSimpleName() + "PictureUrl";
-    public static final String KEY_PLAYER_COUNT = Event.class.getSimpleName() + "PlayerCount";
-    public static final String KEY_SUGGESTED_BY = Event.class.getSimpleName() + "SuggestedBy";
 
     private static EventDbAdapter instance;
 
@@ -42,12 +39,9 @@ public class EventDbAdapter extends DbAdapter<Event> {
         ContentValues initialValues = new ContentValues();
         initialValues.put(KEY_ID, court.getEventId());
         initialValues.put(KEY_NAME, court.getTitle());
-        initialValues.put(KEY_ADDRESS, court.getAddress());
         initialValues.put(KEY_LATITUDE, court.getLatLng()[0]);
         initialValues.put(KEY_LONGITUDE, court.getLatLng()[1]);
         initialValues.put(KEY_PICTURE_URL, court.getPictureUrl());
-        initialValues.put(KEY_PLAYER_COUNT, court.getPlayerCount());
-        initialValues.put(KEY_SUGGESTED_BY, court.getSuggestedBy());
         return initialValues;
     }
 
@@ -60,12 +54,9 @@ public class EventDbAdapter extends DbAdapter<Event> {
         Map<String, String> attributs = new HashMap<String, String>();
         attributs.put(KEY_ID, "text not null");
         attributs.put(KEY_NAME, "text not null");
-        attributs.put(KEY_ADDRESS, "text not null");
         attributs.put(KEY_LATITUDE, "int not null");
         attributs.put(KEY_LONGITUDE, "int not null");
         attributs.put(KEY_PICTURE_URL, "text");
-        attributs.put(KEY_PLAYER_COUNT, "int");
-        attributs.put(KEY_SUGGESTED_BY, "text");
         return attributs;
     }
 
@@ -75,9 +66,8 @@ public class EventDbAdapter extends DbAdapter<Event> {
     }
 
     public Cursor listOrderByDistance() {
-        Cursor cursor = new QueryBuilder(getTableView()).columns(BaseColumns._ID, EventDbAdapter.KEY_ID, EventDbAdapter.KEY_NAME, EventDbAdapter.KEY_ADDRESS,
-                EventDbAdapter.KEY_PICTURE_URL, EventDbAdapter.KEY_PLAYER_COUNT, EventDbAdapter.KEY_SUGGESTED_BY, EventDbAdapter.KEY_LATITUDE,
-                EventDbAdapter.KEY_LONGITUDE).request(mDb);
+        Cursor cursor = new QueryBuilder(getTableView()).columns(BaseColumns._ID, EventDbAdapter.KEY_ID, EventDbAdapter.KEY_NAME,
+                EventDbAdapter.KEY_PICTURE_URL, EventDbAdapter.KEY_LATITUDE, EventDbAdapter.KEY_LONGITUDE).request(mDb);
         return cursor;
     }
 
@@ -86,8 +76,7 @@ public class EventDbAdapter extends DbAdapter<Event> {
     }
 
     public Cursor search(String search) {
-        Cursor cursor = new QueryBuilder(getTableName()).wherelike(KEY_PLAYER_COUNT, search).or().wherelike(KEY_NAME, search).or()
-                .wherelike(KEY_PICTURE_URL, search).request(mDb);
+        Cursor cursor = new QueryBuilder(getTableName()).wherelike(KEY_NAME, search).or().wherelike(KEY_PICTURE_URL, search).request(mDb);
         Log.i(getClass().getSimpleName(), cursor.getCount() + " billets pour la recherche " + search);
         return cursor;
     }

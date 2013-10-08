@@ -34,11 +34,11 @@ public class ActiveMtlConfiguration {
 
     public String getListUrl(EventType eventType, double lat, double lon) {
         switch (eventType) {
-        case CHALLENGE:
+        case Challenge:
             return getBaseUrl() + String.format(properties.getProperty("challengelist.url"), lat, lon);
-        case IDEA:
+        case Idea:
             return getBaseUrl() + String.format(properties.getProperty("idealist.url"), lat, lon);
-        case ISSUE:
+        case Alert:
             return getBaseUrl() + String.format(properties.getProperty("issuelist.url"), lat, lon);
         default:
             return getHomeListUrl();
@@ -55,11 +55,11 @@ public class ActiveMtlConfiguration {
 
     public String getListUrl(EventType eventType) {
         switch (eventType) {
-        case CHALLENGE:
+        case Challenge:
             return getBaseUrl() + properties.getProperty("challengelist.default.url.default");
-        case IDEA:
+        case Idea:
             return getBaseUrl() + properties.getProperty("idealist.default.url");
-        case ISSUE:
+        case Alert:
             return getBaseUrl() + properties.getProperty("issuelist.default.url");
         default:
             return getHomeListUrl();

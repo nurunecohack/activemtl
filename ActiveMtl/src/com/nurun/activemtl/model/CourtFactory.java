@@ -1,5 +1,7 @@
 package com.nurun.activemtl.model;
 
+import com.nurun.activemtl.model.parse.Event;
+
 import android.content.Context;
 
 public class CourtFactory {

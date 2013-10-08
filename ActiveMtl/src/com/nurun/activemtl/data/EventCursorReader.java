@@ -12,20 +12,8 @@ public class EventCursorReader {
         return CursorReader.getString(cursor, EventDbAdapter.KEY_NAME);
     }
 
-    public static String getAddress(Cursor cursor) {
-        return CursorReader.getString(cursor, EventDbAdapter.KEY_ADDRESS);
-    }
-
     public static String getPictureUrl(Cursor cursor) {
         return CursorReader.getString(cursor, EventDbAdapter.KEY_PICTURE_URL);
-    }
-
-    public static int getPlayerCount(Cursor cursor) {
-        return CursorReader.getInt(cursor, EventDbAdapter.KEY_PLAYER_COUNT);
-    }
-
-    public static String getSuggestedBy(Cursor cursor) {
-        return CursorReader.getString(cursor, EventDbAdapter.KEY_SUGGESTED_BY);
     }
 
     public static Object getId(Cursor cursor) {

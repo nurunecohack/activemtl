@@ -6,7 +6,7 @@ import android.content.Context;
 import android.os.AsyncTask;
 
 import com.nurun.activemtl.data.EventDbAdapter;
-import com.nurun.activemtl.model.Event;
+import com.nurun.activemtl.model.parse.Event;
 
 public class PersistEventTask extends AsyncTask<Event, Void, Void> {
 

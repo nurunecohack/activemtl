@@ -24,7 +24,6 @@ public class UploaderService extends IntentService {
 
     private static final String EXTRA_IMAGE_URI = "EXTRA_IMAGE_URI";
     private static final String EXTRA_NAME = "EXTRA_NAME";
-    private static String EXTRA_ADDRESS = "EXTRA_ADDRESS";
     private static final String EXTRA_LATLONG = "EXTRA_LATLONG";
     private EventController courtController;
 
@@ -46,9 +45,8 @@ public class UploaderService extends IntentService {
         courtController = (EventController) getApplicationContext().getSystemService(ActiveMtlApplication.COURT_CONTROLLER);
     }
 
-    public static Intent newIntent(Context context, String imageUri, String name, double[] latlong, String[] adresse) {
-        return new Intent(context, UploaderService.class).putExtra(EXTRA_IMAGE_URI, imageUri).putExtra(EXTRA_NAME, name).putExtra(EXTRA_LATLONG, latlong)
-                .putExtra(EXTRA_ADDRESS, adresse);
+    public static Intent newIntent(Context context, String imageUri, String name, double[] latlong) {
+        return new Intent(context, UploaderService.class).putExtra(EXTRA_IMAGE_URI, imageUri).putExtra(EXTRA_NAME, name).putExtra(EXTRA_LATLONG, latlong);
     }
 
     @Override
@@ -56,12 +54,11 @@ public class UploaderService extends IntentService {
         String fileUri = intent.getStringExtra(EXTRA_IMAGE_URI);
         String name = intent.getStringExtra(EXTRA_NAME);
         double[] latLong = intent.getDoubleArrayExtra(EXTRA_LATLONG);
-        String[] address = intent.getStringArrayExtra(EXTRA_ADDRESS);
         InputStream inputStream = getInputStream(fileUri);
         if (inputStream != null) {
             try {
                 updateNotification(PROGRESS_MIN);
-                courtController.addSuggestedEvent(name, fileUri, latLong, address);
+                courtController.addSuggestedEvent(name, fileUri, latLong);
                 updateNotification(PROGRESS_MAX);
             } catch (RuntimeException e) {
                 Log.e(getClass().getSimpleName(), e.getMessage(), e);

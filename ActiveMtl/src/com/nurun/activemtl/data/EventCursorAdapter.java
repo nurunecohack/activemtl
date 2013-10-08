@@ -14,9 +14,9 @@ public class EventCursorAdapter extends SimpleCursorAdapter {
 
     private static Cursor cursor;
 
-    private static final int[] to = new int[] { R.id.court_image, R.id.court_name, R.id.court_distance, R.id.player_number };
+    private static final int[] to = new int[] { R.id.court_image, R.id.court_name, R.id.court_distance };
 
-    private static final String[] from = new String[] { EventDbAdapter.KEY_PICTURE_URL, EventDbAdapter.KEY_NAME, EventDbAdapter.KEY_PLAYER_COUNT };
+    private static final String[] from = new String[] { EventDbAdapter.KEY_PICTURE_URL, EventDbAdapter.KEY_NAME };
 
     private DataSetObserver observer = new DataSetObserver() {
         @Override

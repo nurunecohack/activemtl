@@ -10,5 +10,5 @@ public interface EventController {
 
     void canceltasks();
 
-    void addSuggestedEvent(String name, String fileUri, double[] latLong, String[] address);
+    void addSuggestedEvent(String name, String fileUri, double[] latLong);
 }

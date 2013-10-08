@@ -11,8 +11,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.nurun.activemtl.R;
-import com.nurun.activemtl.model.Event;
 import com.nurun.activemtl.model.EventList;
+import com.nurun.activemtl.model.parse.Event;
 import com.nurun.activemtl.util.DistanceUtil;
 import com.squareup.picasso.Picasso;
 
@@ -34,7 +34,6 @@ public class CourtAdapter extends ArrayAdapter<Event> {
             holder = new ViewHolder();
             holder.name = (TextView) convertView.findViewById(R.id.court_name);
             holder.distance = (TextView) convertView.findViewById(R.id.court_distance);
-            holder.playerNumber = (TextView) convertView.findViewById(R.id.player_number);
             holder.courtImage = (ImageView) convertView.findViewById(R.id.court_image);
             convertView.setTag(holder);
         }
@@ -44,7 +43,6 @@ public class CourtAdapter extends ArrayAdapter<Event> {
         if (court.getPictureUrl() != null && !court.getPictureUrl().equals(holder.imageUrl)) {
             Picasso.with(getContext()).load(Uri.parse(court.getPictureUrl())).placeholder(R.drawable.basketball_court).into(holder.courtImage);
         }
-        holder.playerNumber.setText("" + court.getPlayerCount());
         holder.distance.setText(DistanceUtil.formatDistance(court.getDistance(currentLocation)));
         holder.imageUrl = court.getPictureUrl();
         return convertView;
@@ -54,7 +52,6 @@ public class CourtAdapter extends ArrayAdapter<Event> {
         public ImageView courtImage;
         public TextView name;
         public TextView distance;
-        public TextView playerNumber;
         public String imageUrl;
     }
 }

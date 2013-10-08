@@ -22,8 +22,9 @@ import com.nurun.activemtl.R;
 import com.nurun.activemtl.controller.EventController;
 import com.nurun.activemtl.controller.GeofencingController;
 import com.nurun.activemtl.http.GetEventsRequestCallbacks;
-import com.nurun.activemtl.model.Event;
 import com.nurun.activemtl.model.EventList;
+import com.nurun.activemtl.model.EventType;
+import com.nurun.activemtl.model.parse.Event;
 import com.nurun.activemtl.util.NavigationUtil;
 
 public class ActiveMapFragment extends SupportMapFragment {
@@ -33,7 +34,6 @@ public class ActiveMapFragment extends SupportMapFragment {
     private EventController eventController;
 
     private GeofencingController geofencingController;
-    private String playerString;
     protected EventList events;
 
     public static ActiveMapFragment newFragment() {
@@ -41,11 +41,10 @@ public class ActiveMapFragment extends SupportMapFragment {
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    public void onActivityCreated(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        eventController = (EventController) getActivity().getApplicationContext().getSystemService(ActiveMtlApplication.COURT_CONTROLLER);;
+        eventController = (EventController) getActivity().getApplicationContext().getSystemService(ActiveMtlApplication.COURT_CONTROLLER);
         geofencingController = new GeofencingController(getActivity().getApplicationContext());
-        playerString = getString(R.string.players);
     }
 
     @Override
@@ -98,20 +97,15 @@ public class ActiveMapFragment extends SupportMapFragment {
                 marker.position(new LatLng(event.getLatLng()[0], event.getLatLng()[1]));
                 marker.draggable(false);
                 marker.title(event.getTitle());
-                int playerCount = event.getPlayerCount();
-                marker.snippet(String.format(playerString, playerCount));
-                marker.icon(getIcon(playerCount));
+                marker.icon(getIcon(event.getEventType()));
                 try {
-                eventByMarker.put(getMap().addMarker(marker), event);
-                }
-                catch (NullPointerException npe) {
+                    eventByMarker.put(getMap().addMarker(marker), event);
+                } catch (NullPointerException npe) {
                     if (getMap() == null) {
                         throw new RuntimeException("map is null");
-                    }
-                    else if (event == null) {
+                    } else if (event == null) {
                         throw new RuntimeException("event is null");
-                    }
-                    else if (marker == null) {
+                    } else if (marker == null) {
                         throw new RuntimeException("marker is null");
                     }
                 }
@@ -134,21 +128,16 @@ public class ActiveMapFragment extends SupportMapFragment {
         }
     };
 
-    private BitmapDescriptor getIcon(int playerCount) {
-        switch (playerCount) {
-        case 0:
-            return BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED);
-        case 1:
-        case 2:
-        case 3:
-            return BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE);
-        case 4:
-        case 5:
-        case 6:
-            return BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_YELLOW);
-        default:
-            return BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN);
+    private BitmapDescriptor getIcon(EventType eventType) {
+        switch (eventType) {
+        case Alert:
+            return BitmapDescriptorFactory.fromResource(R.drawable.probleme_marker);
+        case Challenge:
+            return BitmapDescriptorFactory.fromResource(R.drawable.defi_marker);
+        case Idea:
+            return BitmapDescriptorFactory.fromResource(R.drawable.idee_marker);
         }
+        throw new IllegalStateException("Mauvais Event type : " + eventType);
     }
 
 }

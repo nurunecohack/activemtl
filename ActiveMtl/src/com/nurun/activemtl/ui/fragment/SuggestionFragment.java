@@ -1,16 +1,10 @@
 package com.nurun.activemtl.ui.fragment;
 
 import java.io.File;
-import java.io.IOException;
 import java.lang.ref.WeakReference;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.location.Address;
-import android.location.Geocoder;
 import android.location.Location;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -21,7 +15,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -29,7 +22,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.google.android.gms.location.LocationClient;
 import com.nurun.activemtl.ActiveMtlApplication;
@@ -46,20 +38,14 @@ public class SuggestionFragment extends Fragment {
 
     private LocationClient locationClient;
     private boolean pictureTaken = false;
-    private Geocoder geocoder;
     private Button suggestionButton;
-    private List<Address> addresses = new ArrayList<Address>();
-    private TextView textViewAddress;
     private double[] latLong = new double[2];
-
-    private String[] adresse = new String[3];
 
     private EditText editTextName;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         locationClient = (LocationClient) getActivity().getApplicationContext().getSystemService(ActiveMtlApplication.LOCATION_CLIENT);
-        geocoder = new Geocoder(getActivity(), Locale.getDefault());
     }
 
     public static Fragment newFragment() {
@@ -72,7 +58,6 @@ public class SuggestionFragment extends Fragment {
         suggestionButton = (Button) view.findViewById(R.id.suggestButton);
         suggestionButton.setEnabled(false);
         suggestionButton.setOnClickListener(onClickListener);
-        textViewAddress = (TextView) view.findViewById(R.id.textViewAddress);
         editTextName = (EditText) view.findViewById(R.id.editTextName);
         editTextName.addTextChangedListener(watcher);
         return view;
@@ -84,18 +69,6 @@ public class SuggestionFragment extends Fragment {
         if (locationClient.isConnected()) {
             Location lastLocation = locationClient.getLastLocation();
             if (lastLocation != null) {
-                latLong[0] = lastLocation.getLatitude();
-                latLong[1] = lastLocation.getLongitude();
-                try {
-                    addresses = geocoder.getFromLocation(latLong[0], latLong[1], 1);
-                    Address address = addresses.get(0);
-                    adresse[0] = address.getAddressLine(0);
-                    adresse[1] = address.getAddressLine(1);
-                    adresse[2] = address.getAddressLine(2);
-                } catch (IOException e) {
-                    Log.e(getClass().getSimpleName(), e.getMessage(), e);
-                }
-                textViewAddress.setText(adresse[0] + " " + adresse[1] + " " + adresse[2]);
                 suggestionButton.setEnabled(isSuggestionButtonEnabled(lastLocation));
             }
         }
@@ -130,7 +103,7 @@ public class SuggestionFragment extends Fragment {
         public void onClick(View v) {
             switch (v.getId()) {
             case R.id.suggestButton:
-                getActivity().startService(UploaderService.newIntent(getActivity(), fileUri.getPath(), editTextName.getText().toString(), latLong, adresse));
+                getActivity().startService(UploaderService.newIntent(getActivity(), fileUri.getPath(), editTextName.getText().toString(), latLong));
                 NavigationUtil.goToHome(getActivity());
                 break;
             default:
