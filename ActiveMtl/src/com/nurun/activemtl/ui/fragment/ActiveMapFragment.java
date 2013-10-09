@@ -5,6 +5,7 @@ import java.util.Map;
 
 import android.location.Location;
 import android.os.Bundle;
+import android.util.Log;
 
 import com.google.android.gms.location.LocationClient;
 import com.google.android.gms.maps.CameraUpdate;
@@ -97,21 +98,15 @@ public class ActiveMapFragment extends SupportMapFragment {
                 return;
             }
             for (Event event : eventList) {
-                MarkerOptions marker = new MarkerOptions();
-                marker.position(new LatLng(event.getLatLng()[0], event.getLatLng()[1]));
-                marker.draggable(false);
-                marker.title(event.getTitle());
-                marker.icon(getIcon(event.getEventType()));
                 try {
+                    MarkerOptions marker = new MarkerOptions();
+                    marker.position(new LatLng(event.getLatLng()[0], event.getLatLng()[1]));
+                    marker.draggable(false);
+                    marker.title(event.getTitle());
+                    marker.icon(getIcon(event.getEventType()));
                     eventByMarker.put(getMap().addMarker(marker), event);
-                } catch (NullPointerException npe) {
-                    if (getMap() == null) {
-                        throw new RuntimeException("map is null");
-                    } else if (event == null) {
-                        throw new RuntimeException("event is null");
-                    } else if (marker == null) {
-                        throw new RuntimeException("marker is null");
-                    }
+                } catch (Exception e) {
+                    Log.e(getClass().getSimpleName(), e.getMessage(), e);
                 }
             }
             geofencingController.addGeofences(events);
