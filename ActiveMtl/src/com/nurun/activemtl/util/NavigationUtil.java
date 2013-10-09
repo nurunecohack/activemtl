@@ -6,8 +6,8 @@ import android.support.v4.app.Fragment;
 import com.nurun.activemtl.model.EventType;
 import com.nurun.activemtl.ui.DetailActivity;
 import com.nurun.activemtl.ui.HomeActivity;
-import com.nurun.activemtl.ui.fragment.ActiveMapFragment;
 import com.nurun.activemtl.ui.fragment.EventListFragment;
+import com.nurun.activemtl.ui.fragment.HomeFragment;
 import com.nurun.activemtl.ui.fragment.ProfileFragment;
 
 public class NavigationUtil {
@@ -27,7 +27,7 @@ public class NavigationUtil {
         case 4:
             return ProfileFragment.newFragment();
         default:
-            return ActiveMapFragment.newFragment();
+            return HomeFragment.newFragment();
         }
     }
 

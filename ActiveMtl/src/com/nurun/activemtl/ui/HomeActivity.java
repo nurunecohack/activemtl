@@ -27,6 +27,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import com.nurun.activemtl.R;
+import com.nurun.activemtl.ui.fragment.ActiveMapFragment;
 import com.nurun.activemtl.ui.fragment.HomeFragment;
 
 public class HomeActivity extends FragmentActivity {
@@ -55,7 +56,7 @@ public class HomeActivity extends FragmentActivity {
         // enable ActionBar app icon to behave as action to toggle nav drawer
         getActionBar().setDisplayHomeAsUpEnabled(true);
         getActionBar().setHomeButtonEnabled(true);
-        getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, HomeFragment.newFragment()).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, ActiveMapFragment.newFragment()).commit();
     }
 
     @Override
