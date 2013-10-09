@@ -9,11 +9,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
+        android:layout_margin="5dp"
         android:background="@drawable/facebook_button"
         android:text="@string/facebook_connect"
         android:textColor="@android:color/white"
         android:visibility="visible" />
-    
+
     <include
         layout="@layout/profiles"
         android:visibility="gone" />

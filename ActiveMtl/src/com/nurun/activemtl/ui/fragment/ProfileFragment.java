@@ -48,7 +48,7 @@ public class ProfileFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         initFacebook(savedInstanceState);
-        View view = inflater.inflate(R.layout.profile, null);
+        View view = inflater.inflate(R.layout.profile, container, false);
         initFormLogin(view);
         initViewPager(view);
         initLogoutButton(view);
@@ -167,8 +167,15 @@ public class ProfileFragment extends Fragment {
 
     public class ProfilePagerAdapter extends FragmentPagerAdapter {
 
+        private Fragment meFragment;
+        private Fragment cityFragment;
+        private Fragment districtFragment;
+
         public ProfilePagerAdapter(FragmentManager fm) {
             super(fm);
+            meFragment = StatFragment.newInstance(Area.ME);
+            districtFragment = StatFragment.newInstance(Area.DISTRICT);
+            cityFragment = StatFragment.newInstance(Area.MONTREAL);
         }
 
         @Override
@@ -180,11 +187,11 @@ public class ProfileFragment extends Fragment {
         public Fragment getItem(int position) {
             switch (position) {
             case 0:
-                return StatFragment.newInstance(Area.ME);
+                return meFragment;
             case 1:
-                return StatFragment.newInstance(Area.DISTRICT);
+                return districtFragment;
             case 2:
-                return StatFragment.newInstance(Area.MONTREAL);
+                return cityFragment;
             }
             throw new IllegalStateException("Mauvais id d'onglet");
         }

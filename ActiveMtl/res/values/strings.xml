@@ -57,4 +57,7 @@
     <string name="disconnect">Disconnect</string>
     <string name="facebook_connect">Facebook connect</string>
     <string name="facebook_app_id">167930773411045</string>
+    <string name="error_retrieving_ideas">Error retrieving ideas</string>
+    <string name="error_retrieving_alerts">Error retrieving alerts</string>
+    <string name="error_retrieving_challenges">Error retrieving challenges</string>
 </resources>

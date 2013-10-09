@@ -19,9 +19,9 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.nurun.activemtl.ActiveMtlApplication;
 import com.nurun.activemtl.R;
+import com.nurun.activemtl.callback.GetEventsRequestCallbacks;
 import com.nurun.activemtl.controller.EventController;
 import com.nurun.activemtl.controller.GeofencingController;
-import com.nurun.activemtl.http.GetEventsRequestCallbacks;
 import com.nurun.activemtl.model.EventList;
 import com.nurun.activemtl.model.EventType;
 import com.nurun.activemtl.model.parse.Event;
@@ -35,6 +35,7 @@ public class ActiveMapFragment extends SupportMapFragment {
 
     private GeofencingController geofencingController;
     protected EventList events;
+    private LocationClient locationClient;
 
     public static ActiveMapFragment newFragment() {
         return new ActiveMapFragment();
@@ -42,9 +43,10 @@ public class ActiveMapFragment extends SupportMapFragment {
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        eventController = (EventController) getActivity().getApplicationContext().getSystemService(ActiveMtlApplication.COURT_CONTROLLER);
+        super.onActivityCreated(savedInstanceState);
+        eventController = (EventController) getActivity().getApplicationContext().getSystemService(ActiveMtlApplication.EVENT_CONTROLLER);
         geofencingController = new GeofencingController(getActivity().getApplicationContext());
+        locationClient = (LocationClient) getActivity().getApplicationContext().getSystemService(ActiveMtlApplication.LOCATION_CLIENT);
     }
 
     @Override
@@ -61,7 +63,6 @@ public class ActiveMapFragment extends SupportMapFragment {
 
     private void setUpMap() {
         // Set listeners for marker events. See the bottom of this class for their behavior.
-        LocationClient locationClient = (LocationClient) getActivity().getApplicationContext().getSystemService(ActiveMtlApplication.LOCATION_CLIENT);
         if (locationClient.isConnected()) {
             Location location = locationClient.getLastLocation();
             if (location != null) {
@@ -92,6 +93,9 @@ public class ActiveMapFragment extends SupportMapFragment {
         @Override
         public void onGetEventsRequestComplete(EventList eventList) {
             events = eventList;
+            if (getMap() == null) {
+                return;
+            }
             for (Event event : eventList) {
                 MarkerOptions marker = new MarkerOptions();
                 marker.position(new LatLng(event.getLatLng()[0], event.getLatLng()[1]));
@@ -117,7 +121,7 @@ public class ActiveMapFragment extends SupportMapFragment {
     private OnMyLocationChangeListener onMyLocationChangeListener = new OnMyLocationChangeListener() {
         @Override
         public void onMyLocationChange(Location location) {
-            if (!mapInitialized) {
+            if (!mapInitialized && getMap() != null) {
                 double latitude = location.getLatitude();
                 double longitude = location.getLongitude();
                 CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(new LatLng(latitude, longitude), 10);

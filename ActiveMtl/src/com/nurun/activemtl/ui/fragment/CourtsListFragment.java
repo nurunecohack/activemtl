@@ -17,9 +17,9 @@ import com.google.android.gms.location.LocationClient;
 import com.google.android.gms.maps.LocationSource.OnLocationChangedListener;
 import com.nurun.activemtl.ActiveMtlApplication;
 import com.nurun.activemtl.R;
+import com.nurun.activemtl.callback.GetEventsRequestCallbacks;
 import com.nurun.activemtl.controller.EventController;
 import com.nurun.activemtl.controller.GeofencingController;
-import com.nurun.activemtl.http.GetEventsRequestCallbacks;
 import com.nurun.activemtl.model.EventList;
 import com.nurun.activemtl.model.parse.Event;
 import com.nurun.activemtl.receiver.LocationBroadcastReceiver;
@@ -43,7 +43,7 @@ public class CourtsListFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        courtController = (EventController) getActivity().getApplicationContext().getSystemService(ActiveMtlApplication.COURT_CONTROLLER);
+        courtController = (EventController) getActivity().getApplicationContext().getSystemService(ActiveMtlApplication.EVENT_CONTROLLER);
         locationClient = (LocationClient) getActivity().getApplicationContext().getSystemService(ActiveMtlApplication.LOCATION_CLIENT);
         geofencingController = new GeofencingController(getActivity().getApplicationContext());
         if (locationClient.isConnected() && locationClient.getLastLocation() != null) {

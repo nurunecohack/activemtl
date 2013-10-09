@@ -2,8 +2,8 @@ package com.nurun.activemtl.controller;
 
 import java.util.List;
 
-import com.nurun.activemtl.http.AddPlayerToCourtRequestCallbacks;
-import com.nurun.activemtl.http.DeletePlayerToCourtRequestCallbacks;
+import com.nurun.activemtl.callback.AddPlayerToCourtRequestCallbacks;
+import com.nurun.activemtl.callback.DeletePlayerToCourtRequestCallbacks;
 import com.nurun.activemtl.model.Player;
 
 /**

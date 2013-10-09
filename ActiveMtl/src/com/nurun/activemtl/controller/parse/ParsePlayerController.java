@@ -7,9 +7,9 @@ import android.content.Context;
 import android.util.Log;
 
 import com.nurun.activemtl.PreferenceHelper;
+import com.nurun.activemtl.callback.AddPlayerToCourtRequestCallbacks;
+import com.nurun.activemtl.callback.DeletePlayerToCourtRequestCallbacks;
 import com.nurun.activemtl.controller.PlayerController;
-import com.nurun.activemtl.http.AddPlayerToCourtRequestCallbacks;
-import com.nurun.activemtl.http.DeletePlayerToCourtRequestCallbacks;
 import com.nurun.activemtl.model.Player;
 import com.nurun.activemtl.model.parse.Event;
 import com.parse.GetCallback;

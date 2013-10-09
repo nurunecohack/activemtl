@@ -42,7 +42,7 @@ public class UploaderService extends IntentService {
     @Override
     public void onCreate() {
         super.onCreate();
-        courtController = (EventController) getApplicationContext().getSystemService(ActiveMtlApplication.COURT_CONTROLLER);
+        courtController = (EventController) getApplicationContext().getSystemService(ActiveMtlApplication.EVENT_CONTROLLER);
     }
 
     public static Intent newIntent(Context context, String imageUri, String name, double[] latlong) {

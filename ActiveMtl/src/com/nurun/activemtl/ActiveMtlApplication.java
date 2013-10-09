@@ -28,7 +28,7 @@ public class ActiveMtlApplication extends Application {
     private static final String CLIENT_KEY = "p6Wiob7a5YVl98AwBZwFDCHGeG3LRvfjRPbQry6x";
     private static final String APP_ID = "dGMkfurxsmmcx152WgRDw7MBYunmnGpJSQoBT4Cd";
     public static final String LOCATION_CLIENT = "LOCATION_CLIENT";
-    public static final String COURT_CONTROLLER = "COURT_CONTROLLER";
+    public static final String EVENT_CONTROLLER = "COURT_CONTROLLER";
     public static final String GSON = "GSON";
     public static final String PLAYER_CONTROLLER = "PLAYER_CONTROLLER";
 
@@ -94,7 +94,7 @@ public class ActiveMtlApplication extends Application {
     public Object getSystemService(String name) {
         if (LOCATION_CLIENT.equals(name)) {
             return locationClient;
-        } else if (COURT_CONTROLLER.equals(name)) {
+        } else if (EVENT_CONTROLLER.equals(name)) {
             return courtController;
         } else if (PLAYER_CONTROLLER.equals(name)) {
             return playerController;

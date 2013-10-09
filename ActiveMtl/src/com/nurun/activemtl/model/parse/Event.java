@@ -13,11 +13,11 @@ import com.parse.ParseObject;
 @ParseClassName("Event")
 public class Event extends ParseObject {
 
-    private static final String LOCATION = "location";
+    public static final String LOCATION = "location";
     private static final String TITLE = "title";
     private static final String DESCRIPTION = "description";
     private static final String PICTURE = "picture";
-    private static final String EVENT_TYPE = "eventType";
+    public static final String EVENT_TYPE = "eventType";
     
     public void setTitle(String title) {
         put(TITLE, title);

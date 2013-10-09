@@ -17,9 +17,9 @@ import com.google.android.gms.location.LocationClient;
 import com.nurun.activemtl.ActiveMtlApplication;
 import com.nurun.activemtl.PreferenceHelper;
 import com.nurun.activemtl.R;
+import com.nurun.activemtl.callback.AddPlayerToCourtRequestCallbacks;
+import com.nurun.activemtl.callback.DeletePlayerToCourtRequestCallbacks;
 import com.nurun.activemtl.controller.PlayerController;
-import com.nurun.activemtl.http.AddPlayerToCourtRequestCallbacks;
-import com.nurun.activemtl.http.DeletePlayerToCourtRequestCallbacks;
 import com.nurun.activemtl.model.parse.Event;
 import com.nurun.activemtl.ui.HomeActivity;
 
