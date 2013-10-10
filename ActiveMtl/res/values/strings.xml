@@ -37,8 +37,11 @@
     <string name="file_uploaded">File uploaded</string>
     <string name="error_uploading_file">Error uploading file</string>
     <string name="courts_name">Event\'s name</string>
-    <string name="fecthing_current_address">fetching current address&#8230;</string>
-    <string name="event_description">Entrez une description détaillée de l\'incident</string>
+    <string name="event_type">Type de situation</string>
+    <string name="event_title">Titre</string>
+    <string name="event_description">Description</string>
+    <string name="event_title_hint">ex : Signalisation incorrecte</string>
+    <string name="event_description_hint">Description</string>
     <string name="settings">Settings</string>
     <string name="radius">Radius</string>
     <string name="discovered_by">Discovered by %s</string>
