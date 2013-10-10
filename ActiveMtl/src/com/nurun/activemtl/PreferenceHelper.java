@@ -6,6 +6,7 @@ import android.preference.PreferenceManager;
 
 public class PreferenceHelper {
 
+    private static final String KEY_USER_NAME = "userName_key";
     private static final String KEY_PREF_LOGIN = "login_key";
     public static final String KEY_PREF_RADIUS = "radius_key";
     private static final String KEY_PREF_CHECKED_IN = "checked_in";
@@ -58,5 +59,18 @@ public class PreferenceHelper {
 
     public static void setUserId(Context context, String id) {
         getPreferences(context).edit().putString(KEY_USER_ID, id).commit();
+    }
+
+    public static void setUserName(Context context, String name) {
+        getPreferences(context).edit().putString(KEY_USER_NAME, name).commit();
+    }
+
+    public static String getUserName(Context context) {
+        return getPreferences(context).getString(KEY_USER_NAME, null);
+    }
+
+    public static void clearUserInfos(Context context) {
+        getPreferences(context).edit().remove(KEY_USER_NAME);
+        getPreferences(context).edit().remove(KEY_USER_ID);
     }
 }
