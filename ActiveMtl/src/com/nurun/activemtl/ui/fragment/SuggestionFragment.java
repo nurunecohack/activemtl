@@ -45,7 +45,8 @@ public class SuggestionFragment extends Fragment {
     private double[] latLong = new double[2];
 
     private EditText editTextName;
-
+    private EditText textDescription;
+    
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         locationClient = (LocationClient) getActivity().getApplicationContext().getSystemService(ActiveMtlApplication.LOCATION_CLIENT);
@@ -67,6 +68,7 @@ public class SuggestionFragment extends Fragment {
         suggestionButton.setOnClickListener(onClickListener);
         editTextName = (EditText) view.findViewById(R.id.editTextName);
         editTextName.addTextChangedListener(watcher);
+        textDescription = (EditText) view.findViewById(R.id.textDescription);
         return view;
     }
 
@@ -110,7 +112,7 @@ public class SuggestionFragment extends Fragment {
         public void onClick(View v) {
             switch (v.getId()) {
             case R.id.suggestButton:
-                getActivity().startService(UploaderService.newIntent(getActivity(), fileUri.getPath(), editTextName.getText().toString(), latLong));
+                getActivity().startService(UploaderService.newIntent(getActivity(), fileUri.getPath(), editTextName.getText().toString(), textDescription.getText().toString(), latLong));
                 NavigationUtil.goToHome(getActivity());
                 break;
             default:
