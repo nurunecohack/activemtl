@@ -13,9 +13,10 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.PagerTabStrip;
 import android.support.v4.view.ViewPager;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -60,10 +61,7 @@ public class ProfileFragment extends Fragment {
 
             @Override
             public void onClick(View v) {
-                Session session = Session.getActiveSession();
-                if (!session.isClosed()) {
-                    session.closeAndClearTokenInformation();
-                }
+                
             }
         });
     }
@@ -71,20 +69,32 @@ public class ProfileFragment extends Fragment {
     private void initFormLogin(View view) {
         loginButton = view.findViewById(R.id.sign_in_button);
         loginButton.setVisibility(View.VISIBLE);
-        loginButton.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // Show a progress spinner, and kick off a background task to
-                // perform the user login attempt.
-                Session session = Session.getActiveSession();
+        loginButton.setOnClickListener(onClickListener);
+    }
+
+    private OnClickListener onClickListener = new OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            Session session = Session.getActiveSession();
+            switch (view.getId()) {
+            case R.id.sign_in_button:
                 if (!session.isOpened() && !session.isClosed()) {
                     session.openForRead(new Session.OpenRequest(ProfileFragment.this).setCallback(statusCallback));
                 } else {
                     Session.openActiveSession(getActivity(), ProfileFragment.this, true, statusCallback);
                 }
+                break;
+            case R.id.buttonDisconect:
+                if (!session.isClosed()) {
+                    session.closeAndClearTokenInformation();
+                }
+                PreferenceHelper.clearUserInfos(getActivity());
+            default:
+                break;
             }
-        });
-    }
+            
+        }
+    };
 
     private void initViewPager(View view) {
         PagerTabStrip pagerTabStrip = (PagerTabStrip) view.findViewById(R.id.pagerTabStrip);
@@ -142,19 +152,24 @@ public class ProfileFragment extends Fragment {
         if (session.isOpened()) {
             showProfile(true);
 
-            // make request to the /me API
-            Request.newMeRequest(session, new Request.GraphUserCallback() {
-
-                // callback after Graph API response with user object
-                @Override
-                public void onCompleted(GraphUser user, Response response) {
-                    if (user != null) {
-                        PreferenceHelper.setUserId(getActivity(), user.getId());
-                        new UserProfilePictureTask().execute();
-                        ((TextView) getView().findViewById(R.id.userName)).setText(user.getName());
+            String userName = PreferenceHelper.getUserName(getActivity());
+            if (TextUtils.isEmpty(userName)) {
+                // make request to the /me API
+                Request.newMeRequest(session, new Request.GraphUserCallback() {
+                    // callback after Graph API response with user object
+                    @Override
+                    public void onCompleted(GraphUser user, Response response) {
+                        if (user != null) {
+                            PreferenceHelper.setUserId(getActivity(), user.getId());
+                            PreferenceHelper.setUserName(getActivity(), user.getName());
+                            ((TextView) getView().findViewById(R.id.userName)).setText(user.getName());
+                        }
                     }
-                }
-            }).executeAsync();
+                }).executeAsync();
+            } else {
+                ((TextView) getView().findViewById(R.id.userName)).setText(userName);
+            }
+            new UserProfilePictureTask().execute();
         } else {
             showProfile(false);
         }
@@ -165,7 +180,7 @@ public class ProfileFragment extends Fragment {
         return new ProfileFragment();
     }
 
-    public class ProfilePagerAdapter extends FragmentPagerAdapter {
+    public class ProfilePagerAdapter extends FragmentStatePagerAdapter {
 
         private Fragment meFragment;
         private Fragment cityFragment;

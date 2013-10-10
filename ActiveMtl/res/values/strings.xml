@@ -15,7 +15,7 @@
   -->
 
 <resources>
-    <string name="app_name">Active Mtl</string>
+    <string name="app_name">Hacktive Mtl</string>
     <string-array name="menu_categories">
         <item>Home</item>
         <item>Challenge</item>
