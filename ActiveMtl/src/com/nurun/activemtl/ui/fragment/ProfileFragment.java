@@ -163,7 +163,6 @@ public class ProfileFragment extends Fragment {
                         if (user != null) {
                             PreferenceHelper.setUserId(getActivity(), user.getId());
                             PreferenceHelper.setUserName(getActivity(), user.getName());
-                            new UserProfilePictureTask().execute();
                             ((TextView) getView().findViewById(R.id.userName)).setText(user.getName());
                         }
                     }
@@ -171,6 +170,7 @@ public class ProfileFragment extends Fragment {
             } else {
                 ((TextView) getView().findViewById(R.id.userName)).setText(userName);
             }
+            new UserProfilePictureTask().execute();
         } else {
             showProfile(false);
         }
