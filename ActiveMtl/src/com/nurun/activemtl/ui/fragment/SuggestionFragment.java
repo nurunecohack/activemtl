@@ -26,11 +26,14 @@ import android.widget.ImageView;
 import com.google.android.gms.location.LocationClient;
 import com.nurun.activemtl.ActiveMtlApplication;
 import com.nurun.activemtl.R;
+import com.nurun.activemtl.model.EventType;
 import com.nurun.activemtl.service.UploaderService;
 import com.nurun.activemtl.util.BitmapUtil;
 import com.nurun.activemtl.util.NavigationUtil;
 
 public class SuggestionFragment extends Fragment {
+
+    private static final String EXTRA_EVENT_TYPE = "EXTRA_EVENT_TYPE";
 
     public static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 100;
 
@@ -48,8 +51,12 @@ public class SuggestionFragment extends Fragment {
         locationClient = (LocationClient) getActivity().getApplicationContext().getSystemService(ActiveMtlApplication.LOCATION_CLIENT);
     }
 
-    public static Fragment newFragment() {
-        return new SuggestionFragment();
+    public static Fragment newFragment(EventType eventType) {
+        SuggestionFragment fragment = new SuggestionFragment();
+        Bundle bundle= new Bundle();
+        bundle.putSerializable(EXTRA_EVENT_TYPE, eventType);
+        fragment.setArguments(bundle);
+        return fragment;
     }
 
     @Override
