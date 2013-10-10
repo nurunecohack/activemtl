@@ -13,7 +13,7 @@ public interface EventController {
 
     void canceltasks();
 
-    void addSuggestedEvent(String name, String fileUri, double[] latLong);
+    void addSuggestedEvent(String name, String description, String fileUri, double[] latLong);
 
     void getChallengeForMe(GetEventStatCallback callback);
 
