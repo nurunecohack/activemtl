@@ -14,6 +14,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.PagerTabStrip;
 import android.support.v4.view.ViewPager;
 import android.text.TextUtils;
@@ -180,7 +181,7 @@ public class ProfileFragment extends Fragment {
         return new ProfileFragment();
     }
 
-    public class ProfilePagerAdapter extends FragmentPagerAdapter {
+    public class ProfilePagerAdapter extends FragmentStatePagerAdapter {
 
         private Fragment meFragment;
         private Fragment cityFragment;

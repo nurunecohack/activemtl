@@ -37,20 +37,12 @@ public class StatFragment extends Fragment {
         statFragment.setArguments(bundle);
         return statFragment;
     }
-
+    
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
         eventController = (EventController) getActivity().getApplicationContext().getSystemService(ActiveMtlApplication.EVENT_CONTROLLER);
         locationClient = (LocationClient) getActivity().getApplicationContext().getSystemService(ActiveMtlApplication.LOCATION_CLIENT);
-    }
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.stat_fragment, null);
-        ideaCounter = (TextView) view.findViewById(R.id.idea_counter);
-        challengeCounter = (TextView) view.findViewById(R.id.challenge_counter);
-        alertCounter = (TextView) view.findViewById(R.id.alert_counter);
         if (alertValue == -1 || challengeValue == -1 || ideaValue == -1) {
             Area area = (Area) getArguments().getSerializable(EXTRA_AREA);
             switch (area) {
@@ -77,6 +69,14 @@ public class StatFragment extends Fragment {
             challengeCounter.setText("" + challengeValue);
             alertCounter.setText("" + alertValue);
         }
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.stat_fragment, null);
+        ideaCounter = (TextView) view.findViewById(R.id.idea_counter);
+        challengeCounter = (TextView) view.findViewById(R.id.challenge_counter);
+        alertCounter = (TextView) view.findViewById(R.id.alert_counter);
         return view;
     }
 
