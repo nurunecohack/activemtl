@@ -36,12 +36,10 @@
     <string name="you_just_entered_a_court">You just entered an event</string>
     <string name="file_uploaded">File uploaded</string>
     <string name="error_uploading_file">Error uploading file</string>
-    <string name="courts_name">Event\'s name</string>
-    <string name="event_type">Type de situation</string>
-    <string name="event_title">Titre</string>
-    <string name="event_description">Description</string>
-    <string name="event_title_hint">ex : Signalisation incorrecte</string>
-    <string name="event_description_hint">Description</string>
+    <string name="situation_type">Situation type</string>
+    <string name="event_title_hint">Title - ex : Signalisation incorrecte</string>
+    <string name="event_description_hint">Description  - ex : blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah</string>
+    <string name="event_tag_hint">Key words - ex : Garbage, Green street, Fruit picking</string>
     <string name="settings">Settings</string>
     <string name="radius">Radius</string>
     <string name="discovered_by">Discovered by %s</string>
@@ -64,4 +62,5 @@
     <string name="error_retrieving_ideas">Error retrieving ideas</string>
     <string name="error_retrieving_alerts">Error retrieving alerts</string>
     <string name="error_retrieving_challenges">Error retrieving challenges</string>
+    <string name="submitted_by">Submitted by</string>
 </resources>
