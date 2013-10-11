@@ -11,11 +11,13 @@
   distributed under the License is distributed on an "AS IS" BASIS,
   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
   See the License for the specific language governing permissions and
-  limitations under the License.
-  -->
+  limitations under the License.
+-->
 
 <resources>
+
     <string name="app_name">Hacktive Mtl</string>
+
     <string-array name="menu_categories">
         <item>Home</item>
         <item>Challenge</item>
@@ -23,6 +25,7 @@
         <item>Ideas</item>
         <item>Profile</item>
     </string-array>
+
     <string name="app_not_available">Sorry, there\'s no web browser available</string>
     <string name="getting_courts">Loading events&#8230;</string>
     <string name="home">Home</string>
@@ -63,4 +66,11 @@
     <string name="error_retrieving_alerts">Error retrieving alerts</string>
     <string name="error_retrieving_challenges">Error retrieving challenges</string>
     <string name="submitted_by">Submitted by</string>
+    <string name="suggestion_idea">Submit an idea</string>
+    <string name="suggestion_problem">Submit a problem</string>
+    <string name="suggestion_challenge">Suggest a challenge</string>
+    <string name="suggestion_idea_desc">Have an idea for something that could contribute to the development of your district?  Let us know.</string>
+    <string name="suggestion_problem_desc">Pothole? Broken infrastructure? If there is anything bothersome in the streets of montreal, send us a detailed description of the problem along with a picture.</string>
+    <string name="suggestion_challenge_desc">Thinking about something you consider people should try out?  Shoot!</string>
+
 </resources>
