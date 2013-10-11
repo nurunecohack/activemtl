@@ -1,28 +1,125 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="match_parent" 
+    android:orientation="vertical" >
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="15dp" >
-
-        <View
+        <RelativeLayout
             android:id="@+id/viewSubmitIdea"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:paddingTop="40dp" >
 
-        <View
-            android:id="@+id/viewSubmitAlert"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+	        <ImageView
+	            android:id="@+id/imgIdea"
+	            android:layout_width="67dp"
+	            android:layout_height="67dp"
+	            android:src="@drawable/idee" />
+		    
+		    <TextView
+		        android:id="@+id/lblIdeaTitle"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+				android:layout_toRightOf="@+id/imgIdea"
+		        android:layout_centerHorizontal="true"
+		        android:layout_marginTop="10dp"
+		        android:text="@string/suggestion_idea"
+		        android:textSize="16sp" />
+
+	        <TextView
+	            android:id="@+id/lblIdeaDesc"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:layout_below="@+id/lblIdeaTitle"
+	            android:layout_marginTop="5dp"
+	            android:layout_toRightOf="@+id/imgIdea"
+	            android:text="@string/suggestion_idea_desc"
+	            android:textSize="9sp" />
         
-        <View
+        </RelativeLayout>
+        
+        <RelativeLayout
+            android:id="@+id/viewSubmitAlert"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp" >
+        
+	        <ImageView
+	            android:id="@+id/imgProblem"
+	            android:layout_width="67dp"
+	            android:layout_height="67dp"
+	            android:layout_weight="1"
+	            android:src="@drawable/probleme" />
+	
+	        <TextView
+	            android:id="@+id/lblProblemTitle"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+				android:layout_toRightOf="@+id/imgProblem"
+		        android:layout_centerHorizontal="true"
+		        android:layout_marginTop="10dp"
+		        android:text="@string/suggestion_problem"
+		        android:textSize="16sp" />
+	
+	        <TextView
+	            android:id="@+id/lblProblemDesc"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:layout_below="@+id/lblProblemTitle"
+	            android:layout_marginTop="5dp"
+	            android:layout_toRightOf="@+id/imgProblem"
+	            android:text="@string/suggestion_problem_desc"
+	            android:textSize="9sp" />
+        
+        </RelativeLayout>
+        
+        <RelativeLayout
             android:id="@+id/viewSubmitChallenge"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-    </LinearLayout>
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp" >
 
-</ScrollView>
+	        <ImageView
+	            android:id="@+id/imgChallenge"
+	            android:layout_width="67dp"
+	            android:layout_height="67dp"
+	            android:layout_weight="1"
+	            android:src="@drawable/defi" />
+	
+	        <TextView
+	            android:id="@+id/lblChallengeTitle"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+				android:layout_toRightOf="@+id/imgChallenge"
+		        android:layout_centerHorizontal="true"
+		        android:layout_marginTop="10dp"
+		        android:text="@string/suggestion_challenge"
+		        android:textSize="16sp" />
+	
+	        <TextView
+	            android:id="@+id/lblChallengeDesc"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:layout_below="@+id/lblChallengeTitle"
+	            android:layout_marginTop="5dp"
+	            android:layout_toRightOf="@+id/imgChallenge"
+	            android:text="@string/suggestion_challenge_desc"
+	            android:textSize="9sp" />
+	        
+        
+        </RelativeLayout>
+        
+
+</LinearLayout>
