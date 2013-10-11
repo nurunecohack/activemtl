@@ -57,7 +57,7 @@ public class PreferenceHelper {
     }
 
     public static String getUserId(Context context) {
-        return getPreferences(context).getString(KEY_USER_ID, "andouane.bird");
+        return getPreferences(context).getString(KEY_USER_ID, null);
     }
 
     public static void setUserId(Context context, String id) {
@@ -73,10 +73,7 @@ public class PreferenceHelper {
     }
 
     public static void clearUserInfos(Context context) {
-        getPreferences(context).edit().remove(KEY_USER_NAME);
-        getPreferences(context).edit().remove(KEY_USER_ID);
-        getPreferences(context).edit().remove(KEY_SOCIAL_MEDIA);
-        getPreferences(context).edit().remove(KEY_PROFILE_PICTURE);
+        getPreferences(context).edit().remove(KEY_USER_NAME).remove(KEY_USER_ID).remove(KEY_SOCIAL_MEDIA).remove(KEY_PROFILE_PICTURE).commit();
     }
 
     public static SocialMediaConnection getSocialMediaConnection(Context context) {
@@ -88,7 +85,7 @@ public class PreferenceHelper {
     }
 
     public static boolean isLoggedIn(Context context) {
-        return TextUtils.isEmpty(getUserId(context));
+        return !TextUtils.isEmpty(getUserId(context));
     }
 
     public static void setProfilePictureUrl(Context context, String profilePictureUrl) {

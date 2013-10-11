@@ -64,8 +64,7 @@
                 android:layout_width="75dp"
                 android:layout_height="75dp"
                 android:layout_alignParentLeft="true"
-                android:layout_centerVertical="true"
-                android:src="@drawable/ali_g" />
+                android:layout_centerVertical="true"/>
 
             <TextView
                 android:id="@+id/textViewSubmittedBy"

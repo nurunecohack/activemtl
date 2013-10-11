@@ -27,9 +27,12 @@ import com.nurun.activemtl.ActiveMtlConfiguration;
 import com.nurun.activemtl.PreferenceHelper;
 import com.nurun.activemtl.R;
 import com.nurun.activemtl.SocialMediaConnection;
+import com.nurun.activemtl.util.NavigationUtil;
+import com.nurun.activemtl.util.NavigationUtil.NextScreen;
 
 public class LoginFragment extends Fragment {
 
+    private static final String EXTRA_NEXT_SCREEN = "EXTRA_NEXT_SCREEN";
     private Session.StatusCallback statusCallback = new SessionStatusCallback();
     private View loginFacebookButton;
     private View loginGoogleButton;
@@ -39,8 +42,12 @@ public class LoginFragment extends Fragment {
     private static final int REQUEST_CODE_RESOLVE_ERR = 9000;
     protected ConnectionResult mConnectionResult;
 
-    public static Fragment newFragment() {
-        return new LoginFragment();
+    public static Fragment newFragment(NextScreen nextScreen) {
+        LoginFragment loginFragment = new LoginFragment();
+        Bundle bundle = new Bundle();
+        bundle.putSerializable(EXTRA_NEXT_SCREEN, nextScreen);
+        loginFragment.setArguments(bundle);
+        return loginFragment;
     }
 
     @Override
@@ -129,7 +136,7 @@ public class LoginFragment extends Fragment {
                         PreferenceHelper.setUserName(getActivity(), user.getName());
                         PreferenceHelper.setProfilePictureUrl(getActivity(),
                                 ActiveMtlConfiguration.getInstance(getActivity()).getFacebookProfilePictureUrl(getActivity()));
-                        displayProfile();
+                        goToNextScreen();
                     }
                     mConnectionProgressDialog.dismiss();
                 }
@@ -137,9 +144,9 @@ public class LoginFragment extends Fragment {
         }
     }
 
-    private void displayProfile() {
+    private void goToNextScreen() {
         getFragmentManager().popBackStack();
-        getFragmentManager().beginTransaction().replace(R.id.content_frame, ProfileFragment.newFragment()).commit();
+        NavigationUtil.gotoNextFragment(getFragmentManager(), (NextScreen) getArguments().getSerializable(EXTRA_NEXT_SCREEN));
     }
 
     @Override
@@ -196,7 +203,7 @@ public class LoginFragment extends Fragment {
             PreferenceHelper.setUserId(getActivity(), currentPerson.getId());
             PreferenceHelper.setUserName(getActivity(), currentPerson.getDisplayName());
             PreferenceHelper.setProfilePictureUrl(getActivity(), ActiveMtlConfiguration.getInstance(getActivity()).getGooleProfilePictureUrl(getActivity()));
-            displayProfile();
+            goToNextScreen();
         }
     };
 

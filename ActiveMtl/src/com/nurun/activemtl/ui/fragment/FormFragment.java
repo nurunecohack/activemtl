@@ -25,12 +25,14 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.android.gms.location.LocationClient;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.MapView;
+import com.google.android.gms.maps.model.LatLng;
 import com.nurun.activemtl.ActiveMtlApplication;
 import com.nurun.activemtl.PreferenceHelper;
 import com.nurun.activemtl.R;
@@ -49,8 +51,6 @@ public class FormFragment extends Fragment {
 
     private LocationClient locationClient;
     private boolean pictureTaken = false;
-    private Button suggestionButton;
-    private double[] latLong = new double[2];
 
     private EditText editTextTitle;
     private EditText textDescription;
@@ -58,6 +58,12 @@ public class FormFragment extends Fragment {
     private ImageView imageView;
 
     private TextView textViewUserName;
+
+    private ImageView imageViewUserProfile;
+
+    private MapView mapView;
+
+    private Location lastLocation;
 
     public static Fragment newFragment(EventType eventType) {
         FormFragment fragment = new FormFragment();
@@ -68,35 +74,76 @@ public class FormFragment extends Fragment {
     }
 
     @Override
+    public void onCreate(Bundle savedInstanceState) {
+        // TODO Auto-generated method stub
+        super.onCreate(savedInstanceState);
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.form_fragment, container, false);
-        suggestionButton.setOnClickListener(onClickListener);
         editTextTitle = (EditText) view.findViewById(R.id.editTextTitle);
         editTextTitle.addTextChangedListener(watcher);
         textDescription = (EditText) view.findViewById(R.id.editTextDescription);
-        imageView = (ImageView) getView().findViewById(R.id.imageView1);
+        imageView = (ImageView) view.findViewById(R.id.imageView1);
         imageView.setOnClickListener(onClickListener);
         textViewUserName = (TextView) view.findViewById(R.id.textViewUserName);
         textViewUserName.setText(PreferenceHelper.getUserName(getActivity()));
+        imageViewUserProfile = (ImageView) view.findViewById(R.id.imageViewUserProfile);
+        mapView = (MapView) view.findViewById(R.id.mapView);
+        mapView.onCreate(savedInstanceState);
+        mapView.getMap().setMyLocationEnabled(true);
         return view;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        mapView.onResume();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        mapView.onPause();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        mapView.onDestroy();
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        mapView.onSaveInstanceState(outState);
+    }
+
+    @Override
+    public void onLowMemory() {
+        super.onLowMemory();
+        mapView.onLowMemory();
     }
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         locationClient = (LocationClient) getActivity().getApplicationContext().getSystemService(ActiveMtlApplication.LOCATION_CLIENT);
+        if (locationClient.isConnected()) {
+            lastLocation = locationClient.getLastLocation();
+            if (lastLocation != null) {
+                double latitude = lastLocation.getLatitude();
+                double longitude = lastLocation.getLongitude();
+                mapView.getMap().moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(latitude, longitude), 10));
+            }
+        }
         new ProfilePictureAsyncTask().execute();
     }
 
     @Override
     public void onStart() {
         super.onStart();
-        if (locationClient.isConnected()) {
-            Location lastLocation = locationClient.getLastLocation();
-            if (lastLocation != null) {
-                suggestionButton.setEnabled(isSuggestionButtonEnabled(lastLocation));
-            }
-        }
     }
 
     private boolean isSuggestionButtonEnabled(Location lastLocation) {
@@ -125,7 +172,7 @@ public class FormFragment extends Fragment {
         case R.id.action_send_suggestion:
             getActivity().startService(
                     UploaderService.newIntent(getActivity(), fileUri.getPath(), editTextTitle.getText().toString(), textDescription.getText().toString(),
-                            latLong));
+                            lastLocation));
             NavigationUtil.goToHome(getActivity());
             break;
         default:
@@ -178,16 +225,12 @@ public class FormFragment extends Fragment {
                 }
             }
         }
-
     }
 
     private TextWatcher watcher = new TextWatcher() {
 
         @Override
         public void afterTextChanged(Editable editable) {
-            if (!suggestionButton.isEnabled()) {
-                suggestionButton.setEnabled(isSuggestionButtonEnabled(locationClient.getLastLocation()));
-            }
         }
 
         @Override
@@ -216,7 +259,7 @@ public class FormFragment extends Fragment {
         @Override
         protected void onPostExecute(Bitmap result) {
             super.onPostExecute(result);
-            imageView.setImageBitmap(result);
+            imageViewUserProfile.setImageBitmap(result);
         }
     }
 }

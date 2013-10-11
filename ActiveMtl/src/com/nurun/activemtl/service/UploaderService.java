@@ -12,6 +12,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.CompressFormat;
+import android.location.Location;
 import android.net.Uri;
 import android.util.Log;
 
@@ -24,7 +25,7 @@ public class UploaderService extends IntentService {
 
     private static final String EXTRA_IMAGE_URI = "EXTRA_IMAGE_URI";
     private static final String EXTRA_NAME = "EXTRA_NAME";
-    private static final String EXTRA_DESCRIPTION = "EXTRA_DESCRIPTION"; 
+    private static final String EXTRA_DESCRIPTION = "EXTRA_DESCRIPTION";
     private static final String EXTRA_LATLONG = "EXTRA_LATLONG";
     private EventController courtController;
 
@@ -46,8 +47,10 @@ public class UploaderService extends IntentService {
         courtController = (EventController) getApplicationContext().getSystemService(ActiveMtlApplication.EVENT_CONTROLLER);
     }
 
-    public static Intent newIntent(Context context, String imageUri, String name, String description, double[] latlong) {
-        return new Intent(context, UploaderService.class).putExtra(EXTRA_IMAGE_URI, imageUri).putExtra(EXTRA_NAME, name).putExtra(EXTRA_DESCRIPTION, description).putExtra(EXTRA_LATLONG, latlong);
+    public static Intent newIntent(Context context, String imageUri, String name, String description, Location lastLocation) {
+        double[] latLong = { lastLocation.getLatitude(), lastLocation.getLongitude() };
+        return new Intent(context, UploaderService.class).putExtra(EXTRA_IMAGE_URI, imageUri).putExtra(EXTRA_NAME, name)
+                .putExtra(EXTRA_DESCRIPTION, description).putExtra(EXTRA_LATLONG, latLong);
     }
 
     @Override
