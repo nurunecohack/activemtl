@@ -27,7 +27,6 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import com.nurun.activemtl.R;
-import com.nurun.activemtl.ui.fragment.ActiveMapFragment;
 import com.nurun.activemtl.ui.fragment.HomeFragment;
 
 public class HomeActivity extends FragmentActivity {

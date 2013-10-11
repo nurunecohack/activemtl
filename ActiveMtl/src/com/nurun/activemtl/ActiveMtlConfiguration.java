@@ -7,6 +7,7 @@ import com.nurun.activemtl.model.EventType;
 
 import android.content.Context;
 import android.content.res.Resources.NotFoundException;
+import android.support.v4.app.FragmentActivity;
 
 public class ActiveMtlConfiguration {
 
@@ -66,11 +67,15 @@ public class ActiveMtlConfiguration {
         }
     }
 
-    public String getProfileUrl(Context context) {
-        return String.format(properties.getProperty("profile.picture.url"), PreferenceHelper.getUserId(context));
+    public String getFacebookProfilePictureUrl(Context context) {
+        return String.format(properties.getProperty("profile.picture.facebook.url"), PreferenceHelper.getUserId(context));
     }
 
     public int getDistrictRadius() {
         return Integer.parseInt(properties.getProperty("district.radius"));
+    }
+
+    public String getGooleProfilePictureUrl(Context context) {
+        return String.format(properties.getProperty("profile.picture.google.url"), PreferenceHelper.getUserId(context));
     }
 }

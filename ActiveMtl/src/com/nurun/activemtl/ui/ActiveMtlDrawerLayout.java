@@ -17,6 +17,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.nurun.activemtl.PreferenceHelper;
 import com.nurun.activemtl.R;
 import com.nurun.activemtl.util.NavigationUtil;
 
@@ -73,7 +74,7 @@ public class ActiveMtlDrawerLayout extends DrawerLayout {
     private class DrawerItemClickListener implements ListView.OnItemClickListener {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-            Fragment fragment = NavigationUtil.getFragment(position);
+            Fragment fragment = NavigationUtil.getFragment(position, PreferenceHelper.isLoggedIn(activity));
             FragmentManager fragmentManager = activity.getSupportFragmentManager();
             Fragment mapFragment = fragmentManager.findFragmentById(R.id.map_fragment);
             if (mapFragment != null) {

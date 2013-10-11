@@ -3,6 +3,7 @@ package com.nurun.activemtl;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
+import android.text.TextUtils;
 
 public class PreferenceHelper {
 
@@ -12,6 +13,8 @@ public class PreferenceHelper {
     private static final String KEY_PREF_CHECKED_IN = "checked_in";
     private static final String KEY_PREF_FOUND = "found";
     private static final String KEY_USER_ID = "userId";
+    private static final String KEY_SOCIAL_MEDIA = "social_media";
+    private static final String KEY_PROFILE_PICTURE = "profile_picture";
 
     public static void saveLogin(Context context, String login) {
         getPreferences(context).edit().putString(KEY_PREF_LOGIN, login).commit();
@@ -72,5 +75,27 @@ public class PreferenceHelper {
     public static void clearUserInfos(Context context) {
         getPreferences(context).edit().remove(KEY_USER_NAME);
         getPreferences(context).edit().remove(KEY_USER_ID);
+        getPreferences(context).edit().remove(KEY_SOCIAL_MEDIA);
+        getPreferences(context).edit().remove(KEY_PROFILE_PICTURE);
+    }
+
+    public static SocialMediaConnection getSocialMediaConnection(Context context) {
+        return SocialMediaConnection.valueOf(getPreferences(context).getString(KEY_SOCIAL_MEDIA, null));
+    }
+
+    public static void setSocialMediaConnection(Context context, SocialMediaConnection media) {
+        getPreferences(context).edit().putString(KEY_SOCIAL_MEDIA, media.name()).commit();
+    }
+
+    public static boolean isLoggedIn(Context context) {
+        return TextUtils.isEmpty(getUserId(context));
+    }
+
+    public static void setProfilePictureUrl(Context context, String profilePictureUrl) {
+        getPreferences(context).edit().putString(KEY_PROFILE_PICTURE, profilePictureUrl).commit();
+    }
+
+    public static String getProfilePictureUrl(Context context) {
+        return getPreferences(context).getString(KEY_PROFILE_PICTURE, "");
     }
 }

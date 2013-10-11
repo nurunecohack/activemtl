@@ -8,6 +8,7 @@ import com.nurun.activemtl.ui.DetailActivity;
 import com.nurun.activemtl.ui.HomeActivity;
 import com.nurun.activemtl.ui.fragment.EventListFragment;
 import com.nurun.activemtl.ui.fragment.HomeFragment;
+import com.nurun.activemtl.ui.fragment.LoginFragment;
 import com.nurun.activemtl.ui.fragment.ProfileFragment;
 
 public class NavigationUtil {
@@ -16,7 +17,7 @@ public class NavigationUtil {
         context.startActivity(HomeActivity.newIntent(context));
     }
 
-    public static Fragment getFragment(int position) {
+    public static Fragment getFragment(int position, boolean isLoggedIn) {
         switch (position) {
         case 1:
             return EventListFragment.newFragment(EventType.Challenge);
@@ -25,7 +26,7 @@ public class NavigationUtil {
         case 3:
             return EventListFragment.newFragment(EventType.Idea);
         case 4:
-            return ProfileFragment.newFragment();
+            return isLoggedIn ? ProfileFragment.newFragment() : LoginFragment.newFragment();
         default:
             return HomeFragment.newFragment();
         }
