@@ -89,7 +89,21 @@ public class FormFragment extends Fragment {
         imageViewUserProfile = (ImageView) view.findViewById(R.id.imageViewUserProfile);
         mapView = (MapView) view.findViewById(R.id.mapView);
         mapView.onCreate(savedInstanceState);
+        getActivity().setTitle(getTitle());
         return view;
+    }
+
+    private int getTitle() {
+        switch (getEventType()) {
+        case Alert:
+            return R.string.submit_alert;
+        case Challenge:
+            return R.string.submit_challenge;
+        case Idea:
+            return R.string.submit_idea;
+        default:
+            throw new IllegalStateException("Wrong event type : " + getEventType());
+        }
     }
 
     @Override
@@ -159,11 +173,6 @@ public class FormFragment extends Fragment {
             return BitmapDescriptorFactory.fromResource(R.drawable.ic_idea);
         }
         throw new IllegalStateException("Mauvais Event type : " + eventType);
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
     }
 
     private boolean isSuggestionButtonEnabled(Location lastLocation) {
