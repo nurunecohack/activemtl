@@ -104,6 +104,7 @@ public class ActiveMapFragment extends SupportMapFragment {
                     marker.draggable(false);
                     marker.title(event.getTitle());
                     marker.icon(getIcon(event.getEventType()));
+                    marker.anchor(0.5f, 0.5f);
                     eventByMarker.put(getMap().addMarker(marker), event);
                 } catch (Exception e) {
                     Log.e(getClass().getSimpleName(), e.getMessage(), e);
