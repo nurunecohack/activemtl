@@ -10,7 +10,6 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
-import android.app.ListActivity;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -18,7 +17,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -32,21 +30,17 @@ public class ActiveMtlDrawerLayout extends DrawerLayout {
     private ActionBarDrawerToggle mDrawerToggle;
     private String[] menuCategories;
     private FragmentActivity activity;
-    private Context mContext;
-    
+
     public ActiveMtlDrawerLayout(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
-    	this.mContext = context;
     }
 
     public ActiveMtlDrawerLayout(Context context, AttributeSet attrs) {
         super(context, attrs);
-    	this.mContext = context;
     }
 
     public ActiveMtlDrawerLayout(Context context) {
         super(context);
-    	this.mContext = context;
     }
 
     public void init(final FragmentActivity activity, boolean firstLaunch) {
@@ -56,12 +50,8 @@ public class ActiveMtlDrawerLayout extends DrawerLayout {
         setDrawerShadow(R.drawable.drawer_shadow, GravityCompat.START);
         menuCategories = getResources().getStringArray(R.array.menu_categories);
         // set up the drawer's list view with items and click listener
-        //mDrawerList.setAdapter(new ArrayAdapter<String>(activity, R.layout.drawer_list_item, menuCategories));
-        
-        mDrawerList.setAdapter(new MyAdapter(activity, 
-					android.R.layout.simple_list_item_1, R.id.drawer_text,
-					getResources().getStringArray(R.array.menu_categories)));
-        
+        mDrawerList.setAdapter(new MyAdapter(activity, R.layout.drawer_list_item, menuCategories));
+
         mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
         mDrawerToggle = new ActionBarDrawerToggle(activity, /* host Activity */
         this, /* DrawerLayout object */
@@ -125,44 +115,44 @@ public class ActiveMtlDrawerLayout extends DrawerLayout {
     public void onToggleConfigurationChanged(Configuration newConfig) {
         mDrawerToggle.onConfigurationChanged(newConfig);
     }
-    
-	private class MyAdapter extends ArrayAdapter<String> {
 
-		public MyAdapter(Context context, int resource, int textViewResourceId,
-				String[] strings) {
-			super(context, resource, textViewResourceId, strings);
-			// TODO Auto-generated constructor stub
-		}
-		
-		@Override
-		public View getView(int position, View convertView, ViewGroup parent) {
+    private class MyAdapter extends ArrayAdapter<String> {
 
-			LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-			View row = inflater.inflate(R.layout.drawer_items, parent, false);
-			String[] items = getResources().getStringArray(R.array.menu_categories);
-			
-			ImageView iv = (ImageView) row.findViewById(R.id.drawer_image);
-			TextView tv = (TextView) row.findViewById(R.id.drawer_text);
-			
-			tv.setText(items[position]);
-			
-			if (items[position].equals("Challenge")) {
-				iv.setImageResource(R.drawable.defi_marker);
-			} else if (items[position].equals("Issues")) {
-				iv.setImageResource(R.drawable.probleme_marker);
-			} else if (items[position].equals("Ideas")) {
-				iv.setImageResource(R.drawable.idee_marker);
-			} else if (items[position].equals("Home")) {
-				iv.setImageResource(R.drawable.home);
-			} else if (items[position].equals("Profile")) {
-				iv.setImageResource(R.drawable.user);
-			}
-			
-			return row;
-		}
-		
-	}
+        public MyAdapter(Context context, int resource, String[] strings) {
+            super(context, resource, strings);
+        }
 
-    
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
 
+            if (convertView == null) {
+                LayoutInflater inflater = (LayoutInflater) parent.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                convertView = inflater.inflate(R.layout.drawer_list_item, parent, false);
+            }
+            TextView tv = (TextView) convertView;
+            tv.setText(getItem(position));
+
+            switch (position) {
+            case 0:
+                tv.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_menu_home, 0, 0, 0);
+                break;
+            case 1:
+                tv.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_challenge, 0, 0, 0);
+                break;
+            case 2:
+                tv.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_issue, 0, 0, 0);
+                break;
+            case 3:
+                tv.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_idea, 0, 0, 0);
+                break;
+            case 4:
+                tv.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_menu_allfriends, 0, 0, 0);
+                break;
+            default:
+                break;
+            }
+
+            return convertView;
+        }
+    }
 }

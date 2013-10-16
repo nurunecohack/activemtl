@@ -130,11 +130,11 @@ public class ActiveMapFragment extends SupportMapFragment {
     private BitmapDescriptor getIcon(EventType eventType) {
         switch (eventType) {
         case Alert:
-            return BitmapDescriptorFactory.fromResource(R.drawable.probleme_marker);
+            return BitmapDescriptorFactory.fromResource(R.drawable.ic_issue);
         case Challenge:
-            return BitmapDescriptorFactory.fromResource(R.drawable.defi_marker);
+            return BitmapDescriptorFactory.fromResource(R.drawable.ic_challenge);
         case Idea:
-            return BitmapDescriptorFactory.fromResource(R.drawable.idee_marker);
+            return BitmapDescriptorFactory.fromResource(R.drawable.ic_idea);
         }
         throw new IllegalStateException("Mauvais Event type : " + eventType);
     }
