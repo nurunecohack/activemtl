@@ -32,7 +32,10 @@ import android.widget.TextView;
 import com.google.android.gms.location.LocationClient;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.MapView;
+import com.google.android.gms.maps.model.BitmapDescriptor;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.nurun.activemtl.ActiveMtlApplication;
 import com.nurun.activemtl.PreferenceHelper;
 import com.nurun.activemtl.R;
@@ -74,12 +77,6 @@ public class FormFragment extends Fragment {
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        // TODO Auto-generated method stub
-        super.onCreate(savedInstanceState);
-    }
-
-    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.form_fragment, container, false);
         editTextTitle = (EditText) view.findViewById(R.id.editTextTitle);
@@ -92,7 +89,6 @@ public class FormFragment extends Fragment {
         imageViewUserProfile = (ImageView) view.findViewById(R.id.imageViewUserProfile);
         mapView = (MapView) view.findViewById(R.id.mapView);
         mapView.onCreate(savedInstanceState);
-        mapView.getMap().setMyLocationEnabled(true);
         return view;
     }
 
@@ -135,10 +131,34 @@ public class FormFragment extends Fragment {
             if (lastLocation != null) {
                 double latitude = lastLocation.getLatitude();
                 double longitude = lastLocation.getLongitude();
-                mapView.getMap().moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(latitude, longitude), 10));
+                MarkerOptions marker = new MarkerOptions();
+                marker.position(new LatLng(latitude, longitude));
+                marker.anchor(0.5f, 0.5f);
+                marker.draggable(false);
+                marker.icon(getIcon(getEventType()));
+                mapView.getMap().addMarker(marker);
+                mapView.getMap().getUiSettings().setMyLocationButtonEnabled(false);
+                mapView.getMap().getUiSettings().setZoomControlsEnabled(false);
+                mapView.getMap().moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(latitude, longitude), 16));
             }
         }
         new ProfilePictureAsyncTask().execute();
+    }
+
+    private EventType getEventType() {
+        return (EventType) getArguments().getSerializable(EXTRA_EVENT_TYPE);
+    }
+
+    private BitmapDescriptor getIcon(EventType eventType) {
+        switch (eventType) {
+        case Alert:
+            return BitmapDescriptorFactory.fromResource(R.drawable.ic_issue);
+        case Challenge:
+            return BitmapDescriptorFactory.fromResource(R.drawable.ic_challenge);
+        case Idea:
+            return BitmapDescriptorFactory.fromResource(R.drawable.ic_idea);
+        }
+        throw new IllegalStateException("Mauvais Event type : " + eventType);
     }
 
     @Override
