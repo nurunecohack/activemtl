@@ -5,4 +5,4 @@
     android:layout_gravity="center"
     android:layout_height="match_parent"
     android:src="@drawable/logo"
-    android:background="@color/background" />
+    android:background="@color/profile_background" />

@@ -76,8 +76,8 @@ public class ProfileFragment extends Fragment {
 
     private void initViewPager(View view) {
         PagerTabStrip pagerTabStrip = (PagerTabStrip) view.findViewById(R.id.pagerTabStrip);
-        pagerTabStrip.setTabIndicatorColorResource(R.color.background);
-        pagerTabStrip.setTextColor(getResources().getColor(R.color.background));
+        pagerTabStrip.setTabIndicatorColorResource(R.color.profile_background);
+        pagerTabStrip.setTextColor(getResources().getColor(R.color.profile_background));
         ViewPager viewPager = (ViewPager) view.findViewById(R.id.profile_pager);
         viewPager.setAdapter(new ProfilePagerAdapter(getFragmentManager()));
     }
