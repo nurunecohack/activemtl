@@ -3,4 +3,23 @@
 
     <style name="FindBBallCourt" parent="@android:style/Theme.Holo.Light"></style>
 
+    <style name="suggestion_title" parent="@android:style/TextAppearance">
+        <item name="android:textSize">16sp</item>
+        <item name="android:typeface">monospace</item>
+    </style>
+
+    <style name="form_textbox">
+		<item name="android:paddingTop">7dp</item>
+		<item name="android:paddingBottom">7dp</item>
+		<item name="android:paddingRight">7dp</item>
+		<item name="android:paddingLeft">7dp</item>
+		<item name="android:background">@drawable/textbox_rounded</item>
+     	<item name="android:layout_marginLeft">15dp</item>
+        <item name="android:layout_marginRight">15dp</item>
+        <item name="android:layout_marginTop">7dp</item>
+        <item name="android:layout_marginBottom">7dp</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+    
+    
 </resources>
