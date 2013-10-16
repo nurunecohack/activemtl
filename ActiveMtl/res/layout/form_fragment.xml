@@ -19,7 +19,7 @@
                 android:layout_height="match_parent"
                 android:layout_marginRight="5dp"
                 android:layout_weight="1"
-                android:background="@drawable/text_background"
+                android:background="@drawable/textbox_rounded"
                 android:padding="5dp"
                 android:scaleType="fitCenter"
                 android:src="@drawable/generic_photo" />
@@ -30,45 +30,35 @@
                 android:layout_height="match_parent"
                 android:layout_marginRight="5dp"
                 android:layout_weight="1"
-                android:background="@drawable/text_background"
+                android:background="@drawable/textbox_rounded"
                 android:padding="5dp" />
         </LinearLayout>
 
         <EditText
             android:id="@+id/editTextTitle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="15dp"
-            android:background="@drawable/text_background"
-            android:hint="@string/event_title_hint"
-            android:padding="15dp" />
+            style="@style/form_textbox"
+            android:hint="@string/event_title_hint" />
 
         <EditText
             android:id="@+id/editTextDescription"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="15dp"
-            android:background="@drawable/text_background"
+            style="@style/form_textbox"
             android:gravity="top"
             android:hint="@string/event_description_hint"
-            android:padding="15dp"
-            android:textSize="12sp" />
+            android:textSize="14sp" />
 
         <EditText
             android:id="@+id/editTextTags"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="15dp"
-            android:background="@drawable/text_background"
+            style="@style/form_textbox"
             android:gravity="top"
             android:hint="@string/event_tag_hint"
-            android:maxLines="2"
-            android:padding="15dp" />
+            android:maxLines="2" />
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="15dp" >
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="5dp"
+            android:paddingLeft="15dp" >
 
             <ImageView
                 android:id="@+id/imageViewUserProfile"
