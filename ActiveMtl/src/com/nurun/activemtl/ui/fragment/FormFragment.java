@@ -28,6 +28,7 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.location.LocationClient;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -56,7 +57,7 @@ public class FormFragment extends Fragment {
     private boolean pictureTaken = false;
 
     private EditText editTextTitle;
-    private EditText textDescription;
+    private EditText editTextDescription;
 
     private ImageView imageView;
 
@@ -79,9 +80,10 @@ public class FormFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.form_fragment, container, false);
+        setHasOptionsMenu(true);
         editTextTitle = (EditText) view.findViewById(R.id.editTextTitle);
         editTextTitle.addTextChangedListener(watcher);
-        textDescription = (EditText) view.findViewById(R.id.editTextDescription);
+        editTextDescription = (EditText) view.findViewById(R.id.editTextDescription);
         imageView = (ImageView) view.findViewById(R.id.imageView1);
         imageView.setOnClickListener(onClickListener);
         textViewUserName = (TextView) view.findViewById(R.id.textViewUserName);
@@ -175,8 +177,24 @@ public class FormFragment extends Fragment {
         throw new IllegalStateException("Mauvais Event type : " + eventType);
     }
 
-    private boolean isSuggestionButtonEnabled(Location lastLocation) {
-        return lastLocation != null && editTextTitle.getText().length() > 3 && pictureTaken;
+    private boolean isFormCompleted(Location lastLocation) {
+        if (lastLocation == null) {
+            Toast.makeText(getActivity(), R.string.cannot_get_your_location, Toast.LENGTH_LONG).show();
+            return false;
+        }
+        if (editTextTitle.getText().length() < 4) {
+            Toast.makeText(getActivity(), R.string.please_enter_a_longer_title, Toast.LENGTH_LONG).show();
+            return false;
+        }
+        if (!pictureTaken) {
+            Toast.makeText(getActivity(), R.string.please_take_a_picture, Toast.LENGTH_LONG).show();
+            return false;
+        }
+        if (editTextDescription.getText().length() < 4) {
+            Toast.makeText(getActivity(), R.string.please_enter_a_longer_description, Toast.LENGTH_LONG).show();
+            return false;
+        }
+        return true;
     }
 
     @Override
@@ -191,18 +209,20 @@ public class FormFragment extends Fragment {
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        super.onCreateOptionsMenu(menu, inflater);
         inflater.inflate(R.menu.suggestion, menu);
+        super.onCreateOptionsMenu(menu, inflater);
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
         case R.id.action_send_suggestion:
-            getActivity().startService(
-                    UploaderService.newIntent(getActivity(), fileUri.getPath(), editTextTitle.getText().toString(), textDescription.getText().toString(),
-                            lastLocation));
-            NavigationUtil.goToHome(getActivity());
+            if (isFormCompleted(lastLocation)) {
+                getActivity().startService(
+                        UploaderService.newIntent(getActivity(), fileUri.getPath(), editTextTitle.getText().toString(), editTextDescription.getText()
+                                .toString(), lastLocation));
+                NavigationUtil.goToHome(getActivity());
+            }
             break;
         default:
             break;

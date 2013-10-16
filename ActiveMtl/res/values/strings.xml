@@ -75,5 +75,9 @@
     <string name="submit_challenge">Submit challenge</string>
     <string name="submit_alert">Submit alert</string>
     <string name="submit_idea">Submit idea</string>
+    <string name="cannot_get_your_location">Cannot get your location</string>
+    <string name="please_enter_a_longer_title">Please enter a longer title</string>
+    <string name="please_enter_a_longer_description">Please enter a longer description</string>
+    <string name="please_take_a_picture">Please take a picture</string>
 
 </resources>
