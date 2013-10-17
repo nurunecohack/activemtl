@@ -25,6 +25,7 @@ import com.nurun.activemtl.R;
 import com.nurun.activemtl.SocialMediaConnection;
 import com.nurun.activemtl.ui.view.StreamDrawable;
 import com.nurun.activemtl.util.NavigationUtil.NextScreen;
+import com.parse.ParseUser;
 
 public class ProfileFragment extends Fragment {
 
@@ -68,6 +69,7 @@ public class ProfileFragment extends Fragment {
             case R.id.buttonDisconect:
                 PreferenceHelper.clearUserInfos(getActivity());
                 getFragmentManager().beginTransaction().replace(R.id.content_frame, LoginFragment.newFragment(NextScreen.Profile)).commit();
+                ParseUser.logOut();
             default:
                 break;
             }

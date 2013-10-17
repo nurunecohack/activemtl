@@ -24,6 +24,7 @@ import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseGeoPoint;
 import com.parse.ParseQuery;
+import com.parse.ParseUser;
 
 public class ParseEventController implements EventController {
 
@@ -86,6 +87,7 @@ public class ParseEventController implements EventController {
         event.setGeolocation(latLong[0], latLong[1]);
         event.setPicture(getBytes(fileUri));
         event.setTitle(name);
+        event.setCreatedBy(ParseUser.getCurrentUser());
         event.setDescription(description);
         event.saveWithPicture();
     }

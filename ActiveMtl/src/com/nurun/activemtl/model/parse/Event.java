@@ -9,6 +9,7 @@ import com.parse.ParseException;
 import com.parse.ParseFile;
 import com.parse.ParseGeoPoint;
 import com.parse.ParseObject;
+import com.parse.ParseUser;
 
 @ParseClassName("Event")
 public class Event extends ParseObject {
@@ -18,7 +19,8 @@ public class Event extends ParseObject {
     private static final String DESCRIPTION = "description";
     private static final String PICTURE = "picture";
     public static final String EVENT_TYPE = "eventType";
-    
+    public static final String CREATED_BY = "createdBy";
+
     public void setTitle(String title) {
         put(TITLE, title);
     }
@@ -30,6 +32,10 @@ public class Event extends ParseObject {
     public void setGeolocation(double latitude, double longitude) {
         ParseGeoPoint geopoint = new ParseGeoPoint(latitude, longitude);
         put(LOCATION, geopoint);
+    }
+    
+    public void setCreatedBy(ParseUser currentUser) {
+        put(CREATED_BY, currentUser);
     }
 
     public String getTitle() {
@@ -79,7 +85,7 @@ public class Event extends ParseObject {
         return new double[] { getGeolocation().getLatitude(), getGeolocation().getLongitude() };
     }
 
-    public EventType getEventType(){
+    public EventType getEventType() {
         return EventType.valueOf(getString(EVENT_TYPE));
     }
 

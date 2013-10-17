@@ -30,7 +30,7 @@ public class EventCursorAdapter extends SimpleCursorAdapter {
         @Override
         public boolean setViewValue(View view, Cursor cursor, int columnIndex) {
             if (R.id.court_image == view.getId()) {
-                Picasso.with(view.getContext()).load(EventCursorReader.getPictureUrl(cursor)).placeholder(R.drawable.basketball_court).into((ImageView) view);
+                Picasso.with(view.getContext()).load(EventCursorReader.getPictureUrl(cursor)).placeholder(R.drawable.ali_g).into((ImageView) view);
                 return true;
             } else if (R.id.court_distance == view.getId()) {
                 // ((TextView) view).setText(DistanceUtil.formatDistance(CourtCursorReader.getDistance(cursor)));
