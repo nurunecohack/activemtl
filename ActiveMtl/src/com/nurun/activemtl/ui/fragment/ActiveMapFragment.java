@@ -3,13 +3,19 @@ package com.nurun.activemtl.ui.fragment;
 import java.util.HashMap;
 import java.util.Map;
 
+import android.app.Application;
 import android.location.Location;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.google.android.gms.location.LocationClient;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap.InfoWindowAdapter;
 import com.google.android.gms.maps.GoogleMap.OnInfoWindowClickListener;
 import com.google.android.gms.maps.GoogleMap.OnMyLocationChangeListener;
 import com.google.android.gms.maps.SupportMapFragment;
@@ -75,7 +81,26 @@ public class ActiveMapFragment extends SupportMapFragment {
         getMap().setOnMyLocationChangeListener(onMyLocationChangeListener);
         getMap().setOnInfoWindowClickListener(onInfoWindowClickListener);
         getMap().setMyLocationEnabled(true);
+        getMap().setInfoWindowAdapter(infoWindowAdapter);
     }
+
+    private InfoWindowAdapter infoWindowAdapter = new InfoWindowAdapter() {
+
+        @Override
+        public View getInfoWindow(Marker marker) {
+            return null;
+        }
+
+        @Override
+        public View getInfoContents(final Marker marker) {
+            Event event = eventByMarker.get(marker);
+            LayoutInflater layoutInflater = (LayoutInflater) getActivity().getApplicationContext().getSystemService(Application.LAYOUT_INFLATER_SERVICE);
+            final View view = layoutInflater.inflate(R.layout.infowindow, null);
+            ((TextView) view.findViewById(R.id.textView)).setText(event.getTitle());
+            ((ImageView) view.findViewById(R.id.imageView)).setImageResource(getImage(event.getEventType()));
+            return view;
+        }
+    };
 
     private OnInfoWindowClickListener onInfoWindowClickListener = new OnInfoWindowClickListener() {
         @Override
@@ -136,6 +161,18 @@ public class ActiveMapFragment extends SupportMapFragment {
             return BitmapDescriptorFactory.fromResource(R.drawable.ic_challenge);
         case Idea:
             return BitmapDescriptorFactory.fromResource(R.drawable.ic_idea);
+        }
+        throw new IllegalStateException("Mauvais Event type : " + eventType);
+    }
+    
+    private int getImage(EventType eventType) {
+        switch (eventType) {
+        case Alert:
+            return R.drawable.probleme_icon;
+        case Challenge:
+            return R.drawable.defi_icon;
+        case Idea:
+            return R.drawable.idee_icon;
         }
         throw new IllegalStateException("Mauvais Event type : " + eventType);
     }
