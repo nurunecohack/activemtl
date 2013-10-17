@@ -45,6 +45,7 @@ import com.nurun.activemtl.PreferenceHelper;
 import com.nurun.activemtl.R;
 import com.nurun.activemtl.model.EventType;
 import com.nurun.activemtl.service.UploaderService;
+import com.nurun.activemtl.ui.view.StreamDrawable;
 import com.nurun.activemtl.util.BitmapUtil;
 import com.nurun.activemtl.util.NavigationUtil;
 
@@ -201,7 +202,7 @@ public class FormFragment extends Fragment {
             Toast.makeText(getActivity(), R.string.please_enter_a_longer_description, Toast.LENGTH_LONG).show();
             return false;
         }
-        if (spinnerCategory.getSelectedItemPosition() == 0){
+        if (spinnerCategory.getSelectedItemPosition() == 0) {
             Toast.makeText(getActivity(), R.string.please_enter_a_longer_description, Toast.LENGTH_LONG).show();
             return false;
         }
@@ -303,23 +304,29 @@ public class FormFragment extends Fragment {
 
     };
 
-    private class ProfilePictureAsyncTask extends AsyncTask<Void, Void, Bitmap> {
+    private class ProfilePictureAsyncTask extends AsyncTask<Void, Void, StreamDrawable> {
 
         @Override
-        protected Bitmap doInBackground(Void... params) {
+        protected StreamDrawable doInBackground(Void... params) {
             try {
-                URL profPict = new URL(PreferenceHelper.getProfilePictureUrl(getActivity()));
-                return BitmapFactory.decodeStream(profPict.openStream());
+                URL profPict = new URL(PreferenceHelper.getSmallProfilePictureUrl(getActivity()));
+                Bitmap mBitmap = BitmapFactory.decodeStream(profPict.openStream());
+                StreamDrawable streamDrawable = new StreamDrawable(mBitmap);
+                streamDrawable.setSmallSize();
+                return streamDrawable;
             } catch (Exception e) {
                 Log.e(getClass().getSimpleName(), e.getMessage(), e);
-                return BitmapFactory.decodeResource(getResources(), R.drawable.ali_g);
+                Bitmap mBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.ali_g);
+                StreamDrawable streamDrawable = new StreamDrawable(mBitmap);
+                streamDrawable.setSmallSize();
+                return streamDrawable;
             }
         }
 
         @Override
-        protected void onPostExecute(Bitmap result) {
+        protected void onPostExecute(StreamDrawable result) {
             super.onPostExecute(result);
-            imageViewUserProfile.setImageBitmap(result);
+            imageViewUserProfile.setImageDrawable(result);
         }
     }
 

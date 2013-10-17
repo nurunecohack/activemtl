@@ -72,15 +72,23 @@ public class ActiveMtlConfiguration {
         }
     }
 
-    public String getFacebookProfilePictureUrl(Context context) {
-        return String.format(properties.getProperty("profile.picture.facebook.url"), PreferenceHelper.getUserId(context));
-    }
-
     public int getDistrictRadius() {
         return Integer.parseInt(properties.getProperty("district.radius"));
     }
 
     public String getGooleProfilePictureUrl(Context context) {
         return String.format(properties.getProperty("profile.picture.google.url"), PreferenceHelper.getUserId(context));
+    }
+    
+    public String getFacebookProfilePictureUrl(Context context) {
+        return String.format(properties.getProperty("profile.picture.facebook.url"), PreferenceHelper.getUserId(context));
+    }
+    
+    public String getSmallGooleProfilePictureUrl(Context context) {
+        return String.format(properties.getProperty("profile.picture.google.small.url"), PreferenceHelper.getUserId(context));
+    }
+    
+    public String getSmallFacebookProfilePictureUrl(Context context) {
+        return String.format(properties.getProperty("profile.picture.facebook.small.url"), PreferenceHelper.getUserId(context));
     }
 }

@@ -15,6 +15,7 @@ public class PreferenceHelper {
     private static final String KEY_USER_ID = "userId";
     private static final String KEY_SOCIAL_MEDIA = "social_media";
     private static final String KEY_PROFILE_PICTURE = "profile_picture";
+    private static final String KEY_SMALL_PROFILE_PICTURE = "small_profile_picture";
 
     public static void saveLogin(Context context, String login) {
         getPreferences(context).edit().putString(KEY_PREF_LOGIN, login).commit();
@@ -94,5 +95,13 @@ public class PreferenceHelper {
 
     public static String getProfilePictureUrl(Context context) {
         return getPreferences(context).getString(KEY_PROFILE_PICTURE, "");
+    }
+
+    public static String getSmallProfilePictureUrl(Context context) {
+        return getPreferences(context).getString(KEY_SMALL_PROFILE_PICTURE, "");
+    }
+
+    public static void setSmallProfilePictureUrl(Context context, String smallGooleProfilePictureUrl) {
+        getPreferences(context).edit().putString(KEY_SMALL_PROFILE_PICTURE, smallGooleProfilePictureUrl).commit();
     }
 }

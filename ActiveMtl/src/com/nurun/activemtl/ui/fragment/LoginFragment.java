@@ -251,6 +251,7 @@ public class LoginFragment extends Fragment {
             PreferenceHelper.setUserId(getActivity(), currentPerson.getId());
             PreferenceHelper.setUserName(getActivity(), currentPerson.getDisplayName());
             PreferenceHelper.setProfilePictureUrl(getActivity(), ActiveMtlConfiguration.getInstance(getActivity()).getGooleProfilePictureUrl(getActivity()));
+            PreferenceHelper.setSmallProfilePictureUrl(getActivity(), ActiveMtlConfiguration.getInstance(getActivity()).getSmallGooleProfilePictureUrl(getActivity()));
             goToNextScreen();
         }
     };
