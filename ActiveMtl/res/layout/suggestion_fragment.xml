@@ -2,8 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:paddingRight="10dp" >
+    android:orientation="vertical" >
 
     <RelativeLayout
         android:id="@+id/viewSubmitIdea"
@@ -11,31 +10,37 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         android:gravity="bottom"
-        android:paddingBottom="40dp" >
+        android:paddingBottom="40dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp" >
 
         <ImageView
             android:id="@+id/imgIdea"
-            android:layout_width="67dp"
-            android:layout_height="67dp"
-            android:layout_alignParentLeft="true"
-            android:layout_marginLeft="30dp"
-            android:src="@drawable/idee" />
+            android:layout_width="55dp"
+            android:layout_height="75dp"
+            android:background="@color/blue_suggestion"
+            android:gravity="center"
+            android:padding="15dp"
+            android:src="@drawable/idee_icon" />
 
         <TextView
             android:id="@+id/lblIdeaTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignTop="@+id/imgIdea"
-            android:layout_toRightOf="@+id/imgIdea"
+            android:layout_alignTop="@id/imgIdea"
+            android:layout_toRightOf="@id/imgIdea"
+            android:paddingLeft="10dp"
             android:text="@string/suggestion_idea"
+            android:textColor="#0A5FBE"
             android:textSize="16sp" />
 
         <TextView
+            android:id="@+id/lblIdeaDesc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/lblIdeaTitle"
             android:layout_below="@id/lblIdeaTitle"
-            android:layout_marginTop="5dp"
+            android:layout_toRightOf="@id/imgIdea"
+            android:paddingLeft="10dp"
             android:text="@string/suggestion_idea_desc"
             android:textSize="12sp" />
     </RelativeLayout>
@@ -45,32 +50,36 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:gravity="top"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
         android:paddingTop="40dp" >
 
         <ImageView
             android:id="@+id/imgProblem"
-            android:layout_width="67dp"
-            android:layout_height="67dp"
-            android:layout_alignParentLeft="true"
-            android:layout_marginLeft="30dp"
-            android:src="@drawable/probleme" />
+            android:layout_width="55dp"
+            android:layout_height="75dp"
+            android:background="@color/yellow_suggestion"
+            android:gravity="center"
+            android:padding="15dp"
+            android:src="@drawable/probleme_icon" />
 
         <TextView
             android:id="@+id/lblProblemTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignTop="@id/imgProblem"
-            android:layout_toRightOf="@+id/imgProblem"
+            android:layout_toRightOf="@id/imgProblem"
+            android:paddingLeft="10dp"
             android:text="@string/suggestion_problem"
+            android:textColor="#946100"
             android:textSize="16sp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/lblProblemTitle"
-            android:layout_marginTop="5dp"
-            android:layout_toRightOf="@+id/imgProblem"
+            android:layout_below="@id/lblProblemTitle"
+            android:layout_toRightOf="@id/imgProblem"
+            android:paddingLeft="10dp"
             android:text="@string/suggestion_problem_desc"
             android:textSize="12sp" />
     </RelativeLayout>
