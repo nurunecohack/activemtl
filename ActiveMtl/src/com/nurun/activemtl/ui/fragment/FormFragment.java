@@ -25,8 +25,15 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.ExpandableListAdapter;
+import android.widget.ExpandableListView;
 import android.widget.ImageView;
+import android.widget.ListAdapter;
+import android.widget.ListView;
+import android.widget.Spinner;
+import android.widget.SpinnerAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -69,6 +76,8 @@ public class FormFragment extends Fragment {
 
     private Location lastLocation;
 
+    private Spinner spinnerCategory;
+
     public static Fragment newFragment(EventType eventType) {
         FormFragment fragment = new FormFragment();
         Bundle bundle = new Bundle();
@@ -91,7 +100,9 @@ public class FormFragment extends Fragment {
         imageViewUserProfile = (ImageView) view.findViewById(R.id.imageViewUserProfile);
         mapView = (MapView) view.findViewById(R.id.mapView);
         mapView.onCreate(savedInstanceState);
-        getActivity().setTitle(getTitle());
+        spinnerCategory = (Spinner) view.findViewById(R.id.spinnerCategory);
+        spinnerCategory.setAdapter(getListAdapter());
+        spinnerCategory.getActivity().setTitle(getTitle());
         return view;
     }
 
@@ -310,5 +321,22 @@ public class FormFragment extends Fragment {
             super.onPostExecute(result);
             imageViewUserProfile.setImageBitmap(result);
         }
+    }
+
+    private SpinnerAdapter getListAdapter() {
+        ArrayAdapter<CharSequence> aa = null;
+
+        switch (getEventType()) {
+        case Alert:
+            aa = ArrayAdapter.createFromResource(getActivity(), R.array.alerts_categories, android.R.layout.simple_spinner_dropdown_item);
+            break;
+        case Idea:
+            aa = ArrayAdapter.createFromResource(getActivity(), R.array.ideas_categories, android.R.layout.simple_spinner_dropdown_item);
+            break;
+        default:
+            throw new IllegalStateException("Event type not implemented : " + getEventType());
+        }
+
+        return aa;
     }
 }
