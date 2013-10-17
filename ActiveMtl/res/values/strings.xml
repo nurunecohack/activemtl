@@ -27,6 +27,7 @@
     </string-array>
 
     <string-array name="alerts_categories">
+        <item>Select a category</item>
         <item>Garbage collection</item>
         <item>Collection bins</item>
         <item>Graffitis</item>
@@ -41,6 +42,7 @@
     
 
     <string-array name="ideas_categories">
+        <item>Select a category</item>
         <item>Garbage</item>
         <item>Gardening</item>
         <item>Public transit</item>

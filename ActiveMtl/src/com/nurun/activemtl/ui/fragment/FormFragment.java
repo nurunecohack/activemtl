@@ -27,11 +27,7 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
-import android.widget.ExpandableListAdapter;
-import android.widget.ExpandableListView;
 import android.widget.ImageView;
-import android.widget.ListAdapter;
-import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.SpinnerAdapter;
 import android.widget.TextView;
@@ -102,7 +98,7 @@ public class FormFragment extends Fragment {
         mapView.onCreate(savedInstanceState);
         spinnerCategory = (Spinner) view.findViewById(R.id.spinnerCategory);
         spinnerCategory.setAdapter(getListAdapter());
-        spinnerCategory.getActivity().setTitle(getTitle());
+        getActivity().setTitle(getTitle());
         return view;
     }
 
@@ -202,6 +198,10 @@ public class FormFragment extends Fragment {
             return false;
         }
         if (editTextDescription.getText().length() < 4) {
+            Toast.makeText(getActivity(), R.string.please_enter_a_longer_description, Toast.LENGTH_LONG).show();
+            return false;
+        }
+        if (spinnerCategory.getSelectedItemPosition() == 0){
             Toast.makeText(getActivity(), R.string.please_enter_a_longer_description, Toast.LENGTH_LONG).show();
             return false;
         }
