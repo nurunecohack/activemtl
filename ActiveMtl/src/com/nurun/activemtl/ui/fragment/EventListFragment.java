@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.JavascriptInterface;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
@@ -18,6 +19,7 @@ import com.nurun.activemtl.ActiveMtlApplication;
 import com.nurun.activemtl.ActiveMtlConfiguration;
 import com.nurun.activemtl.R;
 import com.nurun.activemtl.model.EventType;
+import com.nurun.activemtl.util.NavigationUtil;
 
 public class EventListFragment extends Fragment {
 
@@ -29,6 +31,7 @@ public class EventListFragment extends Fragment {
         WebView webview = (WebView) inflater.inflate(R.layout.event_fragment, container, false);
         WebSettings settings = webview.getSettings();
         settings.setJavaScriptEnabled(true);
+        webview.addJavascriptInterface(this, "ActiveMTL");
         webview.setWebChromeClient(new WebChromeClient());
         webview.setWebViewClient(new WebViewClient());
         return webview;
@@ -48,9 +51,14 @@ public class EventListFragment extends Fragment {
         }
     }
 
+    @JavascriptInterface
+    public void openDetail(String id) {
+        NavigationUtil.goToDetail(getActivity(), id);
+    }
+
     @Override
     public WebView getView() {
-        FrameLayout  wrapper = (FrameLayout) super.getView();
+        FrameLayout wrapper = (FrameLayout) super.getView();
         return (WebView) ((wrapper != null) ? wrapper.getChildAt(0) : null);
     }
 
