@@ -3,11 +3,11 @@ package com.nurun.activemtl;
 import java.io.IOException;
 import java.util.Properties;
 
-import com.nurun.activemtl.model.EventType;
-
 import android.content.Context;
 import android.content.res.Resources.NotFoundException;
-import android.support.v4.app.FragmentActivity;
+import android.text.TextUtils;
+
+import com.nurun.activemtl.model.EventType;
 
 public class ActiveMtlConfiguration {
 
@@ -46,8 +46,13 @@ public class ActiveMtlConfiguration {
         }
     }
 
-    public String getDetailUrl(String id) {
-        return getBaseUrl() + String.format(properties.getProperty("detail.url"), id);
+    public String getDetailUrl(Context context, String id) {
+        String url = getBaseUrl() + String.format(properties.getProperty("detail.url"), id);
+        String userId = PreferenceHelper.getUserId(context);
+        if (TextUtils.isEmpty(userId)) {
+            return url;
+        }
+        return url += "?user=" + userId;
     }
 
     private String getBaseUrl() {

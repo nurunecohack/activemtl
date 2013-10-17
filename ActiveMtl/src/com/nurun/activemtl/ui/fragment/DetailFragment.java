@@ -25,7 +25,7 @@ public class DetailFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         WebView webView = (WebView) inflater.inflate(R.layout.event_fragment, container, false);
-        webView.loadUrl(ActiveMtlConfiguration.getInstance(getActivity()).getDetailUrl(getArguments().getString(ITEM_ID)));
+        webView.loadUrl(ActiveMtlConfiguration.getInstance(getActivity()).getDetailUrl(getActivity(), getArguments().getString(ITEM_ID)));
         return webView;
     }
 }
