@@ -58,7 +58,7 @@
     <string name="app_not_available">Sorry, there\'s no web browser available</string>
     <string name="getting_courts">Loading events&#8230;</string>
     <string name="home">Home</string>
-    <string name="suggest">Send</string>
+    <string name="suggest">SEND</string>
     <string name="players">Users : %d</string>
     <string name="no_result">No Result</string>
     <string name="getting_your_position">Getting your position</string>
