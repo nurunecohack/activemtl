@@ -22,7 +22,6 @@ public class SuggestionFragment extends Fragment {
         View view = inflater.inflate(R.layout.suggestion_fragment, container, false);
         view.findViewById(R.id.viewSubmitIdea).setOnClickListener(onClickListener);
         view.findViewById(R.id.viewSubmitAlert).setOnClickListener(onClickListener);
-        view.findViewById(R.id.viewSubmitChallenge).setOnClickListener(onClickListener);
         return view;
     }
 

@@ -57,8 +57,6 @@ public class NavigationUtil {
         switch (v.getId()) {
         case R.id.viewSubmitIdea:
             return EventType.Idea;
-        case R.id.viewSubmitChallenge:
-            return EventType.Challenge;
         case R.id.viewSubmitAlert:
             return EventType.Alert;
         default:
