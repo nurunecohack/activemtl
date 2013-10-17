@@ -2,16 +2,16 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" 
-    android:paddingRight="10dp">
+    android:orientation="vertical"
+    android:paddingRight="10dp" >
 
     <RelativeLayout
         android:id="@+id/viewSubmitIdea"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:paddingBottom="40dp"
-        android:gravity="bottom" >
+        android:gravity="bottom"
+        android:paddingBottom="40dp" >
 
         <ImageView
             android:id="@+id/imgIdea"
