@@ -273,8 +273,8 @@ public class FormFragment extends Fragment {
         // Decode image in background.
         @Override
         protected Bitmap doInBackground(Uri... params) {
-            fileUri = params[0];
-            return BitmapUtil.getResizedBitmap(fileUri);
+           fileUri = params[0];
+           return BitmapUtil.getResizedBitmap(fileUri);
         }
 
         // Once complete, see if ImageView is still around and set bitmap.
