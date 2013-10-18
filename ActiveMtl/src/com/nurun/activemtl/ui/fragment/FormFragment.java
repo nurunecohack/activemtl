@@ -203,7 +203,7 @@ public class FormFragment extends Fragment {
             return false;
         }
         if (spinnerCategory.getSelectedItemPosition() == 0) {
-            Toast.makeText(getActivity(), R.string.please_enter_a_longer_description, Toast.LENGTH_LONG).show();
+            Toast.makeText(getActivity(), R.string.please_select_a_category, Toast.LENGTH_LONG).show();
             return false;
         }
         return true;

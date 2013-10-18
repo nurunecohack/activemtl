@@ -108,5 +108,6 @@
     <string name="please_enter_a_longer_title">Please enter a longer title</string>
     <string name="please_enter_a_longer_description">Please enter a longer description</string>
     <string name="please_take_a_picture">Please take a picture</string>
+    <string name="please_select_a_category">Please select a category</string>
 
 </resources>
