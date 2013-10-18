@@ -77,11 +77,11 @@ public class ActiveMtlConfiguration {
     }
 
     private String getGooleProfilePictureUrl(Context context, int resolution) {
-        return String.format(properties.getProperty("profile.picture.google.url"), PreferenceHelper.getUserId(context), resolution, resolution);
+        return String.format(properties.getProperty("profile.picture.google.url"), PreferenceHelper.getUserId(context), resolution);
     }
 
     private String getFacebookProfilePictureUrl(Context context, int resolution) {
-        return String.format(properties.getProperty("profile.picture.facebook.url"), PreferenceHelper.getUserId(context), resolution);
+        return String.format(properties.getProperty("profile.picture.facebook.url"), PreferenceHelper.getUserId(context), resolution, resolution);
     }
 
     private String getSmallGooleProfilePictureUrl(Context context) {

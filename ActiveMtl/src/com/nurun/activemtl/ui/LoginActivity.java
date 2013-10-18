@@ -145,9 +145,9 @@ public class LoginActivity extends FragmentActivity {
                 @Override
                 public void onCompleted(GraphUser user, Response response) {
                     if (user != null) {
+                        PreferenceHelper.setSocialMediaConnection(LoginActivity.this, SocialMediaConnection.Facebook);
                         PreferenceHelper.setUserId(LoginActivity.this, user.getId());
                         PreferenceHelper.setUserName(LoginActivity.this, user.getName());
-                        PreferenceHelper.setSocialMediaConnection(LoginActivity.this, SocialMediaConnection.Facebook);
                         goToNextScreen();
                     } else if (response.getError() != null) {
                         if ((response.getError().getCategory() == FacebookRequestError.Category.AUTHENTICATION_RETRY)
