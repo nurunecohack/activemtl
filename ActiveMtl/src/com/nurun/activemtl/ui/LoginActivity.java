@@ -69,7 +69,9 @@ public class LoginActivity extends FragmentActivity {
             mConnectionResult = null;
             mPlusClient.connect();
         }
-        ParseFacebookUtils.finishAuthentication(requestCode, responseCode, intent);
+        else {
+            ParseFacebookUtils.finishAuthentication(requestCode, responseCode, intent);
+        }
     }
 
     private void goToNextScreen() {
