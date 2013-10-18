@@ -1,18 +1,20 @@
 package com.nurun.activemtl.ui;
 
+import java.util.Arrays;
+import java.util.List;
+
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentSender.SendIntentException;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.util.Log;
 
-import com.facebook.LoggingBehavior;
+import com.facebook.FacebookRequestError;
 import com.facebook.Request;
 import com.facebook.Response;
 import com.facebook.Session;
-import com.facebook.SessionState;
-import com.facebook.Settings;
 import com.facebook.model.GraphUser;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesClient.ConnectionCallbacks;
@@ -23,9 +25,13 @@ import com.nurun.activemtl.ActiveMtlConfiguration;
 import com.nurun.activemtl.PreferenceHelper;
 import com.nurun.activemtl.R;
 import com.nurun.activemtl.SocialMediaConnection;
+import com.parse.LogInCallback;
+import com.parse.ParseException;
+import com.parse.ParseFacebookUtils;
+import com.parse.ParseUser;
 
 public class LoginActivity extends FragmentActivity {
-    private Session.StatusCallback statusCallback = new SessionStatusCallback();
+    // private Session.StatusCallback statusCallback = new SessionStatusCallback();
     private PlusClient mPlusClient;
 
     private static final int REQUEST_CODE_RESOLVE_ERR = 9000;
@@ -55,7 +61,7 @@ public class LoginActivity extends FragmentActivity {
         if (session != null && !session.isClosed()) {
             session.closeAndClearTokenInformation();
         }
-        initFacebook(savedInstanceState);
+        // initFacebook(savedInstanceState);
     }
 
     @Override
@@ -65,22 +71,16 @@ public class LoginActivity extends FragmentActivity {
             mConnectionResult = null;
             mPlusClient.connect();
         }
-        Session.getActiveSession().onActivityResult(this, requestCode, responseCode, intent);
+        ParseFacebookUtils.finishAuthentication(requestCode, responseCode, intent);
     }
 
-    private void initFacebook(Bundle savedInstanceState) {
-        Settings.addLoggingBehavior(LoggingBehavior.INCLUDE_ACCESS_TOKENS);
-        Session session = Session.getActiveSession();
-        if (session == null) {
-            if (savedInstanceState != null) {
-                session = Session.restoreSession(this, null, statusCallback, savedInstanceState);
-            }
-            if (session == null) {
-                session = new Session(this);
-            }
-            Session.setActiveSession(session);
-        }
-    }
+    /*
+     * private void initFacebook(Bundle savedInstanceState) {
+     * Settings.addLoggingBehavior(LoggingBehavior.INCLUDE_ACCESS_TOKENS); Session session = Session.getActiveSession();
+     * if (session == null) { if (savedInstanceState != null) { session = Session.restoreSession(this, null,
+     * statusCallback, savedInstanceState); } if (session == null) { session = new Session(this); }
+     * Session.setActiveSession(session); } }
+     */
 
     private void goToNextScreen() {
         getFragmentManager().popBackStack();
@@ -88,34 +88,34 @@ public class LoginActivity extends FragmentActivity {
         finish();
     }
 
-    @Override
-    public void onStop() {
-        super.onStop();
-        Session.getActiveSession().removeCallback(statusCallback);
-    }
+    // @Override
+    // public void onStop() {
+    // super.onStop();
+    // Session.getActiveSession().removeCallback(statusCallback);
+    // }
 
-    private class SessionStatusCallback implements Session.StatusCallback {
-        @Override
-        public void call(Session session, SessionState state, Exception exception) {
-            mConnectionProgressDialog.show();
-            PreferenceHelper.setSocialMediaConnection(LoginActivity.this, SocialMediaConnection.Facebook);
-            // make request to the /me API
-            Request.newMeRequest(session, new Request.GraphUserCallback() {
-                // callback after Graph API response with user object
-                @Override
-                public void onCompleted(GraphUser user, Response response) {
-                    if (user != null) {
-                        PreferenceHelper.setUserId(LoginActivity.this, user.getId());
-                        PreferenceHelper.setUserName(LoginActivity.this, user.getName());
-                        PreferenceHelper.setProfilePictureUrl(LoginActivity.this, ActiveMtlConfiguration.getInstance(LoginActivity.this)
-                                .getFacebookProfilePictureUrl(LoginActivity.this));
-                        goToNextScreen();
-                    }
-                    mConnectionProgressDialog.dismiss();
-                }
-            }).executeAsync();
-        }
-    }
+    // private class SessionStatusCallback implements Session.StatusCallback {
+    // @Override
+    // public void call(Session session, SessionState state, Exception exception) {
+    // mConnectionProgressDialog.show();
+    // PreferenceHelper.setSocialMediaConnection(LoginActivity.this, SocialMediaConnection.Facebook);
+    // // make request to the /me API
+    // Request.newMeRequest(session, new Request.GraphUserCallback() {
+    // // callback after Graph API response with user object
+    // @Override
+    // public void onCompleted(GraphUser user, Response response) {
+    // if (user != null) {
+    // PreferenceHelper.setUserId(LoginActivity.this, user.getId());
+    // PreferenceHelper.setUserName(LoginActivity.this, user.getName());
+    // PreferenceHelper.setProfilePictureUrl(LoginActivity.this, ActiveMtlConfiguration.getInstance(LoginActivity.this)
+    // .getFacebookProfilePictureUrl(LoginActivity.this));
+    // goToNextScreen();
+    // }
+    // mConnectionProgressDialog.dismiss();
+    // }
+    // }).executeAsync();
+    // }
+    // }
 
     @Override
     public void onSaveInstanceState(Bundle outState) {
@@ -124,14 +124,14 @@ public class LoginActivity extends FragmentActivity {
         Session.saveSession(session, outState);
     }
 
-    @Override
-    public void onStart() {
-        super.onStart();
-        Session session = Session.getActiveSession();
-        if (session != null) {
-            session.addCallback(statusCallback);
-        }
-    }
+    // @Override
+    // public void onStart() {
+    // super.onStart();
+    // Session session = Session.getActiveSession();
+    // if (session != null) {
+    // session.addCallback(statusCallback);
+    // }
+    // }
 
     private ConnectionCallbacks connectionCallback = new ConnectionCallbacks() {
 
@@ -180,12 +180,57 @@ public class LoginActivity extends FragmentActivity {
     };
 
     public void onFacebookConnectionClicked() {
-        Settings.addLoggingBehavior(LoggingBehavior.INCLUDE_ACCESS_TOKENS);
-        Session session = Session.getActiveSession();
-        if (!session.isOpened() && !session.isClosed()) {
-            session.openForRead(new Session.OpenRequest(this).setCallback(statusCallback));
-        } else {
-            Session.openActiveSession(this, true, statusCallback);
+        // Settings.addLoggingBehavior(LoggingBehavior.INCLUDE_ACCESS_TOKENS);
+        // Session session = Session.getActiveSession();
+        // if (!session.isOpened() && !session.isClosed()) {
+        // session.openForRead(new Session.OpenRequest(this).setCallback(statusCallback));
+        // } else {
+        // Session.openActiveSession(this, true, statusCallback);
+        // }
+        mConnectionProgressDialog.show();
+        List<String> permissions = Arrays.asList("basic_info", "user_about_me");
+        ParseFacebookUtils.logIn(permissions, this, new LogInCallback() {
+            @Override
+            public void done(ParseUser user, ParseException err) {
+                if (user == null) {
+                    Log.d(getClass().getSimpleName(), "Uh oh. The user cancelled the Facebook login.");
+                } else if (user.isNew()) {
+                    Log.d(getClass().getSimpleName(), "User signed up and logged in through Facebook!");
+                    saveUserDatas(user);
+                } else {
+                    Log.d(getClass().getSimpleName(), "User logged in through Facebook!");
+                    saveUserDatas(user);
+                }
+            }
+        });
+    }
+
+    protected void saveUserDatas(ParseUser user) {
+        if (user != null) {
+            ParseFacebookUtils.link(user, this);
+            Request request = Request.newMeRequest(ParseFacebookUtils.getSession(), new Request.GraphUserCallback() {
+                @Override
+                public void onCompleted(GraphUser user, Response response) {
+                    if (user != null) {
+                        PreferenceHelper.setUserId(LoginActivity.this, user.getId());
+                        PreferenceHelper.setUserName(LoginActivity.this, user.getName());
+                        PreferenceHelper.setProfilePictureUrl(LoginActivity.this, ActiveMtlConfiguration.getInstance(LoginActivity.this)
+                                .getFacebookProfilePictureUrl(LoginActivity.this));
+                        goToNextScreen();
+                    } else if (response.getError() != null) {
+                        if ((response.getError().getCategory() == FacebookRequestError.Category.AUTHENTICATION_RETRY)
+                                || (response.getError().getCategory() == FacebookRequestError.Category.AUTHENTICATION_REOPEN_SESSION)) {
+                            Log.d(getClass().getSimpleName(), "The facebook session was invalidated.");
+                            PreferenceHelper.clearUserInfos(getApplicationContext());
+                            ParseUser.logOut();
+                        } else {
+                            Log.d(getClass().getSimpleName(), "Some other error: " + response.getError().getErrorMessage());
+                        }
+                    }
+                    mConnectionProgressDialog.dismiss();
+                }
+            });
+            request.executeAsync();
         }
     }
 
