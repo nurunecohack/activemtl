@@ -177,11 +177,11 @@ public class FormFragment extends Fragment {
     private BitmapDescriptor getIcon(EventType eventType) {
         switch (eventType) {
         case Alert:
-            return BitmapDescriptorFactory.fromResource(R.drawable.ic_issue);
+            return BitmapDescriptorFactory.fromResource(R.drawable.issue_marker);
         case Challenge:
-            return BitmapDescriptorFactory.fromResource(R.drawable.ic_challenge);
+            return BitmapDescriptorFactory.fromResource(R.drawable.challenge_marker);
         case Idea:
-            return BitmapDescriptorFactory.fromResource(R.drawable.ic_idea);
+            return BitmapDescriptorFactory.fromResource(R.drawable.idea_marker);
         }
         throw new IllegalStateException("Mauvais Event type : " + eventType);
     }
