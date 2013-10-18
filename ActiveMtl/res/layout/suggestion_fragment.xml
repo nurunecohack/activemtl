@@ -1,87 +1,103 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:gravity="center" >
 
-    <RelativeLayout
-        android:id="@+id/viewSubmitIdea"
+    <LinearLayout
+        android:id="@+id/suggestion_layout"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:gravity="bottom"
-        android:paddingBottom="40dp"
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp" >
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:background="@android:color/white" >
 
-        <ImageView
-            android:id="@+id/imgIdea"
-            android:layout_width="55dp"
-            android:layout_height="75dp"
-            android:background="@color/blue_suggestion"
-            android:gravity="center"
-            android:padding="15dp"
-            android:src="@drawable/idee_icon" />
+        <RelativeLayout
+            android:id="@+id/viewSubmitIdea"
+            android:layout_width="match_parent"
+            android:layout_height="90dp"
+            android:gravity="bottom" >
 
-        <TextView
-            android:id="@+id/lblIdeaTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignTop="@id/imgIdea"
-            android:layout_toRightOf="@id/imgIdea"
-            android:paddingLeft="10dp"
-            android:text="@string/suggestion_idea"
-            android:textColor="#0A5FBE"
-            android:textSize="16sp" />
+            <ImageView
+                android:id="@+id/imgIdea"
+                android:layout_width="55dp"
+                android:layout_height="match_parent"
+                android:background="@color/blue_suggestion"
+                android:gravity="center"
+                android:padding="15dp"
+                android:src="@drawable/idee_icon" />
 
-        <TextView
-            android:id="@+id/lblIdeaDesc"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/lblIdeaTitle"
-            android:layout_toRightOf="@id/imgIdea"
-            android:paddingLeft="10dp"
-            android:text="@string/suggestion_idea_desc"
-            android:textSize="12sp" />
-    </RelativeLayout>
+            <TextView
+                android:id="@+id/lblIdeaTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@id/imgIdea"
+                android:layout_toRightOf="@id/imgIdea"
+                android:paddingBottom="5dp"
+                android:paddingLeft="10dp"
+                android:paddingTop="5dp"
+                android:text="@string/suggestion_idea"
+                android:textColor="#0A5FBE"
+                android:textSize="16sp" />
 
-    <RelativeLayout
-        android:id="@+id/viewSubmitAlert"
+            <TextView
+                android:id="@+id/lblIdeaDesc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/lblIdeaTitle"
+                android:layout_toRightOf="@id/imgIdea"
+                android:paddingLeft="10dp"
+                android:text="@string/suggestion_idea_desc"
+                android:textSize="12sp" />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp"
-        android:paddingTop="40dp" >
+        android:layout_height="90dp"
+        android:layout_below="@id/suggestion_layout"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="20dp"
+        android:background="@android:color/white" >
 
-        <ImageView
-            android:id="@+id/imgProblem"
-            android:layout_width="55dp"
-            android:layout_height="75dp"
-            android:background="@color/yellow_suggestion"
-            android:gravity="center"
-            android:padding="15dp"
-            android:src="@drawable/probleme_icon" />
+        <RelativeLayout
+            android:id="@+id/viewSubmitAlert"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
 
-        <TextView
-            android:id="@+id/lblProblemTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignTop="@id/imgProblem"
-            android:layout_toRightOf="@id/imgProblem"
-            android:paddingLeft="10dp"
-            android:text="@string/suggestion_problem"
-            android:textColor="#946100"
-            android:textSize="16sp" />
+            <ImageView
+                android:id="@+id/imgProblem"
+                android:layout_width="55dp"
+                android:layout_height="match_parent"
+                android:background="@color/yellow_suggestion"
+                android:gravity="center"
+                android:padding="15dp"
+                android:src="@drawable/probleme_icon" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/lblProblemTitle"
-            android:layout_toRightOf="@id/imgProblem"
-            android:paddingLeft="10dp"
-            android:text="@string/suggestion_problem_desc"
-            android:textSize="12sp" />
-    </RelativeLayout>
+            <TextView
+                android:id="@+id/lblProblemTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@id/imgProblem"
+                android:layout_toRightOf="@id/imgProblem"
+                android:paddingLeft="10dp"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:text="@string/suggestion_problem"
+                android:textColor="#946100"
+                android:textSize="16sp" />
 
-</LinearLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/lblProblemTitle"
+                android:layout_toRightOf="@id/imgProblem"
+                android:paddingLeft="10dp"
+                android:text="@string/suggestion_problem_desc"
+                android:textSize="12sp" />
+        </RelativeLayout>
+    </LinearLayout>
+
+</RelativeLayout>

@@ -99,7 +99,7 @@
     <string name="suggestion_problem">Submit a problem</string>
     <string name="suggestion_challenge">Suggest a challenge</string>
     <string name="suggestion_idea_desc">Have an idea for something that could contribute to the development of your district?  Let us know.</string>
-    <string name="suggestion_problem_desc">Pothole? Broken infrastructure? If there is anything bothersome in the streets of montreal, send us a detailed description of the problem along with a picture.</string>
+    <string name="suggestion_problem_desc">Pothole? Broken infrastructure? Ssend us a detailed description of the problem along with a picture.</string>
     <string name="suggestion_challenge_desc">Thinking about something you consider people should try out?  Shoot!</string>
     <string name="submit_challenge">Submit challenge</string>
     <string name="submit_alert">Submit alert</string>
