@@ -17,23 +17,23 @@
 
         <TextView
             android:id="@+id/idea_counter"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_gravity="center"
             android:layout_weight="1"
             android:gravity="center"
             android:textColor="@color/blue"
-            android:textSize="50sp" />
+            android:textSize="@dimen/stat_value_dimens" />
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
             android:gravity="center"
             android:paddingTop="15dp"
             android:text="@string/submitted_ideas"
             android:textColor="@color/gray"
-            android:textSize="16sp" />
+            android:textSize="@dimen/stat_text_dimens" />
     </LinearLayout>
 
     <LinearLayout
@@ -50,23 +50,23 @@
 
         <TextView
             android:id="@+id/alert_counter"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_gravity="center"
             android:layout_weight="1"
             android:gravity="center"
             android:textColor="@color/yellow"
-            android:textSize="50sp" />
+            android:textSize="@dimen/stat_value_dimens" />
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
             android:gravity="center"
             android:paddingTop="15dp"
             android:text="@string/issues_solved"
             android:textColor="@color/gray"
-            android:textSize="16sp" />
+            android:textSize="@dimen/stat_text_dimens" />
     </LinearLayout>
 
     <LinearLayout
@@ -83,23 +83,23 @@
 
         <TextView
             android:id="@+id/challenge_counter"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_gravity="center"
             android:layout_weight="1"
             android:gravity="center"
             android:textColor="@color/green"
-            android:textSize="50sp" />
+            android:textSize="@dimen/stat_value_dimens" />
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
             android:gravity="center"
             android:paddingTop="15dp"
             android:text="@string/challenges_resolved"
             android:textColor="@color/gray"
-            android:textSize="16sp" />
+            android:textSize="@dimen/stat_text_dimens" />
     </LinearLayout>
 
 </LinearLayout>

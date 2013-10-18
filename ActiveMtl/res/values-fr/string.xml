@@ -1,0 +1,79 @@
+<!--
+  Copyright 2013 The Android Open Source Project
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+-->
+
+<resources>
+
+    <string name="app_name">Activez Montréal</string>
+
+    <string-array name="menu_categories">
+        <item>Actualités</item>
+        <item>Défis</item>
+        <item>Alertes</item>
+        <item>Suggestions</item>
+        <item>Mon Profil</item>
+    </string-array>
+
+    <string name="app_not_available">Désolé, l\'application n\'est pas disponible!</string>
+    <string name="getting_courts">Chargement&#8230;</string>
+    <string name="home">Actualités</string>
+    <string name="suggest">Soumettre</string>
+    <string name="players">Citoyen : %d</string>
+    <string name="no_result">ucun résultat</string>
+    <string name="getting_your_position">Se localiser</string>
+    <string name="entering_court_zone">Événement citoyen à promximité</string>
+    <string name="leaving_court_zone">Évenment citoyen derrière vous</string>
+    <string name="you_just_leaved_a_court">Demi-tour! Un événement citoyen est juste derrière vous.</string>
+    <string name="you_just_entered_a_court">Chanceux! Vous êtes à proximité d\'un événement citoyen</string>
+    <string name="file_uploaded">Fichier chargé</string>
+    <string name="error_uploading_file">Erreur lors du chargement</string>
+    <string name="situation_type">Sélectionner une catégorie</string>
+    <string name="event_title_hint">Titre - ex : Signalisation incorrecte</string>
+    <string name="event_description_hint">Description  - ex : Décrivez la situation</string>
+    <string name="settings">Paramètres</string>
+    <string name="radius">Distance</string>
+    <string name="discovered_by">Soumis par %s</string>
+    <string name="court_suggestion_success">Montréal vous remercie pour votre contribution. Celle-ci sera visible une fois validée.</string>
+    <string name="court_suggestion_failure">Échec de la soumission. Merci de réessayer plus tard.</string>
+    <string name="court_suggestion_progress">Chargement&#8230;</string>
+    <string name="challenges">Défis</string>
+    <string name="ideas">Suggestions</string>
+    <string name="issues">Alertes</string>
+    <string name="district">Mon Quartier</string>
+    <string name="me">Moi</string>
+    <string name="montreal">Montréal</string>
+    <string name="submitted_ideas">SUGGESTIONS\nPROPOSÉES</string>
+    <string name="issues_solved">ALERTES\nTRAITÉES</string>
+    <string name="challenges_resolved">DÉFIS\nRELEVÉS</string>
+    <string name="disconnect">Se Déconnecter</string>
+    <string name="facebook_connect">M\'identifier avec Facebook</string>
+    <string name="facebook_app_id">167930773411045</string>
+    <string name="error_retrieving_ideas">Erreur lors du chargement des suggestions</string>
+    <string name="error_retrieving_alerts">Erreur lors du chargement des alertes</string>
+    <string name="error_retrieving_challenges">Erreur lors du chargement des défis</string>
+    <string name="submitted_by">Soumis par</string>
+    <string name="suggestion_idea">Soumettre une suggestion</string>
+    <string name="suggestion_problem">Lancer une alerte</string>
+    <string name="suggestion_idea_desc">Vous avez une idée pour améliorer votre quartier? Partagez-la!</string>
+    <string name="suggestion_problem_desc">Nid de poule? Poubelle qui déborde? Si vous croisez un élément irritant dans les rues de Montréal, alertez nous en nous envoyant une description détaillée accompagnée d\'une photo.</string>
+    <string name="submit_alert">Lancer cette alerte</string>
+    <string name="submit_idea">Envoyer cette suggestion</string>
+    <string name="cannot_get_your_location">Impossible de vous localiser</string>
+    <string name="please_enter_a_longer_title">Titre trop court</string>
+    <string name="please_enter_a_longer_description">Description trop courte</string>
+    <string name="please_take_a_picture">Ajouter une photo</string>
+
+</resources>

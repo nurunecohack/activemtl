@@ -85,9 +85,9 @@
     <string name="district">District</string>
     <string name="me">Me</string>
     <string name="montreal">Montréal</string>
-    <string name="submitted_ideas">SUBMITTED IDEAS</string>
-    <string name="issues_solved">SOLVED ISSUES</string>
-    <string name="challenges_resolved">RESOLVED CHALLENGES</string>
+    <string name="submitted_ideas">SUBMITTED\nIDEAS</string>
+    <string name="issues_solved">SOLVED\nISSUES</string>
+    <string name="challenges_resolved">RESOLVED\nCHALLENGES</string>
     <string name="disconnect">Disconnect</string>
     <string name="facebook_connect">Facebook connect</string>
     <string name="facebook_app_id">167930773411045</string>

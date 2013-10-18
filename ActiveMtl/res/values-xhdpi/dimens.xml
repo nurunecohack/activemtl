@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="stat_value_dimens">50sp</dimen>
+    <dimen name="stat_text_dimens">16sp</dimen>
+
+</resources>
