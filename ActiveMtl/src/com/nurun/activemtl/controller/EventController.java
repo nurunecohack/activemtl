@@ -4,6 +4,7 @@ import android.location.Location;
 
 import com.nurun.activemtl.callback.GetEventStatCallback;
 import com.nurun.activemtl.callback.GetEventsRequestCallbacks;
+import com.nurun.activemtl.model.EventType;
 
 public interface EventController {
 
@@ -13,7 +14,7 @@ public interface EventController {
 
     void canceltasks();
 
-    void addSuggestedEvent(String name, String description, String fileUri, double[] latLong);
+    void addSuggestedEvent(String name, String description, String fileUri, double[] latLong, EventType eventType, String category);
 
     void getChallengeForMe(GetEventStatCallback callback);
 

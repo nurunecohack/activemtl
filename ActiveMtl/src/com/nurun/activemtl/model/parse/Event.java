@@ -20,6 +20,8 @@ public class Event extends ParseObject {
     private static final String PICTURE = "picture";
     public static final String EVENT_TYPE = "eventType";
     public static final String CREATED_BY = "createdBy";
+    public static final String CATEGORY = "Category";
+    public static final String ACTIF = "actif";
 
     public void setTitle(String title) {
         put(TITLE, title);
@@ -33,9 +35,14 @@ public class Event extends ParseObject {
         ParseGeoPoint geopoint = new ParseGeoPoint(latitude, longitude);
         put(LOCATION, geopoint);
     }
-    
-    public void setCreatedBy(ParseUser currentUser) {
+
+    public void setDefaultInfos(ParseUser currentUser) {
         put(CREATED_BY, currentUser);
+        put(ACTIF, true);
+    }
+
+    public void setCategory(String category) {
+        put(CATEGORY, category);
     }
 
     public String getTitle() {
@@ -87,6 +94,10 @@ public class Event extends ParseObject {
 
     public EventType getEventType() {
         return EventType.valueOf(getString(EVENT_TYPE));
+    }
+
+    public void setEventType(EventType eventType) {
+        put(EVENT_TYPE, eventType.name());
     }
 
 }

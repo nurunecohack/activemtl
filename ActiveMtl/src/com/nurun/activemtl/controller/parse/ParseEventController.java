@@ -82,12 +82,14 @@ public class ParseEventController implements EventController {
     }
 
     @Override
-    public void addSuggestedEvent(String name, String description, String fileUri, double[] latLong) {
+    public void addSuggestedEvent(String name, String description, String fileUri, double[] latLong, EventType eventType, String category) {
         Event event = new Event();
         event.setGeolocation(latLong[0], latLong[1]);
         event.setPicture(getBytes(fileUri));
         event.setTitle(name);
-        event.setCreatedBy(ParseUser.getCurrentUser());
+        event.setEventType(eventType);
+        event.setDefaultInfos(ParseUser.getCurrentUser());
+        event.setCategory(category);
         event.setDescription(description);
         event.saveWithPicture();
     }

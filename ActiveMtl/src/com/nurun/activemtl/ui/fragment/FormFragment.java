@@ -232,7 +232,7 @@ public class FormFragment extends Fragment {
             if (isFormCompleted(lastLocation)) {
                 getActivity().startService(
                         UploaderService.newIntent(getActivity(), fileUri.getPath(), editTextTitle.getText().toString(), editTextDescription.getText()
-                                .toString(), lastLocation));
+                                .toString(), lastLocation, getEventType(), (String)spinnerCategory.getSelectedItem()));
                 NavigationUtil.goToHome(getActivity());
             }
             break;
