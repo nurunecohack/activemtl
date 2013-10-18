@@ -21,7 +21,6 @@ import com.google.android.gms.common.GooglePlayServicesClient.ConnectionCallback
 import com.google.android.gms.common.GooglePlayServicesClient.OnConnectionFailedListener;
 import com.google.android.gms.plus.PlusClient;
 import com.google.android.gms.plus.model.people.Person;
-import com.nurun.activemtl.ActiveMtlConfiguration;
 import com.nurun.activemtl.PreferenceHelper;
 import com.nurun.activemtl.R;
 import com.nurun.activemtl.SocialMediaConnection;
@@ -99,10 +98,6 @@ public class LoginActivity extends FragmentActivity {
             PreferenceHelper.setSocialMediaConnection(LoginActivity.this, SocialMediaConnection.Google_plus);
             PreferenceHelper.setUserId(LoginActivity.this, currentPerson.getId());
             PreferenceHelper.setUserName(LoginActivity.this, currentPerson.getDisplayName());
-            PreferenceHelper.setProfilePictureUrl(LoginActivity.this,
-                    ActiveMtlConfiguration.getInstance(LoginActivity.this).getNormalGooleProfilePictureUrl(LoginActivity.this));
-            PreferenceHelper.setSmallProfilePictureUrl(LoginActivity.this, ActiveMtlConfiguration.getInstance(LoginActivity.this)
-                    .getSmallGooleProfilePictureUrl(LoginActivity.this));
             goToNextScreen();
         }
     };
@@ -152,10 +147,6 @@ public class LoginActivity extends FragmentActivity {
                     if (user != null) {
                         PreferenceHelper.setUserId(LoginActivity.this, user.getId());
                         PreferenceHelper.setUserName(LoginActivity.this, user.getName());
-                        PreferenceHelper.setProfilePictureUrl(LoginActivity.this, ActiveMtlConfiguration.getInstance(LoginActivity.this)
-                                .getNormalFacebookProfilePictureUrl(LoginActivity.this));
-                        PreferenceHelper.setSmallProfilePictureUrl(LoginActivity.this, ActiveMtlConfiguration.getInstance(LoginActivity.this)
-                                .getSmallFacebookProfilePictureUrl(LoginActivity.this));
                         goToNextScreen();
                     } else if (response.getError() != null) {
                         if ((response.getError().getCategory() == FacebookRequestError.Category.AUTHENTICATION_RETRY)

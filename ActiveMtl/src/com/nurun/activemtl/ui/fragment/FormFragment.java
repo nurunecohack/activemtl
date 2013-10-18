@@ -41,6 +41,7 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.nurun.activemtl.ActiveMtlApplication;
+import com.nurun.activemtl.ActiveMtlConfiguration;
 import com.nurun.activemtl.PreferenceHelper;
 import com.nurun.activemtl.R;
 import com.nurun.activemtl.model.EventType;
@@ -232,7 +233,7 @@ public class FormFragment extends Fragment {
             if (isFormCompleted(lastLocation)) {
                 getActivity().startService(
                         UploaderService.newIntent(getActivity(), fileUri.getPath(), editTextTitle.getText().toString(), editTextDescription.getText()
-                                .toString(), lastLocation, getEventType(), (String)spinnerCategory.getSelectedItem()));
+                                .toString(), lastLocation, getEventType(), (String) spinnerCategory.getSelectedItem()));
                 NavigationUtil.goToHome(getActivity());
             }
             break;
@@ -311,12 +312,13 @@ public class FormFragment extends Fragment {
         protected StreamDrawable doInBackground(Void... params) {
             int cornerRadius = getResources().getInteger(R.integer.small_circle);
             try {
-                URL profPict = new URL(PreferenceHelper.getSmallProfilePictureUrl(getActivity()));
+                URL profPict = new URL(ActiveMtlConfiguration.getInstance(getActivity()).getSmallProfilePictureUrl(getActivity()));
+                Log.i(getClass().getSimpleName(), "Loading image : "+profPict);
                 Bitmap mBitmap = BitmapFactory.decodeStream(profPict.openStream());
                 StreamDrawable streamDrawable = new StreamDrawable(mBitmap, cornerRadius);
                 return streamDrawable;
             } catch (Exception e) {
-                Log.e(getClass().getSimpleName(), "Url = " + PreferenceHelper.getSmallProfilePictureUrl(getActivity()));
+                Log.e(getClass().getSimpleName(), "Url = " + ActiveMtlConfiguration.getInstance(getActivity()).getSmallProfilePictureUrl(getActivity()));
                 Log.e(getClass().getSimpleName(), e.getMessage(), e);
                 Bitmap mBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.ali_g);
                 StreamDrawable streamDrawable = new StreamDrawable(mBitmap, cornerRadius);

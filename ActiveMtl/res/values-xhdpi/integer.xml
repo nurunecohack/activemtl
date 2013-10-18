@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <integer name="offset">800</integer>
-    <integer name="small_circle">50</integer>
+    <integer name="small_circle">75</integer>
     <integer name="normal_circle">150</integer>
-    <integer name="resolution">300</integer>
+    <integer name="normal_resolution">300</integer>
+    <integer name="small_resolution">150</integer>
 </resources>

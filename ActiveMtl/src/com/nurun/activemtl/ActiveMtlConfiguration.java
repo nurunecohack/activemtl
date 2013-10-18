@@ -84,19 +84,41 @@ public class ActiveMtlConfiguration {
         return String.format(properties.getProperty("profile.picture.facebook.url"), PreferenceHelper.getUserId(context), resolution);
     }
 
-    public String getSmallGooleProfilePictureUrl(Context context) {
-        return getGooleProfilePictureUrl(context, context.getResources().getInteger(R.integer.resolution));
+    private String getSmallGooleProfilePictureUrl(Context context) {
+        return getGooleProfilePictureUrl(context, context.getResources().getInteger(R.integer.small_resolution));
     }
 
-    public String getSmallFacebookProfilePictureUrl(Context context) {
-        return getFacebookProfilePictureUrl(context, context.getResources().getInteger(R.integer.resolution));
-    }
-    
-    public String getNormalGooleProfilePictureUrl(Context context) {
-        return getGooleProfilePictureUrl(context, context.getResources().getInteger(R.integer.resolution));
+    private String getSmallFacebookProfilePictureUrl(Context context) {
+        return getFacebookProfilePictureUrl(context, context.getResources().getInteger(R.integer.small_resolution));
     }
 
-    public String getNormalFacebookProfilePictureUrl(Context context) {
-        return getFacebookProfilePictureUrl(context, context.getResources().getInteger(R.integer.resolution));
+    private String getNormalGooleProfilePictureUrl(Context context) {
+        return getGooleProfilePictureUrl(context, context.getResources().getInteger(R.integer.normal_resolution));
+    }
+
+    private String getNormalFacebookProfilePictureUrl(Context context) {
+        return getFacebookProfilePictureUrl(context, context.getResources().getInteger(R.integer.normal_resolution));
+    }
+
+    public String getProfilePictureUrl(Context context) {
+        switch (PreferenceHelper.getSocialMediaConnection(context)) {
+        case Facebook:
+            return getNormalFacebookProfilePictureUrl(context);
+        case Google_plus:
+            return getNormalGooleProfilePictureUrl(context);
+        default:
+            throw new IllegalStateException("Wrong social media : " + PreferenceHelper.getSocialMediaConnection(context));
+        }
+    }
+
+    public String getSmallProfilePictureUrl(Context context) {
+        switch (PreferenceHelper.getSocialMediaConnection(context)) {
+        case Facebook:
+            return getSmallFacebookProfilePictureUrl(context);
+        case Google_plus:
+            return getSmallGooleProfilePictureUrl(context);
+        default:
+            throw new IllegalStateException("Wrong social media : " + PreferenceHelper.getSocialMediaConnection(context));
+        }
     }
 }

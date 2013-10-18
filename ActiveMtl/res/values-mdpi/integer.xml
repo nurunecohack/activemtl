@@ -3,5 +3,6 @@
     <integer name="offset">400</integer>
     <integer name="small_circle">30</integer>
     <integer name="normal_circle">75</integer>
-    <integer name="resolution">100</integer>
+    <integer name="normal_resolution">200</integer>
+    <integer name="small_resolution">100</integer>
 </resources>

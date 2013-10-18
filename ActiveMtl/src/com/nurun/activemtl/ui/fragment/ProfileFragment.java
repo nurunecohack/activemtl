@@ -19,6 +19,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.nurun.activemtl.ActiveMtlConfiguration;
 import com.nurun.activemtl.PreferenceHelper;
 import com.nurun.activemtl.R;
 import com.nurun.activemtl.ui.view.StreamDrawable;
@@ -131,7 +132,8 @@ public class ProfileFragment extends Fragment {
         protected StreamDrawable doInBackground(Void... params) {
             int cornerRadius = getResources().getInteger(R.integer.normal_circle);
             try {
-                URL profPict = new URL(PreferenceHelper.getProfilePictureUrl(getActivity()));
+                URL profPict = new URL(ActiveMtlConfiguration.getInstance(getActivity()).getProfilePictureUrl(getActivity()));
+                Log.i(getClass().getSimpleName(), "Loading image : "+profPict);
                 Bitmap mBitmap = BitmapFactory.decodeStream(profPict.openStream());
                 return new StreamDrawable(mBitmap, cornerRadius);
             } catch (Exception e) {
