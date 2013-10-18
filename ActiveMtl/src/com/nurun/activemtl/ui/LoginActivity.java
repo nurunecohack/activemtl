@@ -68,8 +68,7 @@ public class LoginActivity extends FragmentActivity {
         if (requestCode == REQUEST_CODE_RESOLVE_ERR && responseCode == FragmentActivity.RESULT_OK) {
             mConnectionResult = null;
             mPlusClient.connect();
-        }
-        else {
+        } else {
             ParseFacebookUtils.finishAuthentication(requestCode, responseCode, intent);
         }
     }
@@ -79,7 +78,6 @@ public class LoginActivity extends FragmentActivity {
         setResult(200);
         finish();
     }
-
 
     @Override
     public void onSaveInstanceState(Bundle outState) {
@@ -102,9 +100,9 @@ public class LoginActivity extends FragmentActivity {
             PreferenceHelper.setUserId(LoginActivity.this, currentPerson.getId());
             PreferenceHelper.setUserName(LoginActivity.this, currentPerson.getDisplayName());
             PreferenceHelper.setProfilePictureUrl(LoginActivity.this,
-                    ActiveMtlConfiguration.getInstance(LoginActivity.this).getGooleProfilePictureUrl(LoginActivity.this));
-            PreferenceHelper.setSmallProfilePictureUrl(LoginActivity.this,
-                    ActiveMtlConfiguration.getInstance(LoginActivity.this).getSmallGooleProfilePictureUrl(LoginActivity.this));
+                    ActiveMtlConfiguration.getInstance(LoginActivity.this).getNormalGooleProfilePictureUrl(LoginActivity.this));
+            PreferenceHelper.setSmallProfilePictureUrl(LoginActivity.this, ActiveMtlConfiguration.getInstance(LoginActivity.this)
+                    .getSmallGooleProfilePictureUrl(LoginActivity.this));
             goToNextScreen();
         }
     };
@@ -155,7 +153,7 @@ public class LoginActivity extends FragmentActivity {
                         PreferenceHelper.setUserId(LoginActivity.this, user.getId());
                         PreferenceHelper.setUserName(LoginActivity.this, user.getName());
                         PreferenceHelper.setProfilePictureUrl(LoginActivity.this, ActiveMtlConfiguration.getInstance(LoginActivity.this)
-                                .getFacebookProfilePictureUrl(LoginActivity.this));
+                                .getNormalFacebookProfilePictureUrl(LoginActivity.this));
                         PreferenceHelper.setSmallProfilePictureUrl(LoginActivity.this, ActiveMtlConfiguration.getInstance(LoginActivity.this)
                                 .getSmallFacebookProfilePictureUrl(LoginActivity.this));
                         goToNextScreen();

@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <integer name="offset">400</integer>
-    <dimen name="stat_text_dimens">12sp</dimen>
+    <integer name="small_circle">30</integer>
+    <integer name="normal_circle">75</integer>
+    <integer name="resolution">100</integer>
 </resources>

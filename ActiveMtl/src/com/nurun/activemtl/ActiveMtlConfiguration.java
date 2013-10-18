@@ -76,19 +76,27 @@ public class ActiveMtlConfiguration {
         return Integer.parseInt(properties.getProperty("district.radius"));
     }
 
-    public String getGooleProfilePictureUrl(Context context) {
-        return String.format(properties.getProperty("profile.picture.google.url"), PreferenceHelper.getUserId(context));
+    private String getGooleProfilePictureUrl(Context context, int resolution) {
+        return String.format(properties.getProperty("profile.picture.google.url"), PreferenceHelper.getUserId(context), resolution, resolution);
     }
-    
-    public String getFacebookProfilePictureUrl(Context context) {
-        return String.format(properties.getProperty("profile.picture.facebook.url"), PreferenceHelper.getUserId(context));
+
+    private String getFacebookProfilePictureUrl(Context context, int resolution) {
+        return String.format(properties.getProperty("profile.picture.facebook.url"), PreferenceHelper.getUserId(context), resolution);
     }
-    
+
     public String getSmallGooleProfilePictureUrl(Context context) {
-        return String.format(properties.getProperty("profile.picture.google.small.url"), PreferenceHelper.getUserId(context));
+        return getGooleProfilePictureUrl(context, context.getResources().getInteger(R.integer.resolution));
+    }
+
+    public String getSmallFacebookProfilePictureUrl(Context context) {
+        return getFacebookProfilePictureUrl(context, context.getResources().getInteger(R.integer.resolution));
     }
     
-    public String getSmallFacebookProfilePictureUrl(Context context) {
-        return String.format(properties.getProperty("profile.picture.facebook.small.url"), PreferenceHelper.getUserId(context));
+    public String getNormalGooleProfilePictureUrl(Context context) {
+        return getGooleProfilePictureUrl(context, context.getResources().getInteger(R.integer.resolution));
+    }
+
+    public String getNormalFacebookProfilePictureUrl(Context context) {
+        return getFacebookProfilePictureUrl(context, context.getResources().getInteger(R.integer.resolution));
     }
 }

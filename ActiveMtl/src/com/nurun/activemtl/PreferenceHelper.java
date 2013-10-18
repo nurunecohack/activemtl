@@ -74,7 +74,7 @@ public class PreferenceHelper {
     }
 
     public static void clearUserInfos(Context context) {
-        getPreferences(context).edit().remove(KEY_USER_NAME).remove(KEY_USER_ID).remove(KEY_SOCIAL_MEDIA).remove(KEY_PROFILE_PICTURE).commit();
+        getPreferences(context).edit().remove(KEY_USER_NAME).remove(KEY_USER_ID).remove(KEY_SOCIAL_MEDIA).remove(KEY_PROFILE_PICTURE).remove(KEY_SMALL_PROFILE_PICTURE).commit();
     }
 
     public static SocialMediaConnection getSocialMediaConnection(Context context) {

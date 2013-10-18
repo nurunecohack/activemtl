@@ -129,14 +129,15 @@ public class ProfileFragment extends Fragment {
 
         @Override
         protected StreamDrawable doInBackground(Void... params) {
+            int cornerRadius = getResources().getInteger(R.integer.normal_circle);
             try {
                 URL profPict = new URL(PreferenceHelper.getProfilePictureUrl(getActivity()));
                 Bitmap mBitmap = BitmapFactory.decodeStream(profPict.openStream());
-                return new StreamDrawable(mBitmap);
+                return new StreamDrawable(mBitmap, cornerRadius);
             } catch (Exception e) {
                 Log.e(getClass().getSimpleName(), e.getMessage(), e);
                 Bitmap mBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.ali_g);
-                return new StreamDrawable(mBitmap);
+                return new StreamDrawable(mBitmap, cornerRadius);
             }
         }
 

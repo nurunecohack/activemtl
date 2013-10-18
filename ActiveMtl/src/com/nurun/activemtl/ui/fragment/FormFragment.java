@@ -309,18 +309,17 @@ public class FormFragment extends Fragment {
 
         @Override
         protected StreamDrawable doInBackground(Void... params) {
+            int cornerRadius = getResources().getInteger(R.integer.small_circle);
             try {
                 URL profPict = new URL(PreferenceHelper.getSmallProfilePictureUrl(getActivity()));
                 Bitmap mBitmap = BitmapFactory.decodeStream(profPict.openStream());
-                StreamDrawable streamDrawable = new StreamDrawable(mBitmap);
-                streamDrawable.setSmallSize();
+                StreamDrawable streamDrawable = new StreamDrawable(mBitmap, cornerRadius);
                 return streamDrawable;
             } catch (Exception e) {
                 Log.e(getClass().getSimpleName(), "Url = " + PreferenceHelper.getSmallProfilePictureUrl(getActivity()));
                 Log.e(getClass().getSimpleName(), e.getMessage(), e);
                 Bitmap mBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.ali_g);
-                StreamDrawable streamDrawable = new StreamDrawable(mBitmap);
-                streamDrawable.setSmallSize();
+                StreamDrawable streamDrawable = new StreamDrawable(mBitmap, cornerRadius);
                 return streamDrawable;
             }
         }

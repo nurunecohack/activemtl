@@ -18,14 +18,14 @@ import android.graphics.drawable.Drawable;
 public class StreamDrawable extends Drawable {
     private static final boolean USE_VIGNETTE = false;
 
-    private float mCornerRadius;
+    private final float mCornerRadius;
     private final RectF mRect = new RectF();
     private final BitmapShader mBitmapShader;
     private final Paint mPaint;
     private final int mMargin;
 
-    public StreamDrawable(Bitmap bitmap) {
-        mCornerRadius = 150;
+    public StreamDrawable(Bitmap bitmap, float cornerRadius) {
+        mCornerRadius = cornerRadius;
 
         mBitmapShader = new BitmapShader(bitmap, Shader.TileMode.CLAMP, Shader.TileMode.CLAMP);
 
@@ -34,10 +34,6 @@ public class StreamDrawable extends Drawable {
         mPaint.setShader(mBitmapShader);
 
         mMargin = 5;
-    }
-
-    public void setSmallSize() {
-        mCornerRadius = 50;
     }
 
     @Override
