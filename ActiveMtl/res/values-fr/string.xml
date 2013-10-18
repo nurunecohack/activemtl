@@ -26,6 +26,34 @@
         <item>Suggestions</item>
         <item>Mon Profil</item>
     </string-array>
+    
+    <string-array name="alerts_categories">
+        <item>Sélectionner une categorie</item>
+        <item>Déchet et recyclage</item>
+        <item>Collection bins</item>
+        <item>Graffitis</item>
+        <item>Roads and sidewalks</item>
+        <item>Winter situations / snowblowing</item>
+        <item>Pets</item>
+        <item>Neighboring problems</item>
+        <item>Lighting</item>
+        <item>Sewers and aqueducts</item>
+        <item>Others</item>
+    </string-array>
+    
+
+    <string-array name="ideas_categories">
+        <item>Sélectionner une categorie</item>
+        <item>Garbage</item>
+        <item>Gardening</item>
+        <item>Public transit</item>
+        <item>Supplies</item>
+        <item>Snowblowing</item>
+        <item>Physical activities</item>
+        <item>Housing</item>
+        <item>Electricity</item>
+        <item>Water</item>
+    </string-array>
 
     <string name="app_not_available">Désolé, l\'application n\'est pas disponible!</string>
     <string name="getting_courts">Chargement&#8230;</string>
@@ -68,7 +96,7 @@
     <string name="suggestion_idea">Soumettre une suggestion</string>
     <string name="suggestion_problem">Lancer une alerte</string>
     <string name="suggestion_idea_desc">Vous avez une idée pour améliorer votre quartier? Partagez-la!</string>
-    <string name="suggestion_problem_desc">Nid de poule? Poubelle qui déborde? Si vous croisez un élément irritant dans les rues de Montréal, alertez nous en nous envoyant une description détaillée accompagnée d\'une photo.</string>
+    <string name="suggestion_problem_desc">Nid de poule? Poubelle qui déborde? Alertez nous en nous envoyant une description détaillée accompagnée d\'une photo.</string>
     <string name="submit_alert">Lancer cette alerte</string>
     <string name="submit_idea">Envoyer cette suggestion</string>
     <string name="cannot_get_your_location">Impossible de vous localiser</string>
