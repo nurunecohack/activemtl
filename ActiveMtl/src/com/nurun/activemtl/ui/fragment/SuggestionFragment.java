@@ -7,8 +7,9 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 
-import com.nurun.activemtl.PreferenceHelper;
 import com.nurun.activemtl.R;
+import com.nurun.activemtl.model.EventType;
+import com.nurun.activemtl.ui.SuggestionActivity;
 import com.nurun.activemtl.util.NavigationUtil;
 
 public class SuggestionFragment extends Fragment {
@@ -28,7 +29,20 @@ public class SuggestionFragment extends Fragment {
     private OnClickListener onClickListener = new OnClickListener() {
         @Override
         public void onClick(View v) {
-            NavigationUtil.goToFormFragment(getFragmentManager(), v, PreferenceHelper.isLoggedIn(getActivity()));
+            EventType eventType = getEventTypeFromView(v);
+        	((SuggestionActivity)getActivity()).setEventType(eventType);
+			NavigationUtil.goToFormFragment(getActivity(), getFragmentManager(), eventType);
+        }
+        
+        private EventType getEventTypeFromView(View v) {
+            switch (v.getId()) {
+            case R.id.viewSubmitIdea:
+                return EventType.Idea;
+            case R.id.viewSubmitAlert:
+                return EventType.Alert;
+            default:
+                throw new IllegalStateException("Wrong click");
+            }
         }
 
     };

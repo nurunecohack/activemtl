@@ -28,79 +28,92 @@ import android.view.MenuItem;
 
 import com.nurun.activemtl.R;
 import com.nurun.activemtl.ui.fragment.HomeFragment;
+import com.nurun.activemtl.util.NavigationUtil;
 
 public class HomeActivity extends FragmentActivity {
-    private ActiveMtlDrawerLayout mDrawerLayout;
-    private CharSequence mTitle;
+	private ActiveMtlDrawerLayout mDrawerLayout;
+	private CharSequence mTitle;
 
-    public static Intent newIntent(Context context) {
-        Intent intent = new Intent(context, HomeActivity.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        return intent;
-    }
+	public static Intent newIntent(Context context) {
+		Intent intent = new Intent(context, HomeActivity.class);
+		intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+		return intent;
+	}
 
-    public static PendingIntent newPendingIntent(Context context, int mId) {
-        return PendingIntent.getActivity(context, 165446846, new Intent(context, HomeActivity.class), mId);
-    }
+	public static PendingIntent newPendingIntent(Context context, int mId) {
+		return PendingIntent.getActivity(context, 165446846, new Intent(
+				context, HomeActivity.class), mId);
+	}
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.home_activity);
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.home_activity);
 
-        mTitle = getTitle();
-        mDrawerLayout = (ActiveMtlDrawerLayout) findViewById(R.id.drawer_layout);
-        mDrawerLayout.init(this, savedInstanceState == null);
+		mTitle = getTitle();
+		mDrawerLayout = (ActiveMtlDrawerLayout) findViewById(R.id.drawer_layout);
+		mDrawerLayout.init(this, savedInstanceState == null);
 
-        // enable ActionBar app icon to behave as action to toggle nav drawer
-        getActionBar().setDisplayHomeAsUpEnabled(true);
-        getActionBar().setHomeButtonEnabled(true);
-        getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, HomeFragment.newFragment()).commit();
-    }
+		// enable ActionBar app icon to behave as action to toggle nav drawer
+		getActionBar().setDisplayHomeAsUpEnabled(true);
+		getActionBar().setHomeButtonEnabled(true);
+		getSupportFragmentManager().beginTransaction()
+				.replace(R.id.content_frame, HomeFragment.newFragment())
+				.commit();
+	}
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.main, menu);
-        return super.onCreateOptionsMenu(menu);
-    }
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		MenuInflater inflater = getMenuInflater();
+		inflater.inflate(R.menu.main, menu);
+		return super.onCreateOptionsMenu(menu);
+	}
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // The action bar home/up action should open or close the drawer.
-        // ActionBarDrawerToggle will take care of this.
-        if (mDrawerLayout.onOptionsItemSelected(item)) {
-            return true;
-        }
-        // Handle action buttons
-        switch (item.getItemId()) {
-        case R.id.action_suggest:
-            startActivity(SuggestionActivity.newIntent(this));
-            return true;
-        case R.id.action_settings:
-            startActivity(PreferencesActivity.newIntent(this));
-            return true;
-        default:
-            return super.onOptionsItemSelected(item);
-        }
-    }
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode,
+			Intent intent) {
+		super.onActivityResult(requestCode, resultCode, intent);
+		if (requestCode == NavigationUtil.requestLoginCode && resultCode == 200) {
+			NavigationUtil.goToProfile(this, getSupportFragmentManager());
+		}
+	}
 
-    @Override
-    public void setTitle(CharSequence title) {
-        mTitle = title;
-        getActionBar().setTitle(mTitle);
-    }
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		// The action bar home/up action should open or close the drawer.
+		// ActionBarDrawerToggle will take care of this.
+		if (mDrawerLayout.onOptionsItemSelected(item)) {
+			return true;
+		}
+		// Handle action buttons
+		switch (item.getItemId()) {
+		case R.id.action_suggest:
+			startActivity(SuggestionActivity.newIntent(this));
+			return true;
+		case R.id.action_settings:
+			startActivity(PreferencesActivity.newIntent(this));
+			return true;
+		default:
+			return super.onOptionsItemSelected(item);
+		}
+	}
 
-    @Override
-    protected void onPostCreate(Bundle savedInstanceState) {
-        super.onPostCreate(savedInstanceState);
-        mDrawerLayout.syncState();
-    }
+	@Override
+	public void setTitle(CharSequence title) {
+		mTitle = title;
+		getActionBar().setTitle(mTitle);
+	}
 
-    @Override
-    public void onConfigurationChanged(Configuration newConfig) {
-        super.onConfigurationChanged(newConfig);
-        mDrawerLayout.onToggleConfigurationChanged(newConfig);
-    }
+	@Override
+	protected void onPostCreate(Bundle savedInstanceState) {
+		super.onPostCreate(savedInstanceState);
+		mDrawerLayout.syncState();
+	}
+
+	@Override
+	public void onConfigurationChanged(Configuration newConfig) {
+		super.onConfigurationChanged(newConfig);
+		mDrawerLayout.onToggleConfigurationChanged(newConfig);
+	}
 
 }

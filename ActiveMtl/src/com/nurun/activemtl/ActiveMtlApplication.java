@@ -21,7 +21,6 @@ import com.nurun.activemtl.data.ActiveMtlDatabaseHelper;
 import com.nurun.activemtl.model.parse.Event;
 import com.nurun.activemtl.receiver.LocationBroadcastReceiver;
 import com.parse.Parse;
-import com.parse.ParseFacebookUtils;
 import com.parse.ParseObject;
 
 public class ActiveMtlApplication extends Application {
@@ -43,7 +42,6 @@ public class ActiveMtlApplication extends Application {
         ActiveMtlDatabaseHelper.init(this);
         ParseObject.registerSubclass(Event.class);
         Parse.initialize(this, APP_ID, CLIENT_KEY);
-        ParseFacebookUtils.initialize(getString(R.string.facebook_app_id));
         int googlePlayServicesAvailable = GooglePlayServicesUtil.isGooglePlayServicesAvailable(getApplicationContext());
         if (ConnectionResult.SUCCESS == googlePlayServicesAvailable) {
             locationClient = new LocationClient(getApplicationContext(), connectionCallbacks, onConnectionFailedListener);
