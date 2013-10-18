@@ -52,13 +52,6 @@
             android:hint="@string/event_description_hint"
             android:textSize="14sp" />
 
-        <EditText
-            android:id="@+id/editTextTags"
-            style="@style/form_textbox"
-            android:gravity="top"
-            android:hint="@string/event_tag_hint"
-            android:maxLines="2" />
-
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
