@@ -138,7 +138,7 @@ public class ProfileFragment extends Fragment {
                 return new StreamDrawable(mBitmap, cornerRadius);
             } catch (Exception e) {
                 Log.e(getClass().getSimpleName(), e.getMessage(), e);
-                Bitmap mBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.ali_g);
+                Bitmap mBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.ecohack);
                 return new StreamDrawable(mBitmap, cornerRadius);
             }
         }

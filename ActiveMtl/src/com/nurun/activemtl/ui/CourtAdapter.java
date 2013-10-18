@@ -41,7 +41,7 @@ public class CourtAdapter extends ArrayAdapter<Event> {
         Event court = getItem(position);
         holder.name.setText(court.getTitle());
         if (court.getPictureUrl() != null && !court.getPictureUrl().equals(holder.imageUrl)) {
-            Picasso.with(getContext()).load(Uri.parse(court.getPictureUrl())).placeholder(R.drawable.ali_g).into(holder.courtImage);
+            Picasso.with(getContext()).load(Uri.parse(court.getPictureUrl())).placeholder(R.drawable.ecohack).into(holder.courtImage);
         }
         holder.distance.setText(DistanceUtil.formatDistance(court.getDistance(currentLocation)));
         holder.imageUrl = court.getPictureUrl();

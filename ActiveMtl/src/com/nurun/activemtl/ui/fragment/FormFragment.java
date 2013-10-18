@@ -320,7 +320,7 @@ public class FormFragment extends Fragment {
             } catch (Exception e) {
                 Log.e(getClass().getSimpleName(), "Url = " + ActiveMtlConfiguration.getInstance(getActivity()).getSmallProfilePictureUrl(getActivity()));
                 Log.e(getClass().getSimpleName(), e.getMessage(), e);
-                Bitmap mBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.ali_g);
+                Bitmap mBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.ecohack_small);
                 StreamDrawable streamDrawable = new StreamDrawable(mBitmap, cornerRadius);
                 return streamDrawable;
             }
