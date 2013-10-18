@@ -84,7 +84,7 @@ public class ActiveMtlDrawerLayout extends DrawerLayout {
 				long id) {
 			NavigationUtil.handleMenuClick(activity, position);
 			// update selected item and title, then close the drawer
-			mDrawerList.setItemChecked(position, true);
+			mDrawerList.setItemChecked(position, false);
 			activity.setTitle(menuCategories[position]);
 			closeDrawer(mDrawerList);
 		}
