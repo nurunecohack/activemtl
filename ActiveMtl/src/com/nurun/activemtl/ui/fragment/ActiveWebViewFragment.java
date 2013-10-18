@@ -28,11 +28,11 @@ import com.nurun.activemtl.util.NavigationUtil;
 
 public class ActiveWebViewFragment extends Fragment {
 
-    private static final int OFFSET = 800;
     private boolean listShown = true;
     private WebView webview;
     private View headerView;
     private float initialPosition;
+    private int OFFSET;
 
     @SuppressLint("SetJavaScriptEnabled")
     @Override
@@ -69,6 +69,8 @@ public class ActiveWebViewFragment extends Fragment {
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         webview.loadUrl(ActiveMtlConfiguration.getInstance(getActivity()).getHomeListUrl());
+        OFFSET = getActivity().getResources().getInteger(R.integer.offset);
+        Log.i(getClass().getSimpleName(), "Offset = " + OFFSET);
     }
 
     @JavascriptInterface
