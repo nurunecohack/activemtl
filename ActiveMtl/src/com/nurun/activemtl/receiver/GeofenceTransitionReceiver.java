@@ -37,8 +37,8 @@ public class GeofenceTransitionReceiver extends BroadcastReceiver {
         Log.i(GeofenceTransitionReceiver.class.getSimpleName(), "onReceive transition : " + (transition == Geofence.GEOFENCE_TRANSITION_ENTER ? "Enter" : "Exit"));
         String title = "";
         String content = "";
-        Builder builder = new Notification.Builder(context).setSmallIcon(R.drawable.logo)
-                .setLargeIcon(BitmapFactory.decodeResource(context.getResources(), R.drawable.logo)).setDefaults(Notification.DEFAULT_ALL)
+        Builder builder = new Notification.Builder(context).setSmallIcon(R.drawable.icon)
+                .setLargeIcon(BitmapFactory.decodeResource(context.getResources(), R.drawable.icon)).setDefaults(Notification.DEFAULT_ALL)
                 .setContentIntent(HomeActivity.newPendingIntent(context, mId)).setAutoCancel(true);
         NotificationManager mNotificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
         if (transition == Geofence.GEOFENCE_TRANSITION_ENTER && !PreferenceHelper.isCheckedIn(context)) {
