@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <!--
   Copyright 2013 The Android Open Source Project
 
@@ -25,7 +26,6 @@
         <item>Ideas</item>
         <item>Profile</item>
     </string-array>
-
     <string-array name="alerts_categories">
         <item>Select a category</item>
         <item>Garbage collection</item>
@@ -39,8 +39,6 @@
         <item>Sewers and aqueducts</item>
         <item>Others</item>
     </string-array>
-    
-
     <string-array name="ideas_categories">
         <item>Select a category</item>
         <item>Garbage</item>
@@ -53,8 +51,7 @@
         <item>Electricity</item>
         <item>Water</item>
     </string-array>
-    
-    
+
     <string name="app_not_available">Sorry, there\'s no web browser available</string>
     <string name="getting_courts">Loading events&#8230;</string>
     <string name="home">Home</string>
@@ -109,5 +106,10 @@
     <string name="please_enter_a_longer_description">Please enter a longer description</string>
     <string name="please_take_a_picture">Please take a picture</string>
     <string name="please_select_a_category">Please select a category</string>
+    <string name="explain_photo">1 - Take a picture related to the problem</string>
+    <string name="explain_situation">2 - Describe the situation</string>
+    <string name="explain_send">3 - Send your alert</string>
+    <string name="explain_button">Take a picture</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

@@ -14,6 +14,7 @@ import com.nurun.activemtl.ui.DetailActivity;
 import com.nurun.activemtl.ui.HomeActivity;
 import com.nurun.activemtl.ui.LoginActivity;
 import com.nurun.activemtl.ui.fragment.EventListFragment;
+import com.nurun.activemtl.ui.fragment.ExplainFragment;
 import com.nurun.activemtl.ui.fragment.FormFragment;
 import com.nurun.activemtl.ui.fragment.HomeFragment;
 import com.nurun.activemtl.ui.fragment.ProfileFragment;
@@ -66,7 +67,12 @@ public class NavigationUtil {
 
     public static void goToFormFragment(Activity activity, FragmentManager fragmentManager, EventType eventType) {
         if (PreferenceHelper.isLoggedIn(activity)) {
-            goToFragment(fragmentManager, R.id.suggestion_frame, FormFragment.newFragment(eventType));
+            if (eventType == EventType.Alert) {
+            	goToFragment(fragmentManager, R.id.suggestion_frame, ExplainFragment.newFragment(eventType));
+            } else if (eventType == EventType.Idea) {
+            	goToFragment(fragmentManager, R.id.suggestion_frame, FormFragment.newFragment(eventType));
+            }
+        	
         } else {
             activity.startActivityForResult(LoginActivity.newIntent(activity), requestLoginCode);
         }
@@ -90,7 +96,7 @@ public class NavigationUtil {
         }
     }
 
-    private static void goToFragment(FragmentManager fragmentManager, int frameId, Fragment fragment) {
+    public static void goToFragment(FragmentManager fragmentManager, int frameId, Fragment fragment) {
         FragmentTransaction transaction = fragmentManager.beginTransaction();
         Fragment mapFragment = fragmentManager.findFragmentById(R.id.map_fragment);
         if (mapFragment != null) {

@@ -30,29 +30,29 @@
     <string-array name="alerts_categories">
         <item>Sélectionner une categorie</item>
         <item>Déchet et recyclage</item>
-        <item>Collection bins</item>
-        <item>Graffitis</item>
-        <item>Roads and sidewalks</item>
-        <item>Winter situations / snowblowing</item>
-        <item>Pets</item>
-        <item>Neighboring problems</item>
-        <item>Lighting</item>
-        <item>Sewers and aqueducts</item>
-        <item>Others</item>
+        <item>Bacs de collecte</item>
+        <item>Graffiti</item>
+        <item>Routes et trottoirs</item>
+        <item>Situations hivernales / Déneigement</item>
+        <item>Animaux</item>
+        <item>Problèmes liés aux propriétés / voisinage</item>
+        <item>Éclairage</item>
+        <item>Aqueduc et égouts</item>
+        <item>Autres</item>
     </string-array>
     
 
     <string-array name="ideas_categories">
         <item>Sélectionner une categorie</item>
-        <item>Garbage</item>
-        <item>Gardening</item>
-        <item>Public transit</item>
-        <item>Supplies</item>
-        <item>Snowblowing</item>
-        <item>Physical activities</item>
-        <item>Housing</item>
-        <item>Electricity</item>
-        <item>Water</item>
+        <item>Déchets</item>
+        <item>Jardinage</item>
+        <item>Transport</item>
+        <item>Alimentation</item>
+        <item>Déneigement</item>
+        <item>Activités physique</item>
+        <item>Habitation</item>
+        <item>Électricité</item>
+        <item>Eau</item>
     </string-array>
 
     <string name="app_not_available">Désolé, l\'application n\'est pas disponible!</string>
@@ -103,5 +103,9 @@
     <string name="please_enter_a_longer_title">Titre trop court</string>
     <string name="please_enter_a_longer_description">Description trop courte</string>
     <string name="please_take_a_picture">Ajouter une photo</string>
-
+    <string name="explain_photo">1 - Prendre une photo du problème</string>
+    <string name="explain_situation">2 - Décrivez la situation</string>
+    <string name="explain_send">3 - Envoyez votre alerte</string>
+    <string name="explain_button">Prendre une photo</string>
+    
 </resources>
