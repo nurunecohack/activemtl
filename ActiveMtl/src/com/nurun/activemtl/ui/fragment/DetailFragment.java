@@ -1,15 +1,20 @@
 package com.nurun.activemtl.ui.fragment;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebChromeClient;
+import android.webkit.WebSettings;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
 
 import com.nurun.activemtl.ActiveMtlConfiguration;
 import com.nurun.activemtl.R;
 
+@SuppressLint("JavascriptInterface")
 public class DetailFragment extends Fragment {
 
     private static final String ITEM_ID = "ITEM_ID";
@@ -22,9 +27,15 @@ public class DetailFragment extends Fragment {
         return fragment;
     }
 
+    @SuppressLint("SetJavaScriptEnabled")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         WebView webView = (WebView) inflater.inflate(R.layout.event_fragment, container, false);
+        WebSettings settings = webView.getSettings();
+        settings.setJavaScriptEnabled(true);
+        webView.addJavascriptInterface(this, "ActiveMTL");
+        webView.setWebChromeClient(new WebChromeClient());
+        webView.setWebViewClient(new WebViewClient());
         webView.loadUrl(ActiveMtlConfiguration.getInstance(getActivity()).getDetailUrl(getActivity(), getArguments().getString(ITEM_ID)));
         return webView;
     }

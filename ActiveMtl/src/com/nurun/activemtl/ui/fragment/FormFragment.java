@@ -166,6 +166,10 @@ public class FormFragment extends Fragment {
                 mapView.getMap().getUiSettings().setZoomControlsEnabled(false);
                 mapView.getMap().moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(latitude, longitude), 16));
             }
+            
+            if (getEventType() == EventType.Alert) {
+            	startCamera();
+            }
         }
         new ProfilePictureAsyncTask().execute();
     }
@@ -195,7 +199,7 @@ public class FormFragment extends Fragment {
             Toast.makeText(getActivity(), R.string.please_enter_a_longer_title, Toast.LENGTH_LONG).show();
             return false;
         }
-        if (!pictureTaken) {
+        if ((!pictureTaken) && (getEventType() == EventType.Alert)) {
             Toast.makeText(getActivity(), R.string.please_take_a_picture, Toast.LENGTH_LONG).show();
             return false;
         }
@@ -249,18 +253,22 @@ public class FormFragment extends Fragment {
         public void onClick(View v) {
             switch (v.getId()) {
             case R.id.imageView1:
-                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                File f = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES), "FindAPlayground");
-                fileUri = Uri.fromFile(f);
-                intent.putExtra(MediaStore.EXTRA_OUTPUT, fileUri);
-                startActivityForResult(intent, CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
+            	startCamera();
                 break;
             default:
                 break;
             }
         }
     };
-
+    
+    public void startCamera() {
+        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        File f = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES), "FindAPlayground");
+        fileUri = Uri.fromFile(f);
+        intent.putExtra(MediaStore.EXTRA_OUTPUT, fileUri);
+        startActivityForResult(intent, CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
+    }
+    
     class BitmapWorkerTask extends AsyncTask<Uri, Void, Bitmap> {
         private final WeakReference<ImageView> imageViewReference;
 

@@ -38,4 +38,27 @@
         <item name="android:layout_height">wrap_content</item>
     </style>    
     
+    <style name="explain_text.focus" parent="@android:style/TextAppearance">
+        <item name="android:textSize">17sp</item>
+        <item name="android:textColor">#333333</item>
+    </style>
+
+    <style name="explain_text.non_focus" parent="@android:style/TextAppearance">
+        <item name="android:textSize">17sp</item>
+        <item name="android:textColor">#9F9F9F</item>
+    </style>
+
+    <style name="explain_button">
+        <item name="android:paddingTop">2dp</item>
+        <item name="android:paddingBottom">2dp</item>
+        <item name="android:background">@drawable/button_rounded</item>
+        <item name="android:layout_margin">15dp</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">#FFFFFF</item>
+        
+    </style>
+    
+    
 </resources>

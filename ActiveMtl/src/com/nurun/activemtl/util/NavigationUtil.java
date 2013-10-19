@@ -14,9 +14,11 @@ import com.nurun.activemtl.ui.DetailActivity;
 import com.nurun.activemtl.ui.HomeActivity;
 import com.nurun.activemtl.ui.LoginActivity;
 import com.nurun.activemtl.ui.fragment.EventListFragment;
+import com.nurun.activemtl.ui.fragment.ExplainFragment;
 import com.nurun.activemtl.ui.fragment.FormFragment;
 import com.nurun.activemtl.ui.fragment.HomeFragment;
 import com.nurun.activemtl.ui.fragment.ProfileFragment;
+import com.nurun.activemtl.ui.fragment.SuggestionFragment;
 
 public class NavigationUtil {
 
@@ -77,11 +79,19 @@ public class NavigationUtil {
 		}
 	}
 
-	public static void goToFormFragment(Activity activity,
+	public static void goToFormFragment(FragmentActivity activity,
 			FragmentManager fragmentManager, EventType eventType) {
 		if (PreferenceHelper.isLoggedIn(activity)) {
-			goToFragment(fragmentManager, R.id.suggestion_frame,
-					FormFragment.newFragment(eventType));
+			if (eventType == EventType.Alert) {
+				goToFragment(fragmentManager, R.id.suggestion_frame,
+						ExplainFragment.newFragment(eventType));
+			} else if (eventType == EventType.Challenge) {
+				goToFragment(fragmentManager, R.id.suggestion_frame,
+						SuggestionFragment.newFragment());
+			} else {
+				goToFragment(fragmentManager, R.id.suggestion_frame,
+						FormFragment.newFragment(eventType));
+			}
 		} else {
 			activity.startActivityForResult(LoginActivity.newIntent(activity),
 					requestLoginCode);
@@ -99,11 +109,6 @@ public class NavigationUtil {
 		}
 	}
 
-	private static void goToFragment(FragmentManager fragmentManager,
-			int contentFrame, Fragment newFragment) {
-		goToFragment(fragmentManager, contentFrame, newFragment, null);
-	}
-
 	public static void handleMenuClick(HomeActivity activity, int position) {
 		FragmentManager fragmentManager = activity.getSupportFragmentManager();
 		if (position == 4) {
@@ -115,7 +120,7 @@ public class NavigationUtil {
 		}
 	}
 
-	private static void goToFragment(FragmentManager fragmentManager,
+	public static void goToFragment(FragmentManager fragmentManager,
 			int frameId, Fragment fragment, EventType eventType) {
 		FragmentTransaction transaction = fragmentManager.beginTransaction();
 		Fragment mapFragment = fragmentManager
@@ -133,6 +138,37 @@ public class NavigationUtil {
 		} else {
 			transaction.replace(frameId, fragment, eventType.name()).commit();
 		}
+	}
+
+	public static Fragment getFragment(int position, boolean isLoggedIn) {
+		switch (position) {
+		case 0:
+			return HomeFragment.newFragment();
+		case 1:
+			return EventListFragment.newFragment(EventType.Challenge);
+		case 2:
+			return EventListFragment.newFragment(EventType.Alert);
+		case 3:
+			return EventListFragment.newFragment(EventType.Idea);
+		default:
+			throw new IllegalStateException("Not yet implemented");
+		}
+	}
+
+	public static void handleMenuClick(FragmentActivity activity, int position) {
+		FragmentManager fragmentManager = activity.getSupportFragmentManager();
+		if (position == 4) {
+			NavigationUtil.goToProfile(activity, fragmentManager);
+		} else {
+			Fragment fragment = getFragment(position,
+					PreferenceHelper.isLoggedIn(activity));
+			goToFragment(fragmentManager, R.id.content_frame, fragment);
+		}
+	}
+
+	private static void goToFragment(FragmentManager fragmentManager,
+			int contentFrame, Fragment newFragment) {
+		goToFragment(fragmentManager, contentFrame, newFragment, null);
 	}
 
 }

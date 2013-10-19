@@ -7,7 +7,6 @@ import android.support.v4.app.FragmentActivity;
 
 import com.nurun.activemtl.R;
 import com.nurun.activemtl.model.EventType;
-import com.nurun.activemtl.ui.fragment.FormFragment;
 import com.nurun.activemtl.ui.fragment.SuggestionFragment;
 import com.nurun.activemtl.util.NavigationUtil;
 
@@ -40,12 +39,9 @@ public class SuggestionActivity extends FragmentActivity {
 					.beginTransaction()
 					.replace(R.id.suggestion_frame,
 							SuggestionFragment.newFragment()).commit();
-		}
-		else {
-			getSupportFragmentManager()
-			.beginTransaction()
-			.replace(R.id.suggestion_frame,
-					FormFragment.newFragment(eventType)).commit();
+		} else {
+			NavigationUtil.goToFormFragment(this, getSupportFragmentManager(),
+					eventType);
 		}
 	}
 
