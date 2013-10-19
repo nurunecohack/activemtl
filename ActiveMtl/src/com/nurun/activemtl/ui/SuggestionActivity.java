@@ -7,10 +7,15 @@ import android.support.v4.app.FragmentActivity;
 
 import com.nurun.activemtl.R;
 import com.nurun.activemtl.model.EventType;
+import com.nurun.activemtl.ui.fragment.FormFragment;
 import com.nurun.activemtl.ui.fragment.SuggestionFragment;
 import com.nurun.activemtl.util.NavigationUtil;
 
 public class SuggestionActivity extends FragmentActivity {
+
+	private static final String EXTRA_EVENT_TYPE = "EXTRA_EVENT_TYPE";
+
+	private EventType eventType;
 
 	public static Intent newIntent(Context context) {
 		Intent intent = new Intent(context, SuggestionActivity.class);
@@ -18,16 +23,30 @@ public class SuggestionActivity extends FragmentActivity {
 		return intent;
 	}
 
-	private EventType eventType;
+	public static Intent newIntent(Context context, EventType eventType) {
+		Intent intent = newIntent(context);
+		intent.putExtra(EXTRA_EVENT_TYPE, eventType);
+		return intent;
+	}
 
 	@Override
 	protected void onCreate(Bundle arg0) {
 		super.onCreate(arg0);
 		setContentView(R.layout.suggestion_activity);
-		getSupportFragmentManager()
-				.beginTransaction()
-				.replace(R.id.suggestion_frame,
-						SuggestionFragment.newFragment()).commit();
+		EventType eventType = (EventType) getIntent().getSerializableExtra(
+				EXTRA_EVENT_TYPE);
+		if (eventType == null) {
+			getSupportFragmentManager()
+					.beginTransaction()
+					.replace(R.id.suggestion_frame,
+							SuggestionFragment.newFragment()).commit();
+		}
+		else {
+			getSupportFragmentManager()
+			.beginTransaction()
+			.replace(R.id.suggestion_frame,
+					FormFragment.newFragment(eventType)).commit();
+		}
 	}
 
 	@Override

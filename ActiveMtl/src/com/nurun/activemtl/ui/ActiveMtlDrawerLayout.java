@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.res.Configuration;
 import android.os.Build;
 import android.support.v4.app.ActionBarDrawerToggle;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.util.AttributeSet;
@@ -26,7 +25,7 @@ public class ActiveMtlDrawerLayout extends DrawerLayout {
 	private ListView mDrawerList;
 	private ActionBarDrawerToggle mDrawerToggle;
 	private String[] menuCategories;
-	private FragmentActivity activity;
+	private HomeActivity activity;
 
 	public ActiveMtlDrawerLayout(Context context, AttributeSet attrs,
 			int defStyle) {
@@ -41,7 +40,7 @@ public class ActiveMtlDrawerLayout extends DrawerLayout {
 		super(context);
 	}
 
-	public void init(final FragmentActivity activity, boolean firstLaunch) {
+	public void init(final HomeActivity activity, boolean firstLaunch) {
 		this.activity = activity;
 		mDrawerList = (ListView) findViewById(R.id.left_drawer);
 		// set a custom shadow that overlays the main content when the drawer
