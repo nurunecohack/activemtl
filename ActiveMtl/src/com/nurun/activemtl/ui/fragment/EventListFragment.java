@@ -23,50 +23,62 @@ import com.nurun.activemtl.util.NavigationUtil;
 
 public class EventListFragment extends Fragment {
 
-    private static final String EXTRA_EVENT_TYPE = "EXTRA_EVENT_TYPE";
+	private static final String EXTRA_EVENT_TYPE = "EXTRA_EVENT_TYPE";
 
-    @SuppressLint("SetJavaScriptEnabled")
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        WebView webview = (WebView) inflater.inflate(R.layout.event_fragment, container, false);
-        WebSettings settings = webview.getSettings();
-        settings.setJavaScriptEnabled(true);
-        webview.addJavascriptInterface(this, "ActiveMTL");
-        webview.setWebChromeClient(new WebChromeClient());
-        webview.setWebViewClient(new WebViewClient());
-        return webview;
-    }
+	@SuppressLint("SetJavaScriptEnabled")
+	@Override
+	public View onCreateView(LayoutInflater inflater, ViewGroup container,
+			Bundle savedInstanceState) {
+		WebView webview = (WebView) inflater.inflate(R.layout.event_fragment,
+				container, false);
+		WebSettings settings = webview.getSettings();
+		settings.setJavaScriptEnabled(true);
+		webview.addJavascriptInterface(this, "ActiveMTL");
+		webview.setWebChromeClient(new WebChromeClient());
+		webview.setWebViewClient(new WebViewClient());
+		return webview;
+	}
 
-    @Override
-    public void onActivityCreated(Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        LocationClient locationClient = (LocationClient) getActivity().getApplicationContext().getSystemService(ActiveMtlApplication.LOCATION_CLIENT);
-        Location lastLocation = locationClient.getLastLocation();
-        if (lastLocation == null) {
-            getView().loadUrl(ActiveMtlConfiguration.getInstance(getActivity()).getListUrl((EventType) getArguments().getSerializable(EXTRA_EVENT_TYPE)));
-        } else {
-            getView().loadUrl(
-                    ActiveMtlConfiguration.getInstance(getActivity()).getListUrl((EventType) getArguments().getSerializable(EXTRA_EVENT_TYPE),
-                            lastLocation.getLatitude(), lastLocation.getLongitude()));
-        }
-    }
+	@Override
+	public void onActivityCreated(Bundle savedInstanceState) {
+		super.onActivityCreated(savedInstanceState);
+		LocationClient locationClient = (LocationClient) getActivity()
+				.getApplicationContext().getSystemService(
+						ActiveMtlApplication.LOCATION_CLIENT);
+		Location lastLocation = locationClient.getLastLocation();
+		if (lastLocation == null) {
+			getView().loadUrl(
+					ActiveMtlConfiguration.getInstance(getActivity())
+							.getListUrl(
+									(EventType) getArguments().getSerializable(
+											EXTRA_EVENT_TYPE)));
+		} else {
+			getView().loadUrl(
+					ActiveMtlConfiguration.getInstance(getActivity())
+							.getListUrl(
+									(EventType) getArguments().getSerializable(
+											EXTRA_EVENT_TYPE),
+									lastLocation.getLatitude(),
+									lastLocation.getLongitude()));
+		}
+	}
 
-    @JavascriptInterface
-    public void openDetail(String id) {
-        NavigationUtil.goToDetail(getActivity(), id);
-    }
+	@JavascriptInterface
+	public void openDetail(String id) {
+		NavigationUtil.goToDetail(getActivity(), id);
+	}
 
-    @Override
-    public WebView getView() {
-        FrameLayout wrapper = (FrameLayout) super.getView();
-        return (WebView) ((wrapper != null) ? wrapper.getChildAt(0) : null);
-    }
+	@Override
+	public WebView getView() {
+		FrameLayout wrapper = (FrameLayout) super.getView();
+		return (WebView) ((wrapper != null) ? wrapper.getChildAt(0) : null);
+	}
 
-    public static Fragment newFragment(EventType eventType) {
-        EventListFragment fragment = new EventListFragment();
-        Bundle bundle = new Bundle();
-        bundle.putSerializable(EXTRA_EVENT_TYPE, eventType);
-        fragment.setArguments(bundle);
-        return fragment;
-    }
+	public static Fragment newFragment(EventType eventType) {
+		EventListFragment fragment = new EventListFragment();
+		Bundle bundle = new Bundle();
+		bundle.putSerializable(EXTRA_EVENT_TYPE, eventType);
+		fragment.setArguments(bundle);
+		return fragment;
+	}
 }

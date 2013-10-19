@@ -57,7 +57,7 @@ public class ExplainFragment extends Fragment {
         public void onClick(View v) {
             switch (v.getId()) {
             case R.id.buttonPicture:
-                NavigationUtil.goToFragment(getFragmentManager(), R.id.suggestion_frame, FormFragment.newFragment(EventType.Alert));
+                NavigationUtil.goToFragment(getFragmentManager(), R.id.suggestion_frame, FormFragment.newFragment(EventType.Alert), EventType.Alert);
                 break;
             default:
                 break;
