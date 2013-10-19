@@ -20,7 +20,7 @@
     <string name="app_name">Activez Montréal</string>
 
     <string-array name="menu_categories">
-        <item>Actualités</item>
+        <item>Accueil</item>
         <item>Défis</item>
         <item>Alertes</item>
         <item>Suggestions</item>
