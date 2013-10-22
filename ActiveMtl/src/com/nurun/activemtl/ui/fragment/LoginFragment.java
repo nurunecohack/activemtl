@@ -19,10 +19,8 @@ public class LoginFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.login, container, false);
         loginFacebookButton = view.findViewById(R.id.sign_in_button_facebook);
-        loginFacebookButton.setVisibility(View.VISIBLE);
         loginFacebookButton.setOnClickListener(onClickListener);
         loginGoogleButton = view.findViewById(R.id.sign_in_button_google);
-        loginGoogleButton.setVisibility(View.VISIBLE);
         loginGoogleButton.setOnClickListener(onClickListener);
         return view;
     }
