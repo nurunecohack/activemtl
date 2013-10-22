@@ -58,9 +58,13 @@ public class HomeActivity extends FragmentActivity {
 		// enable ActionBar app icon to behave as action to toggle nav drawer
 		getActionBar().setDisplayHomeAsUpEnabled(true);
 		getActionBar().setHomeButtonEnabled(true);
-		getSupportFragmentManager().beginTransaction()
-				.replace(R.id.content_frame, HomeFragment.newFragment())
-				.commit();
+		if (getSupportFragmentManager().findFragmentByTag(
+				HomeFragment.class.getSimpleName()) == null) {
+			getSupportFragmentManager()
+					.beginTransaction()
+					.replace(R.id.content_frame, HomeFragment.newFragment(),
+							HomeFragment.class.getSimpleName()).commit();
+		}
 	}
 
 	@Override
@@ -89,7 +93,8 @@ public class HomeActivity extends FragmentActivity {
 		// Handle action buttons
 		switch (item.getItemId()) {
 		case R.id.action_suggest:
-			if (getSupportFragmentManager().findFragmentByTag(EventType.Alert.name()) != null) {
+			if (getSupportFragmentManager().findFragmentByTag(
+					EventType.Alert.name()) != null) {
 				startActivity(SuggestionActivity.newIntent(this,
 						EventType.Alert));
 			} else if (getSupportFragmentManager().findFragmentByTag(
