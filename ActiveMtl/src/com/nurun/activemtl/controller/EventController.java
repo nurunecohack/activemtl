@@ -16,11 +16,11 @@ public interface EventController {
 
     void addSuggestedEvent(String name, String description, String fileUri, double[] latLong, EventType eventType, String category);
 
-    void getChallengeForMe(GetEventStatCallback callback);
+    void getMyChallenge(GetEventStatCallback callback);
 
-    void getAlertForMe(GetEventStatCallback callback);
+    void getMyAlert(GetEventStatCallback callback);
 
-    void getIdeaForMe(GetEventStatCallback callback);
+    void getMyIdea(GetEventStatCallback callback);
 
     void getAlertForDistrict(GetEventStatCallback callback, Location location);
 
