@@ -30,7 +30,6 @@ public class ActiveWebViewFragment extends Fragment {
 
     private boolean listShown = true;
     private WebView webview;
-    private View headerView;
     private float initialPosition;
     private int OFFSET;
 
@@ -44,8 +43,7 @@ public class ActiveWebViewFragment extends Fragment {
         webview.addJavascriptInterface(this, "ActiveMTL");
         webview.setWebChromeClient(new WebChromeClient());
         webview.setWebViewClient(new WebViewClient());
-        headerView = view.findViewById(R.id.headerView);
-        headerView.setOnClickListener(new OnClickListener() {
+        view.findViewById(R.id.headerView).setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (listShown) {

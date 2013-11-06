@@ -48,8 +48,7 @@ public class LoginActivity extends FragmentActivity {
         Session session = Session.getActiveSession();
         mPlusClient = new PlusClient.Builder(this, connectionCallback, connectionFailListener).setVisibleActivities("http://schemas.google.com/AddActivity",
                 "http://schemas.google.com/BuyActivity").build();
-        // Barre de progression à afficher si l'échec de connexion n'est pas
-        // résolu.
+        // Barre de progression à afficher si l'échec de connexion n'est pas résolu.
         mConnectionProgressDialog = new ProgressDialog(this);
         mConnectionProgressDialog.setMessage("Signing in...");
         if (mPlusClient.isConnected()) {
