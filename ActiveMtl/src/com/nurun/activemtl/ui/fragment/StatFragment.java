@@ -47,9 +47,9 @@ public class StatFragment extends Fragment {
             Area area = (Area) getArguments().getSerializable(EXTRA_AREA);
             switch (area) {
             case ME:
-                eventController.getAlertForMe(alertCountCallback);
-                eventController.getChallengeForMe(challengeCountCallback);
-                eventController.getIdeaForMe(ideaCountCallback);
+                eventController.getMyAlert(alertCountCallback);
+                eventController.getMyChallenge(challengeCountCallback);
+                eventController.getMyIdea(ideaCountCallback);
                 break;
             case DISTRICT:
                 eventController.getAlertForDistrict(alertCountCallback, locationClient.getLastLocation());

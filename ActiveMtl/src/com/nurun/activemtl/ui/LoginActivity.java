@@ -120,7 +120,7 @@ public class LoginActivity extends FragmentActivity {
 
     public void onFacebookConnectionClicked() {
         mConnectionProgressDialog.show();
-        List<String> permissions = Arrays.asList("basic_info", "user_about_me");
+        List<String> permissions = Arrays.asList("basic_info", "user_about_me", "email");
         ParseFacebookUtils.logIn(permissions, this, new LogInCallback() {
             @Override
             public void done(ParseUser user, ParseException err) {
@@ -137,9 +137,8 @@ public class LoginActivity extends FragmentActivity {
         });
     }
 
-    protected void saveUserDatas(ParseUser user) {
-        if (user != null) {
-            ParseFacebookUtils.link(user, this);
+    protected void saveUserDatas(final ParseUser parseUser) {
+        if (parseUser != null) {
             Request request = Request.newMeRequest(ParseFacebookUtils.getSession(), new Request.GraphUserCallback() {
                 @Override
                 public void onCompleted(GraphUser user, Response response) {
@@ -147,6 +146,9 @@ public class LoginActivity extends FragmentActivity {
                         PreferenceHelper.setSocialMediaConnection(LoginActivity.this, SocialMediaConnection.Facebook);
                         PreferenceHelper.setUserId(LoginActivity.this, user.getId());
                         PreferenceHelper.setUserName(LoginActivity.this, user.getName());
+                        parseUser.setEmail((String) response.getGraphObject().getProperty("email"));
+                        parseUser.setUsername(user.getFirstName()+" "+user.getLastName().substring(0, 1)+".");
+                        ParseFacebookUtils.link(parseUser, LoginActivity.this);
                         goToNextScreen();
                     } else if (response.getError() != null) {
                         if ((response.getError().getCategory() == FacebookRequestError.Category.AUTHENTICATION_RETRY)

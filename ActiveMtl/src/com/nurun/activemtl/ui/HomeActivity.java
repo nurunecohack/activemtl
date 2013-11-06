@@ -26,12 +26,15 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.nurun.activemtl.R;
 import com.nurun.activemtl.model.EventType;
 import com.nurun.activemtl.ui.fragment.HomeFragment;
 import com.nurun.activemtl.util.NavigationUtil;
 
 public class HomeActivity extends FragmentActivity {
+	private static final int GOOGLE_PLAY_SERVICES_REQUEST = 13567;
 	private ActiveMtlDrawerLayout mDrawerLayout;
 	private CharSequence mTitle;
 
@@ -49,11 +52,22 @@ public class HomeActivity extends FragmentActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		int googlePlayServicesAvailable = GooglePlayServicesUtil
+				.isGooglePlayServicesAvailable(getApplicationContext());
+		if (ConnectionResult.SUCCESS != googlePlayServicesAvailable) {
+			GooglePlayServicesUtil.getErrorDialog(googlePlayServicesAvailable,
+					this, GOOGLE_PLAY_SERVICES_REQUEST).show();
+		} else {
+			initViews(savedInstanceState == null);
+		}
+	}
+
+	private void initViews(boolean firstLaunch) {
 		setContentView(R.layout.home_activity);
 
 		mTitle = getTitle();
 		mDrawerLayout = (ActiveMtlDrawerLayout) findViewById(R.id.drawer_layout);
-		mDrawerLayout.init(this, savedInstanceState == null);
+		mDrawerLayout.init(this, firstLaunch);
 
 		// enable ActionBar app icon to behave as action to toggle nav drawer
 		getActionBar().setDisplayHomeAsUpEnabled(true);
@@ -80,6 +94,9 @@ public class HomeActivity extends FragmentActivity {
 		super.onActivityResult(requestCode, resultCode, intent);
 		if (requestCode == NavigationUtil.requestLoginCode && resultCode == 200) {
 			NavigationUtil.goToProfile(this, getSupportFragmentManager());
+		} else if (requestCode == GOOGLE_PLAY_SERVICES_REQUEST
+				&& resultCode == 200) {
+			initViews(true);
 		}
 	}
 
@@ -126,7 +143,9 @@ public class HomeActivity extends FragmentActivity {
 	@Override
 	protected void onPostCreate(Bundle savedInstanceState) {
 		super.onPostCreate(savedInstanceState);
-		mDrawerLayout.syncState();
+		if (mDrawerLayout != null) {
+			mDrawerLayout.syncState();
+		}
 	}
 
 	@Override
